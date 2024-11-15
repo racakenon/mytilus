@@ -1,0 +1,82 @@
+[colors]
+foreground= "#DEE0CA"
+background= "#3B3849"
+ansi = [
+    "#CED0BA",
+    "#EAA9BB",
+    "#A8CA96",
+    "#D2BC82",
+    "#A9BCF2",
+    "#D1AFE2",
+    "#84C9E5",
+    "#484557",
+]
+brights = [
+    "#BEC0AA",
+    "#EAA9BB",
+    "#A8CA96",
+    "#D2BC82",
+    "#A9BCF2",
+    "#D1AFE2",
+    "#84C9E5",
+    "#2E2B3C",
+]
+
+compose_cursor  = "#BEC0AA"
+cursor_bg       = "#BEC0AA"
+cursor_border   = "#BEC0AA"
+cursor_fg       = "#3B3849"
+selection_bg    = "#555744"
+selection_fg    = "#DEDBF1"
+scrollbar_thumb = "#BEBBD0"
+split           = "#BEBBD0"
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = "#484557"
+
+[colors.tab_bar.active_tab]
+bg_color      = "#EEF1DA"
+fg_color      = "#3B3849"
+intensity     = 'Normal'
+italic        = false
+strikethrough = false
+underline     = 'None'
+
+[colors.tab_bar.inactive_tab]
+bg_color      = "#BEC0AA"
+fg_color      = "#555265"
+intensity     = 'Normal'
+italic        = false
+strikethrough = false
+underline     = 'None'
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color      = "#BEC0AA"
+fg_color      = "#484557"
+intensity     = 'Normal'
+italic        = true
+strikethrough = false
+underline     = 'None'
+
+[colors.tab_bar.new_tab]
+bg_color      = "#CED0BA"
+fg_color      = "#484557"
+intensity     = 'Normal'
+italic        = false
+strikethrough = false
+underline     = 'None'
+
+[colors.tab_bar.new_tab_hover]
+bg_color      = "#DEE0CA"
+fg_color      = "#3B3849"
+intensity     = 'Normal'
+italic        = true
+strikethrough = false
+underline     = 'None'
+
+[metadata]
+aliases = []
+author = 'racagogi'
+name = "mytilus_dark"

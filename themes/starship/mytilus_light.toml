@@ -1,0 +1,160 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$os\
+$shell\
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$fill\
+$cmd_duration\
+$python\
+$time\
+$status
+$character
+"""
+palette = "mytilus_light"
+
+[palettes.mytilus_light]
+d0_black   = "#2E2B3C"
+d0_white   = "#2E2F1E"
+d1_black   = "#3B3849"
+d1_white   = "#3B3C2A"
+d2_black   = "#484557"
+d2_white   = "#484A37"
+d3_black   = "#555265"
+d3_white   = "#555744"
+d3_red     = "#794153"
+d3_orange  = "#7A462E"
+d3_yellow  = "#675317"
+d3_green   = "#415F30"
+d3_mint    = "#066357"
+d3_cyan    = "#105E77"
+d3_blue    = "#445282"
+d3_magenta = "#664774"
+v0_black   = "#EFEBFF"
+v0_white   = "#EEF1DA"
+v1_black   = "#DEDBF1"
+v1_white   = "#DEE0CA"
+v2_black   = "#CECBE0"
+v2_white   = "#CED0BA"
+v3_black   = "#BEBBD0"
+v3_white   = "#BEC0AA"
+v3_red     = "#EAA9BB"
+v3_orange  = "#EAAE93"
+v3_yellow  = "#D2BC82"
+v3_green   = "#A8CA96"
+v3_mint    = "#82CFC0"
+v3_cyan    = "#84C9E5"
+v3_blue    = "#A9BCF2"
+v3_magenta = "#D1AFE2"
+error      = "#794153"
+warn       = "#675317"
+ok         = "#066357"
+info       = "#664774"
+hint       = "#445282"
+add        = "#415F30"
+delete     = "#794153"
+change     = "#675317"
+bar0	   = "#3B3849"
+bar1	   = "#CED0BA"
+
+[python]
+disabled       = false
+symbol         = " "
+version_format = '${raw}'
+style          = 'bold fg:d1_black bg:bar1'
+format         = '[ [$symbol](fg:d1_black bg:bar1)${version} (\($virtualenv\)) ]($style)'
+
+[shell]
+disabled       = false
+bash_indicator = "bash"
+zsh_indicator  = "%"
+nu_indicator   = ">"
+fish_indicator = ""
+style          = 'bold fg:v1_white bg:bar0'
+format         = '[| $indicator ]($style)'
+
+[fill]
+symbol = ' '
+
+[os]
+disabled = false
+style    = 'bold fg:v1_white bg:bar0'
+format   = '[ $symbol ]($style)'
+
+[os.symbols]
+Arch     = ""
+Gentoo   = ""
+Linux    = ""
+NixOS    = ""
+Raspbian = ""
+Void     = ""
+Windows  = ""
+
+[character]
+disabled       = false
+success_symbol = '[λ](bold ok) '
+error_symbol   = '[λ](bold error) '
+
+[time]
+disabled        = false
+format          = '[  $time |]($style)'
+style           = 'bold fg:v1_white bg:bar0'
+time_format     = '%R'
+utc_time_offset = 'local'
+
+[cmd_duration]
+min_time          = 0
+show_milliseconds = true
+style             = 'bold fg:d1_black bg:bar1'
+format            = '[ $duration |]($style)'
+
+[git_branch]
+symbol            = ' '
+style             = 'bold fg:d1_black bg:bar1'
+truncation_length = 22
+truncation_symbol = '…'
+format            = '[| $symbol$branch(:$remote_branch)]($style)'
+
+[git_commit]
+commit_hash_length = 7
+tag_symbol         = '󰓹 '
+only_detached      = false
+tag_disabled       = false
+style              = 'bold fg:info bg:bar1'
+format             = '[ $tag\($hash\)]($style)'
+
+[git_status]
+format      = "[$ahead_behind$all_status ](fg:v3_white bg:bar1)"
+diverged    = "[  $ahead_count $behind_count](fg:info bg:bar1)"
+ahead       = "[  $count](fg:add bg:bar1)"
+behind      = "[  $count](fg:delete bg:bar1)"
+conflicted  = "[ 󰵖 $count](fg:error bg:bar1)"
+stashed     = "[ 󰦕 $count](fg:warn bg:bar1)"
+deleted     = "[  $count](fg:delete bg:bar1)"
+renamed     = "[  $count](fg:change bg:bar1)"
+modified    = "[  $count](fg:change bg:bar1)"
+typechanged = "[ 󰴝 $count](fg:change bg:bar1)"
+staged      = "[ 󰗡 $count](fg:ok bg:bar1)"
+untracked   = "[ ◌ $count](fg:info bg:bar1)"
+
+[status]
+disabled              = false
+style                 = 'bold fg:v1_white bg:bar0'
+symbol                = ' '
+success_symbol        = ' '
+not_executable_symbol = ' '
+not_found_symbol      = ' '
+sigint_symbol         = ' '
+signal_symbol         = ' '
+map_symbol            = true
+format                = '[ $symbol$common_meaning$status$signal_name$signal_number ]($style)'
+
+[directory]
+read_only                 = " "
+fish_style_pwd_dir_length = 2
+read_only_style           = 'bold fg:d1_black bg:bar1'
+style                     = 'bold fg:d1_black bg:bar1'
+format                    = '[ $read_only($read_only_style)$path ]($style)'

@@ -1,0 +1,32 @@
+error: d3_red
+warn: d3_yellow
+ok: d3_mint
+info: d3_magenta
+hint: d3_blue
+
+d_delete: d3_red
+d_add: d3_green
+d_change: d3_cyan
+
+v_delete: v3_red
+v_add: v3_green
+v_change: v3_cyan
+
+strong: d0_black
+normal: d1_black
+ui: d2_black
+comment: d3_black
+
+float: v0_white
+normal:v1_white
+cursorline:v2_white
+visual: v3_white
+
+keyword d3_red
+constant d3_orange
+parameters d3_yellow 
+string: d3_green
+operators: d3_mint
+object d3_cyan 
+functions: d3_blue
+type: d3_magenta 

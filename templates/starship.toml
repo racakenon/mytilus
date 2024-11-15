@@ -1,0 +1,160 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$os\
+$shell\
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$fill\
+$cmd_duration\
+$python\
+$time\
+$status
+$character
+"""
+palette = "$(name)"
+
+[palettes.$(name)]
+d0_black   = "$(d0_black)"
+d0_white   = "$(d0_white)"
+d1_black   = "$(d1_black)"
+d1_white   = "$(d1_white)"
+d2_black   = "$(d2_black)"
+d2_white   = "$(d2_white)"
+d3_black   = "$(d3_black)"
+d3_white   = "$(d3_white)"
+d3_red     = "$(d3_red)"
+d3_orange  = "$(d3_orange)"
+d3_yellow  = "$(d3_yellow)"
+d3_green   = "$(d3_green)"
+d3_mint    = "$(d3_mint)"
+d3_cyan    = "$(d3_cyan)"
+d3_blue    = "$(d3_blue)"
+d3_magenta = "$(d3_magenta)"
+v0_black   = "$(v0_black)"
+v0_white   = "$(v0_white)"
+v1_black   = "$(v1_black)"
+v1_white   = "$(v1_white)"
+v2_black   = "$(v2_black)"
+v2_white   = "$(v2_white)"
+v3_black   = "$(v3_black)"
+v3_white   = "$(v3_white)"
+v3_red     = "$(v3_red)"
+v3_orange  = "$(v3_orange)"
+v3_yellow  = "$(v3_yellow)"
+v3_green   = "$(v3_green)"
+v3_mint    = "$(v3_mint)"
+v3_cyan    = "$(v3_cyan)"
+v3_blue    = "$(v3_blue)"
+v3_magenta = "$(v3_magenta)"
+error      = "$(d3_red)"
+warn       = "$(d3_yellow)"
+ok         = "$(d3_mint)"
+info       = "$(d3_magenta)"
+hint       = "$(d3_blue)"
+add        = "$(d3_green)"
+delete     = "$(d3_red)"
+change     = "$(d3_yellow)"
+bar0	   = "$(d1_black)"
+bar1	   = "$(v2_white)"
+
+[python]
+disabled       = false
+symbol         = " "
+version_format = '${raw}'
+style          = 'bold fg:d1_black bg:bar1'
+format         = '[ [$symbol](fg:d1_black bg:bar1)${version} (\($virtualenv\)) ]($style)'
+
+[shell]
+disabled       = false
+bash_indicator = "bash"
+zsh_indicator  = "%"
+nu_indicator   = ">"
+fish_indicator = ""
+style          = 'bold fg:v1_white bg:bar0'
+format         = '[| $indicator ]($style)'
+
+[fill]
+symbol = ' '
+
+[os]
+disabled = false
+style    = 'bold fg:v1_white bg:bar0'
+format   = '[ $symbol ]($style)'
+
+[os.symbols]
+Arch     = ""
+Gentoo   = ""
+Linux    = ""
+NixOS    = ""
+Raspbian = ""
+Void     = ""
+Windows  = ""
+
+[character]
+disabled       = false
+success_symbol = '[λ](bold ok) '
+error_symbol   = '[λ](bold error) '
+
+[time]
+disabled        = false
+format          = '[  $time |]($style)'
+style           = 'bold fg:v1_white bg:bar0'
+time_format     = '%R'
+utc_time_offset = 'local'
+
+[cmd_duration]
+min_time          = 0
+show_milliseconds = true
+style             = 'bold fg:d1_black bg:bar1'
+format            = '[ $duration |]($style)'
+
+[git_branch]
+symbol            = ' '
+style             = 'bold fg:d1_black bg:bar1'
+truncation_length = 22
+truncation_symbol = '…'
+format            = '[| $symbol$branch(:$remote_branch)]($style)'
+
+[git_commit]
+commit_hash_length = 7
+tag_symbol         = '󰓹 '
+only_detached      = false
+tag_disabled       = false
+style              = 'bold fg:info bg:bar1'
+format             = '[ $tag\($hash\)]($style)'
+
+[git_status]
+format      = "[$ahead_behind$all_status ](fg:v3_white bg:bar1)"
+diverged    = "[  $ahead_count $behind_count](fg:info bg:bar1)"
+ahead       = "[  $count](fg:add bg:bar1)"
+behind      = "[  $count](fg:delete bg:bar1)"
+conflicted  = "[ 󰵖 $count](fg:error bg:bar1)"
+stashed     = "[ 󰦕 $count](fg:warn bg:bar1)"
+deleted     = "[  $count](fg:delete bg:bar1)"
+renamed     = "[  $count](fg:change bg:bar1)"
+modified    = "[  $count](fg:change bg:bar1)"
+typechanged = "[ 󰴝 $count](fg:change bg:bar1)"
+staged      = "[ 󰗡 $count](fg:ok bg:bar1)"
+untracked   = "[ ◌ $count](fg:info bg:bar1)"
+
+[status]
+disabled              = false
+style                 = 'bold fg:v1_white bg:bar0'
+symbol                = ' '
+success_symbol        = ' '
+not_executable_symbol = ' '
+not_found_symbol      = ' '
+sigint_symbol         = ' '
+signal_symbol         = ' '
+map_symbol            = true
+format                = '[ $symbol$common_meaning$status$signal_name$signal_number ]($style)'
+
+[directory]
+read_only                 = " "
+fish_style_pwd_dir_length = 2
+read_only_style           = 'bold fg:d1_black bg:bar1'
+style                     = 'bold fg:d1_black bg:bar1'
+format                    = '[ $read_only($read_only_style)$path ]($style)'
