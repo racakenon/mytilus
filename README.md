@@ -312,10 +312,11 @@ end
 	
 ## Ports
 
-- [wezterm](./themes/wezterm)
-- [nushell](./themes/nushell)
 - [fish](./themes/fish)
+- [nushell](./themes/nu)
 - [rio](./themes/rio)
+- [vivid](./themes/vivid)
+- [wezterm](./themes/wezterm)
 
 ## Acknowledge
 
