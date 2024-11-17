@@ -24,10 +24,10 @@ local M = (function()
 		---@type Palette
 		local palette = {
 			tc = {
-				black        = { fg = c.d2_black },
-				bright_black = { fg = c.d3_black },
-				white        = { fg = c.v2_white },
-				bright_white = { fg = c.v0_white },
+				black        = { fg = c.d1_black },
+				bright_black = { fg = c.d2_black },
+				white        = { fg = c.d1_white },
+				bright_white = { fg = c.d2_white },
 				red          = { fg = c.d3_red },
 				orange       = { fg = c.d3_orange },
 				yellow       = { fg = c.d3_yellow },

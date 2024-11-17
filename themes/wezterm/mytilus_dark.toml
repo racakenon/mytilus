@@ -2,6 +2,16 @@
 foreground= "#DEE0CA"
 background= "#3B3849"
 ansi = [
+    "#DEE0CA",
+    "#EAA9BB",
+    "#A8CA96",
+    "#D2BC82",
+    "#A9BCF2",
+    "#D1AFE2",
+    "#84C9E5",
+    "#DEDBF1",
+]
+brights = [
     "#CED0BA",
     "#EAA9BB",
     "#A8CA96",
@@ -9,17 +19,7 @@ ansi = [
     "#A9BCF2",
     "#D1AFE2",
     "#84C9E5",
-    "#484557",
-]
-brights = [
-    "#BEC0AA",
-    "#EAA9BB",
-    "#A8CA96",
-    "#D2BC82",
-    "#A9BCF2",
-    "#D1AFE2",
-    "#84C9E5",
-    "#2E2B3C",
+    "#CECBE0",
 ]
 
 compose_cursor  = "#BEC0AA"
