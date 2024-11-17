@@ -68,7 +68,7 @@ local function setup(palette)
 		["@comment.warning"]             = { p.ui.warning, p.at.bold }, -- warning-type comments (e.g. WARNING, FIX, HACK)
 		["@comment.todo"]                = { p.ui.info, p.at.bold },   -- todo-type comments (e.g. TODO, WIP)
 		["@comment.note"]                = { p.ui.hint, p.at.bold },   -- note-type comments (e.g. NOTE, INFO, XXX)
-		["@markup.strong"]               = { p.at.italic },            -- bold text
+		["@markup.strong"]               = { p.at.italic, p.at.bold },            -- bold text
 		["@markup.italic"]               = { p.at.italic },            -- italic text
 		["@markup.strikethrough"]        = { p.at.strikethrough },     -- struck-through text
 		["@markup.underline"]            = { p.at.underline },         -- underlined text (only for literal underline markup!)
@@ -79,13 +79,13 @@ local function setup(palette)
 		["@markup.heading.4"]            = { p.rb.rb4 },               -- and so on
 		["@markup.heading.5"]            = { p.rb.rb5 },               -- and so forth
 		["@markup.heading.6"]            = { p.rb.rb6 },               -- six levels ought to be enough for anybody
-		["@markup.quote"]                = { p.ui.board.dark },        -- block quotes
-		["@markup.math"]                 = { p.ui.board.dark },        -- math environments (e.g. $ ... $ in LaTeX)
+		["@markup.quote"]                = { p.bg.float },             -- block quotes
+		["@markup.math"]                 = { p.bg.float },             -- math environments (e.g. $ ... $ in LaTeX)
 		["@markup.link"]                 = { p.at.underline },         -- text references, footnotes, citations, etc.
 		["@markup.link.label"]           = { p.at.underline },         -- link, reference descriptions
 		["@markup.link.url"]             = { p.at.underline },         -- URL-style links
-		["@markup.raw"]                  = { p.ui.board.light },       -- literal or verbatim text (e.g. inline code)
-		["@markup.raw.block"]            = { p.ui.board.light },       -- literal or verbatim text as a stand-alone block
+		["@markup.raw"]                  = { p.bg.float },             -- literal or verbatim text (e.g. inline code)
+		["@markup.raw.block"]            = { p.bg.float },             -- literal or verbatim text as a stand-alone block
 		["@markup.list"]                 = { p.ui.sign },              -- list markers
 		["@markup.list.checked"]         = { p.ui.select },            -- checked todo-style list markers
 		["@markup.list.unchecked"]       = { p.ui.candidate },         -- unchecked todo-style list markers
