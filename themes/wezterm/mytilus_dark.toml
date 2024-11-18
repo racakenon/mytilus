@@ -4,7 +4,7 @@ background= "#3B3849"
 ansi = [
     "#DEE0CA",
     "#EAA9BB",
-    "#A8CA96",
+    "#82CFC0",
     "#D2BC82",
     "#A9BCF2",
     "#D1AFE2",
@@ -14,7 +14,7 @@ ansi = [
 brights = [
     "#CED0BA",
     "#EAA9BB",
-    "#A8CA96",
+    "#82CFC0",
     "#D2BC82",
     "#A9BCF2",
     "#D1AFE2",

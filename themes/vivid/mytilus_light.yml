@@ -1,36 +1,36 @@
 colors:
-  d0_black: '2E2B3C'
-  d0_white: '2E2F1E'
-  d1_black: '3B3849'
-  d1_white: '3B3C2A'
-  d2_black: '484557'
-  d2_white: '484A37'
-  d3_black: '555265'
-  d3_white: '555744'
-  d3_red: '794153'
-  d3_orange: '7A462E'
-  d3_yellow: '675317'
-  d3_green: '415F30'
-  d3_mint: '066357'
-  d3_cyan: '105E77'
-  d3_blue: '445282'
-  d3_magenta: '664774'
-  v0_black: 'EFEBFF'
-  v0_white: 'EEF1DA'
-  v1_black: 'DEDBF1'
-  v1_white: 'DEE0CA'
-  v2_black: 'CECBE0'
-  v2_white: 'CED0BA'
-  v3_black: 'BEBBD0'
-  v3_white: 'BEC0AA'
-  v3_red: 'EAA9BB'
-  v3_orange: 'EAAE93'
-  v3_yellow: 'D2BC82'
-  v3_green: 'A8CA96'
-  v3_mint: '82CFC0'
-  v3_cyan: '84C9E5'
-  v3_blue: 'A9BCF2'
-  v3_magenta: 'D1AFE2'
+  d0_black:      '2E2B3C'
+  d0_white:      '2E2F1E'
+  d1_black:      '3B3849'
+  d1_white:      '3B3C2A'
+  d2_black:      '484557'
+  d2_white:      '484A37'
+  d3_black:      '555265'
+  d3_white:      '555744'
+  d3_red:        '794153'
+  d3_orange:     '7A462E'
+  d3_yellow:     '675317'
+  d3_chartreuse: '415F30'
+  d3_green:      '066357'
+  d3_cyan:       '105E77'
+  d3_blue:       '445282'
+  d3_purple:     '664774'
+  v0_black:      'EFEBFF'
+  v0_white:      'EEF1DA'
+  v1_black:      'DEDBF1'
+  v1_white:      'DEE0CA'
+  v2_black:      'CECBE0'
+  v2_white:      'CED0BA'
+  v3_black:      'BEBBD0'
+  v3_white:      'BEC0AA'
+  v3_red:        'EAA9BB'
+  v3_orange:     'EAAE93'
+  v3_yellow:     'D2BC82'
+  v3_chartreuse: 'A8CA96'
+  v3_green:      '82CFC0'
+  v3_cyan:       '84C9E5'
+  v3_blue:       'A9BCF2'
+  v3_purple:     'D1AFE2'
 
 core:
   normal_text: 
@@ -58,10 +58,10 @@ core:
     foreground: d3_yellow
     background: v1_black
   socket: 
-    foreground: d3_magenta 
+    foreground: d3_purple 
     font-style: bold
   door: 
-    foreground: d3_magenta 
+    foreground: d3_purple 
     font-style: bold
   block_device: 
     foreground: d3_yellow
@@ -89,15 +89,15 @@ core:
     font-style: bold 
   sticky_other_writable: 
     foreground: d1_black
-    background: v3_green 
+    background: v3_chartreuse 
   other_writable: 
     foreground: d3_blue
-    background: v3_green
+    background: v3_chartreuse
   sticky: 
     foreground: d1_white
     background: v3_blue
   executable_file: 
-    foreground: d3_green
+    foreground: d3_chartreuse
     font-style: bold
 
 text:
@@ -109,7 +109,7 @@ text:
     foreground: d1_black
 
 markup:
-  foreground: d3_magenta
+  foreground: d3_purple
   font-style: underline
 
 programming:
@@ -121,9 +121,9 @@ programming:
     
 
 media:
-  foreground: d3_mint 
+  foreground: d3_green 
   image:
-    foreground: d3_magenta
+    foreground: d3_purple
   audio:
     foreground: d3_yellow
   video:
@@ -137,7 +137,7 @@ archives:
   font-style: bold 
 
 executable:
-  foreground: d3_green
+  foreground: d3_chartreuse
   font-style: bold 
 
 unimportant:

@@ -66,7 +66,7 @@ end
 function generate_doc(fg::Vector{OKcolor},
     fg_names::Vector{String}, bg::Vector{OKcolor}, bg_names::Vector{String}, name::String)
     doc = generate_header(name)
-    doc *= generate_color_table(fg, fg_names)
+	doc *= generate_color_table(vcat(fg,bg), vcat(fg_names,bg_names))
 
     doc *= "### contrast\n\n"
 
@@ -83,12 +83,13 @@ function generate_header(name::String)
 end
 
 function generate_color_table(fg::Vector{OKcolor}, fg_names::Vector{String})
-    doc = "| | hex | rgb |\n"
+    doc = "| | hex | rgb | OKlab |\n"
     doc *= "|---|---|---|\n"
 
     for (color, name) in zip(fg, fg_names)
         rgb_values = round.(color.rgb, digits=2)
-        doc *= "| $name | $(color.hex) | $rgb_values |\n"
+        OKlab_values = round.(color.oklab, digits=2)
+        doc *= "| $name | $(color.hex) | $rgb_values |  $OKlab_values |\n"
     end
     doc *= "\n\n"
 
@@ -124,14 +125,14 @@ function generate_theme(lue::Array{Float64,1}, hue::Array{Float64,1}, name::Stri
     fg_names = [
         "d0_black", "d0_white", "d1_black", "d1_white",
         "d2_black", "d2_white", "d3_black", "d3_white",
-        "d3_red", "d3_orange", "d3_yellow", "d3_green",
-        "d3_mint", "d3_cyan", "d3_blue", "d3_magenta"
+        "d3_red", "d3_orange", "d3_yellow", "d3_chartreuse",
+        "d3_green", "d3_cyan", "d3_blue", "d3_purple"
     ]
     bg_names = [
         "v0_black", "v0_white", "v1_black", "v1_white",
         "v2_black", "v2_white", "v3_black", "v3_white",
-        "v3_red", "v3_orange", "v3_yellow", "v3_green",
-        "v3_mint", "v3_cyan", "v3_blue", "v3_magenta"
+        "v3_red", "v3_orange", "v3_yellow", "v3_chartreuse",
+        "v3_green", "v3_cyan", "v3_blue", "v3_purple"
     ]
     color_names = vcat(fg_names, bg_names)
 

@@ -8,6 +8,7 @@ struct OKcolor
     hex::Union{String,Nothing}
     rgb::Vector{Float64}
     oklch::Vector{Float64}
+    oklab::Vector{Float64}
     luminance::Float64
 
     function OKcolor(color::Union{String,Vector{Float64}})
@@ -15,14 +16,16 @@ struct OKcolor
             hex = uppercase(color)
             rgb = hex_to_rgb(hex) .* 255
             oklch = rgb_to_oklch(rgb)
+            oklab = rgb_to_oklab(rgb)
             luminance = calculate_relative_luminance(rgb)
-            return new(hex, rgb, oklch, luminance)
+            return new(hex, rgb, oklch, oklab, luminance)
         elseif typeof(color) == Vector{Float64}
             oklch = color
+            oklab = oklch_to_oklab(oklch)
             rgb = oklch_to_rgb(oklch) .* 255
             hex = rgb_to_hex(rgb)
             luminance = calculate_relative_luminance(rgb)
-            return new(hex, rgb, oklch, luminance)
+            return new(hex, rgb, oklch, oklab, luminance)
         else
             error("not supported format")
         end

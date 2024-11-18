@@ -1,17 +1,17 @@
 palette = 0=#CED0BA
 palette = 1=#EAA9BB
-palette = 2=#A8CA96
+palette = 2=#82CFC0
 palette = 3=#D2BC82
 palette = 4=#A9BCF2
-palette = 5=#D1AFE2
+palette = 5=$(d3_magenta)
 palette = 6=#84C9E5
 palette = 7=#484557
 palette = 8=#BEC0AA
 palette = 9=#EAA9BB
-palette = 10=#A8CA96
+palette = 10=#82CFC0
 palette = 11=#D2BC82
 palette = 12=#A9BCF2
-palette = 13=#D1AFE2
+palette = 13=$(d3_magenta)
 palette = 14=#84C9E5
 palette = 15=#2E2B3C
 
