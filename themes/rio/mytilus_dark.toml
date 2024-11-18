@@ -32,7 +32,7 @@ light-cyan                      = "#84C9E5"
 light-white                     = "#CECBE0"
 
 cursor                          = "#BEC0AA"
-vi-cursor                       = "$(d3_mint)"
+vi-cursor                       = "#82CFC0"
 
 tabs                            = "#BEC0AA"
 tabs-active                     = "#EEF1DA"

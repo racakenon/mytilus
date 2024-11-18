@@ -32,7 +32,7 @@ light-cyan                      = "$(d3_cyan)"
 light-white                     = "$(d2_white)"
 
 cursor                          = "$(d3_black)"
-vi-cursor                       = "$(d3_mint)"
+vi-cursor                       = "$(d3_green)"
 
 tabs                            = "$(d3_black)"
 tabs-active                     = "$(d0_black)"
