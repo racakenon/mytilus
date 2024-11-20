@@ -24,27 +24,35 @@ local M = (function()
 		---@type Palette
 		local palette = {
 			tc = {
-				black        = { fg = c.d1_black },
-				bright_black = { fg = c.d2_black },
-				white        = { fg = c.d1_white },
-				bright_white = { fg = c.d2_white },
-				red          = { fg = c.d3_red },
-				orange       = { fg = c.d3_orange },
-				yellow       = { fg = c.d3_yellow },
-				chartreuse   = { fg = c.d3_chartreuse },
-				green        = { fg = c.d3_green },
-				cyan         = { fg = c.d3_cyan },
-				blue         = { fg = c.d3_blue },
-				purple       = { fg = c.d3_purple },
+				black             = { fg = c.d1_black },
+				bright_black      = { fg = c.d3_black },
+				white             = { fg = c.d1_white },
+				bright_white      = { fg = c.d3_white },
+				red               = { fg = c.d1_red },
+				orange            = { fg = c.d1_orange },
+				yellow            = { fg = c.d1_yellow },
+				chartreuse        = { fg = c.d1_chartreuse },
+				green             = { fg = c.d1_green },
+				cyan              = { fg = c.d1_cyan },
+				blue              = { fg = c.d1_blue },
+				purple            = { fg = c.d1_purple },
+				bright_red        = { fg = c.d3_red },
+				bright_orange     = { fg = c.d3_orange },
+				bright_yellow     = { fg = c.d3_yellow },
+				bright_chartreuse = { fg = c.d3_chartreuse },
+				bright_green      = { fg = c.d3_green },
+				bright_cyan       = { fg = c.d3_cyan },
+				bright_blue       = { fg = c.d3_blue },
+				bright_purple     = { fg = c.d3_purple },
 			},
 			rb = {
-				rb1 = { fg = c.d3_red },
-				rb2 = { fg = c.d3_yellow },
-				rb3 = { fg = c.d3_blue },
-				rb4 = { fg = c.d3_orange },
-				rb5 = { fg = c.d3_green },
-				rb6 = { fg = c.d3_purple },
-				rb7 = { fg = c.d3_cyan },
+				rb1 = { fg = c.d1_red },
+				rb2 = { fg = c.d1_yellow },
+				rb3 = { fg = c.d1_blue },
+				rb4 = { fg = c.d1_orange },
+				rb5 = { fg = c.d1_green },
+				rb6 = { fg = c.d1_purple },
+				rb7 = { fg = c.d1_cyan },
 			},
 			di = {
 				error = { fg = c.d3_red },
@@ -54,10 +62,10 @@ local M = (function()
 				hint  = { fg = c.d3_blue },
 			},
 			df = {
-				delete   = { bg = c.v3_orange },
-				add      = { bg = c.v3_chartreuse },
-				change   = { bg = c.v3_cyan },
-				difftext = { bg = c.v3_purple },
+				delete   = { bg = c.v2_orange },
+				add      = { bg = c.v2_chartreuse },
+				change   = { bg = c.v2_cyan },
+				difftext = { bg = c.v2_purple },
 			},
 			fg = {
 				strong  = { fg = c.d0_black },
@@ -70,11 +78,11 @@ local M = (function()
 				visual = { bg = c.v3_white },
 			},
 			ui = {
-				important = { bg = c.v3_red },
-				warning = { bg = c.v3_yellow },
-				info = { bg = c.v3_purple },
-				hint = { bg = c.v3_blue },
-				select = { bg = c.v3_green },
+				important = { bg = c.v2_red },
+				warning = { bg = c.v2_yellow },
+				info = { bg = c.v2_purple },
+				hint = { bg = c.v2_blue },
+				select = { bg = c.v2_green },
 				doc = { fg = c.d3_chartreuse },
 				note = { fg = c.d3_orange },
 				sign = { fg = c.d3_cyan },
@@ -100,21 +108,21 @@ local M = (function()
 			},
 			sy = {
 				keyword   = { fg = c.d3_purple, bold = true },
-				constant  = { fg = c.d3_purple, },
+				constant  = { fg = c.d1_purple, },
 				type      = { fg = c.d3_blue, bold = true },
-				macro     = { fg = c.d3_blue, },
+				macro     = { fg = c.d1_blue, },
 				functions = { fg = c.d3_cyan, bold = true },
-				statement = { fg = c.d3_cyan },
+				statement = { fg = c.d1_cyan },
 				modifier  = { fg = c.d3_chartreuse, bold = true },
-				operator  = { fg = c.d3_chartreuse },
+				operator  = { fg = c.d1_chartreuse },
 				symbol    = { fg = c.d3_green, bold = true },
-				string    = { fg = c.d3_green, },
+				string    = { fg = c.d1_green, },
 				parameter = { fg = c.d3_yellow, bold = true },
-				member    = { fg = c.d3_yellow, },
+				member    = { fg = c.d1_yellow, },
 				struct    = { fg = c.d3_orange, bold = true },
-				variable  = { fg = c.d3_orange },
+				variable  = { fg = c.d1_orange },
 				construct = { fg = c.d3_red, bold = true },
-				special   = { fg = c.d3_red },
+				special   = { fg = c.d1_red },
 			},
 			at = {
 				clear         = { default = true },
@@ -227,17 +235,17 @@ local M = (function()
 		vim.g.terminal_color_7  = p.tc.white
 		vim.g.terminal_color_15 = p.tc.bright_white
 		vim.g.terminal_color_1  = p.tc.red
-		vim.g.terminal_color_9  = p.tc.red
+		vim.g.terminal_color_9  = p.tc.bright_red
 		vim.g.terminal_color_2  = p.tc.green
-		vim.g.terminal_color_10 = p.tc.green
+		vim.g.terminal_color_10 = p.tc.bright_green
 		vim.g.terminal_color_3  = p.tc.yellow
-		vim.g.terminal_color_11 = p.tc.yellow
+		vim.g.terminal_color_11 = p.tc.bright_yellow
 		vim.g.terminal_color_4  = p.tc.blue
-		vim.g.terminal_color_12 = p.tc.blue
+		vim.g.terminal_color_12 = p.tc.bright_blue
 		vim.g.terminal_color_5  = p.tc.purple
-		vim.g.terminal_color_13 = p.tc.purple
+		vim.g.terminal_color_13 = p.tc.bright_purple
 		vim.g.terminal_color_6  = p.tc.cyan
-		vim.g.terminal_color_14 = p.tc.cyan
+		vim.g.terminal_color_14 = p.tc.bright_cyan
 
 		apply(p)
 	end

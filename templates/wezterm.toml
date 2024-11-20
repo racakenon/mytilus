@@ -3,23 +3,23 @@ foreground= "$(d1_black)"
 background= "$(v1_white)"
 ansi = [
     "$(d1_black)",
-    "$(d3_red)",
-    "$(d3_green)",
-    "$(d3_yellow)",
-    "$(d3_blue)",
-    "$(d3_purple)",
-    "$(d3_cyan)",
+    "$(d1_red)",
+    "$(d1_green)",
+    "$(d1_yellow)",
+    "$(d1_blue)",
+    "$(d1_purple)",
+    "$(d1_cyan)",
     "$(d1_white)",
 ]
 brights = [
-    "$(d2_black)",
+    "$(d3_black)",
     "$(d3_red)",
     "$(d3_green)",
     "$(d3_yellow)",
     "$(d3_blue)",
     "$(d3_purple)",
     "$(d3_cyan)",
-    "$(d2_white)",
+    "$(d3_white)",
 ]
 
 compose_cursor  = "$(d3_black)"

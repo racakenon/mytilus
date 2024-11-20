@@ -1,99 +1,99 @@
 # Retrieve the theme settings
 export def main [] {
     return {
-        binary: '#664774'
-        block: '#066357'
-        cell-path: '#555265'
-        closure: '#445282'
-        custom: '#664774'
-        duration: '#066357'
-        float: '#675317'
-        glob: '#066357'
-        int: '#675317'
-        list: '#105E77'
-        nothing: '#794153'
-        range: '#066357'
-        record: '#105E77'
-        string: '#415F30'
+        binary: '#5D3F6B'
+        block: '#005B4F'
+        cell-path: '#4D4A5C'
+        closure: '#3C4A79'
+        custom: '#5D3F6B'
+        duration: '#005B4F'
+        float: '#5E4B0C'
+        glob: '#005B4F'
+        int: '#5E4B0C'
+        list: '#00566E'
+        nothing: '#70394B'
+        range: '#005B4F'
+        record: '#00566E'
+        string: '#395728'
 
-        bool: {|| if $in { '#066357' } else { "#794153" } }
+        bool: {|| if $in { '#005B4F' } else { "#70394B" } }
 
         date: {|| (date now) - $in |
             if $in < 1hr {
-                '#794153'
+                '#70394B'
             } else if $in < 6hr {
-                '#7A462E'
+                '#713E26'
             } else if $in < 1day {
-                '#675317'
+                '#5E4B0C'
             } else if $in < 3day {
-                '#415F30'
+                '#395728'
             } else if $in < 1wk {
                 '$(d3_int)' 
             } else if $in < 6wk {
-                '#105E77'
+                '#00566E'
             } else if $in < 52wk {
-                '#445282'
-            } else { '#664774'}
+                '#3C4A79'
+            } else { '#5D3F6B'}
         }
 
         filesize: {|e|
             if $e == 0b {
-                '#555744'
+                '#4D4F3C'
             } else if $e < 1mb {
-                '#066357'
-            } else {{ fg: '#2E2B3C' attr: 'b' }}
+                '#005B4F'
+            } else {{ fg: '#363344' attr: 'b' }}
         }
 
-        shape_and: { fg: '#066357' attr: 'b' }
-        shape_binary: { fg: '#664774' attr: 'b' }
-        shape_block: { fg: '#066357' attr: 'b' }
-        shape_bool: '#675317'
-        shape_closure: { fg: '#445282' attr: 'b' }
-        shape_custom: '#664774'
-        shape_datetime: { fg: '#675317' attr: 'b' }
-        shape_directory: '#445282'
-        shape_external: '#415F30'
-        shape_external_resolved: '#415F30'
-        shape_externalarg: { fg: '#675317' attr: 'b' }
-        shape_filepath: '#445282'
-        shape_flag: { fg: '#794153' attr: 'b' }
-        shape_float: { fg: '#675317' attr: 'b' }
-        shape_garbage: { fg: '#3B3C2A' bg: '#EAA9BB' attr: 'b' }
-        shape_glob_interpolation: { fg: '#066357' attr: 'b' }
-        shape_globpattern: { fg: '#066357' attr: 'b' }
-        shape_int: { fg: '#675317' attr: 'b' }
-        shape_internalcall: { fg: '#066357' attr: 'b' }
-        shape_keyword: { fg: '#794153' attr: 'b' }
-        shape_list: { fg: '#105E77' attr: 'b' }
-        shape_literal: '#675317'
+        shape_and: { fg: '#005B4F' attr: 'b' }
+        shape_binary: { fg: '#5D3F6B' attr: 'b' }
+        shape_block: { fg: '#005B4F' attr: 'b' }
+        shape_bool: '#5E4B0C'
+        shape_closure: { fg: '#3C4A79' attr: 'b' }
+        shape_custom: '#5D3F6B'
+        shape_datetime: { fg: '#5E4B0C' attr: 'b' }
+        shape_directory: '#3C4A79'
+        shape_external: '#395728'
+        shape_external_resolved: '#395728'
+        shape_externalarg: { fg: '#5E4B0C' attr: 'b' }
+        shape_filepath: '#3C4A79'
+        shape_flag: { fg: '#70394B' attr: 'b' }
+        shape_float: { fg: '#5E4B0C' attr: 'b' }
+        shape_garbage: { fg: '#3D3F2D' bg: '$(v3_red)' attr: 'b' }
+        shape_glob_interpolation: { fg: '#005B4F' attr: 'b' }
+        shape_globpattern: { fg: '#005B4F' attr: 'b' }
+        shape_int: { fg: '#5E4B0C' attr: 'b' }
+        shape_internalcall: { fg: '#005B4F' attr: 'b' }
+        shape_keyword: { fg: '#70394B' attr: 'b' }
+        shape_list: { fg: '#00566E' attr: 'b' }
+        shape_literal: '#5E4B0C'
         shape_match_pattern: '$(d3_orage)'
         shape_matching_brackets: { attr: 'u' }
-        shape_nothing: '#794153'
-        shape_operator: '#445282'
-        shape_or: { fg: '#066357' attr: 'b' }
-        shape_pipe: { fg: '#445282' attr: 'b' }
-        shape_range: { fg: '#066357' attr: 'b' }
-        shape_raw_string: { fg: '#3B3849' attr: 'b' }
-        shape_record: { fg: '#105E77' attr: 'b' }
-        shape_redirection: { fg: '#105E77' attr: 'b' }
-        shape_signature: { fg: '#7A462E' attr: 'b' }
-        shape_string: '#415F30'
-        shape_string_interpolation: { fg: '#066357' attr: 'b' }
-        shape_table: { fg: '#105E77' attr: 'b' }
-        shape_vardecl: { fg: '#445282' attr: 'u' }
-        shape_variable: '#7A462E'
+        shape_nothing: '#70394B'
+        shape_operator: '#3C4A79'
+        shape_or: { fg: '#005B4F' attr: 'b' }
+        shape_pipe: { fg: '#3C4A79' attr: 'b' }
+        shape_range: { fg: '#005B4F' attr: 'b' }
+        shape_raw_string: { fg: '#3D3A4C' attr: 'b' }
+        shape_record: { fg: '#00566E' attr: 'b' }
+        shape_redirection: { fg: '#00566E' attr: 'b' }
+        shape_signature: { fg: '#713E26' attr: 'b' }
+        shape_string: '#395728'
+        shape_string_interpolation: { fg: '#005B4F' attr: 'b' }
+        shape_table: { fg: '#00566E' attr: 'b' }
+        shape_vardecl: { fg: '#3C4A79' attr: 'u' }
+        shape_variable: '#713E26'
 
-        foreground: '#3B3849'
+        foreground: '#3D3A4C'
         background: '#DEE0CA'
-        cursor: '#555265'
+        cursor: '#4D4A5C'
 
-        empty: '#445282'
-        header: { fg: '#415F30' attr: 'b' }
-        hints: '#555265'
+        empty: '#3C4A79'
+        header: { fg: '#395728' attr: 'b' }
+        hints: '#4D4A5C'
         leading_trailing_space_bg: { attr: 'n' }
-        row_index: { fg: '#484557' attr: 'b' }
-        search_result: { fg: '#7A462E' bg: '#BEBBD0' }
-        separator: '#2E2F1E'
+        row_index: { fg: '#454254' attr: 'b' }
+        search_result: { fg: '#713E26' bg: '#CBC7DD' }
+        separator: '#353725'
     }
 }
 

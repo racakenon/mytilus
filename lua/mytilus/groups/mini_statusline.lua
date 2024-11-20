@@ -7,7 +7,7 @@ local function setup(palette)
 		MiniStatuslineDevinfo     = { p.ui.bar.active },
 		MiniStatuslineFileinfo    = { p.ui.bar.active },
 		MiniStatuslineFilename    = { p.ui.bar.active, p.at.italic },
-		MiniStatuslineInactive    = { p.ui.bar.inactive},
+		MiniStatuslineInactive    = { p.ui.bar.inactive },
 
 		MiniStatuslineModeCommand = { swap(p.tc.yellow), p.at.bold, swap(p.bg.float) },
 		MiniStatuslineModeInsert  = { swap(p.tc.green), p.at.bold, swap(p.bg.float) },

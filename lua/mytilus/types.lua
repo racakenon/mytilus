@@ -7,6 +7,14 @@
 ---@field d2_white      string
 ---@field d3_black      string
 ---@field d3_white      string
+---@field d1_red        string
+---@field d1_orange     string
+---@field d1_yellow     string
+---@field d1_chartreuse string
+---@field d1_green      string
+---@field d1_cyan       string
+---@field d1_blue       string
+---@field d1_purple     string
 ---@field d3_red        string
 ---@field d3_orange     string
 ---@field d3_yellow     string
@@ -23,14 +31,14 @@
 ---@field v2_white      string
 ---@field v3_black      string
 ---@field v3_white      string
----@field v3_red        string
----@field v3_orange     string
----@field v3_yellow     string
----@field v3_chartreuse string
----@field v3_green      string
----@field v3_cyan       string
----@field v3_blue       string
----@field v3_purple     string
+---@field v2_red        string
+---@field v2_orange     string
+---@field v2_yellow     string
+---@field v2_chartreuse string
+---@field v2_green      string
+---@field v2_cyan       string
+---@field v2_blue       string
+---@field v2_purple     string
 
 ---@class Palette
 ---@field tc TerminalColor
@@ -44,18 +52,26 @@
 ---@field ui UI
 
 ---@class TerminalColor
----@field black         Color
----@field red           Color
----@field orange        Color
----@field yellow        Color
----@field chartreuse    Color
----@field green         Color
----@field cyan          Color
----@field blue          Color
----@field purple        Color
----@field white         Color
----@field bright_black  Color
----@field bright_white  Color
+---@field black             Color
+---@field red               Color
+---@field orange            Color
+---@field yellow            Color
+---@field chartreuse        Color
+---@field green             Color
+---@field cyan              Color
+---@field blue              Color
+---@field purple            Color
+---@field white             Color
+---@field bright_black      Color
+---@field bright_red        Color
+---@field bright_orange     Color
+---@field bright_yellow     Color
+---@field bright_chartreuse Color
+---@field bright_green      Color
+---@field bright_cyan       Color
+---@field bright_blue       Color
+---@field bright_purple     Color
+---@field bright_white      Color
 
 ---@class Diagnostic
 ---@field error         Color
