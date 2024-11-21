@@ -82,7 +82,7 @@ local M = (function()
 				warning = { bg = c.v2_yellow },
 				info = { bg = c.v2_purple },
 				hint = { bg = c.v2_blue },
-				select = { bg = c.v2_green },
+				select = { bg = c.v2_orange },
 				doc = { fg = c.d3_chartreuse },
 				note = { fg = c.d3_orange },
 				sign = { fg = c.d3_cyan },
@@ -101,7 +101,7 @@ local M = (function()
 				dir = { fg = c.d0_white },
 				fold = { fg = c.d2_white },
 				nontext = { fg = c.d3_white },
-				candidate = { bg = c.v0_black },
+				candidate = { bg = c.v2_chartreuse },
 				pmenu = { bg = c.v2_black },
 				pselect = { bg = c.v3_black },
 
