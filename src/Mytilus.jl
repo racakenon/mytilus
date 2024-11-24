@@ -70,8 +70,8 @@ function main()
         write(f, content)
 
     end
-    generate_theme([33.0, 35.0, 37.0, 39.0, 80.0, 87.0, 91.0, 95.0], [292.5, 112.5], "light")
-    generate_theme([91.0, 89.0, 87.0, 85.0, 44.0, 37.0, 33.0, 29.0], [112.5, 292.5], "dark")
+    generate_theme([33.0, 36.0, 39.0, 42.0, 82.0, 87.0, 91.0, 95.0], [292.5, 112.5], "light")
+    generate_theme([91.0, 87.0, 85.0, 84.0, 44.0, 36.0, 33.0, 30.0], [112.5, 292.5], "dark")
 
     open("README.md", "a") do f
         content = """
