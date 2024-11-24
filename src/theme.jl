@@ -45,15 +45,15 @@ end
 
 function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     d0 = create_colors(lue[1], 0.02, [hue[1], hue[2]])
-    d1 = create_colors(lue[2], 0.03, [hue[1], hue[2]])
+    d1 = create_colors(lue[2], 0.02, [hue[1], hue[2]])
     d1a = create_colors(lue[2], 0.05, [c * 45.0 for c in 0:7])
-    d2 = create_colors(lue[3], 0.03, [hue[1], hue[2]])
-    d3 = create_colors(lue[4], 0.03, [hue[1], hue[2]])
+    d2 = create_colors(lue[3], 0.02, [hue[1], hue[2]])
+    d3 = create_colors(lue[4], 0.02, [hue[1], hue[2]])
     d3a = create_colors(lue[4], 0.07, [c * 45.0 for c in 0:7])
-    v3 = create_colors(lue[5], 0.04, [hue[1], hue[2]])
-    v2 = create_colors(lue[6], 0.04, [hue[1], hue[2]])
+    v3 = create_colors(lue[5], 0.035, [hue[1], hue[2]])
+    v2 = create_colors(lue[6], 0.035, [hue[1], hue[2]])
     v2a = create_colors(lue[6], 0.06, [c * 45.0 for c in 0:7])
-    v1 = create_colors(lue[7], 0.04, [hue[1], hue[2]])
+    v1 = create_colors(lue[7], 0.035, [hue[1], hue[2]])
     v0 = create_colors(lue[8], 0.02, [hue[1], hue[2]])
 
     colors = [

@@ -1,76 +1,76 @@
 [colors]
-foreground= "#DBDDC7"
-background= "#363248"
+foreground= "#DBDCCE"
+background= "#363246"
 ansi = [
-    "#DBDDC7",
+    "#DBDCCE",
     "#F8CED9",
     "#B8E6DC",
     "#E7DAB6",
     "#CEDAFD",
     "#E8D1F2",
     "#B8E2F4",
-    "#DBD8ED",
+    "#DBD9E7",
 ]
 brights = [
-    "#CED0BA",
+    "#CECFC1",
     "#F5BBCC",
     "#9BDDCF",
     "#DFCC99",
     "#BCCCFD",
     "#DFC1EE",
     "#9CD8F0",
-    "#CECBE0",
+    "#CECCDA",
 ]
 
-compose_cursor  = "#CED0BA"
-cursor_bg       = "#CED0BA"
-cursor_border   = "#CED0BA"
-cursor_fg       = "#363248"
-selection_bg    = "#53553B"
-selection_fg    = "#DBD8ED"
-scrollbar_thumb = "#CECBE0"
-split           = "#CECBE0"
+compose_cursor  = "#CECFC1"
+cursor_bg       = "#CECFC1"
+cursor_border   = "#CECFC1"
+cursor_fg       = "#363246"
+selection_bg    = "#53553E"
+selection_fg    = "#DBD9E7"
+scrollbar_thumb = "#CECCDA"
+split           = "#CECCDA"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#403C53"
+background = "#403C51"
 
 [colors.tab_bar.active_tab]
 bg_color      = "#E1E3D4"
-fg_color      = "#363248"
+fg_color      = "#363246"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color      = "#CED0BA"
-fg_color      = "#534F67"
+bg_color      = "#CECFC1"
+fg_color      = "#534F65"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color      = "#CED0BA"
-fg_color      = "#403C53"
+bg_color      = "#CECFC1"
+fg_color      = "#403C51"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color      = "#D4D7C0"
-fg_color      = "#403C53"
+bg_color      = "#D4D6C7"
+fg_color      = "#403C51"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab_hover]
-bg_color      = "#DBDDC7"
-fg_color      = "#363248"
+bg_color      = "#DBDCCE"
+fg_color      = "#363246"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false

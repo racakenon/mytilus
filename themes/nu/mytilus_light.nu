@@ -3,7 +3,7 @@ export def main [] {
     return {
         binary: '#53395F'
         block: '#025146'
-        cell-path: '#454254'
+        cell-path: '#45434F'
         closure: '#36436B'
         custom: '#53395F'
         duration: '#025146'
@@ -38,7 +38,7 @@ export def main [] {
 
         filesize: {|e|
             if $e == 0b {
-                '#454734'
+                '#45463A'
             } else if $e < 1mb {
                 '#025146'
             } else {{ fg: '#35343F' attr: 'b' }}
@@ -58,7 +58,7 @@ export def main [] {
         shape_filepath: '#36436B'
         shape_flag: { fg: '#633443' attr: 'b' }
         shape_float: { fg: '#544310' attr: 'b' }
-        shape_garbage: { fg: '#3B3C2A' bg: '$(v3_red)' attr: 'b' }
+        shape_garbage: { fg: '#3A3C30' bg: '$(v3_red)' attr: 'b' }
         shape_glob_interpolation: { fg: '#025146' attr: 'b' }
         shape_globpattern: { fg: '#025146' attr: 'b' }
         shape_int: { fg: '#544310' attr: 'b' }
@@ -73,7 +73,7 @@ export def main [] {
         shape_or: { fg: '#025146' attr: 'b' }
         shape_pipe: { fg: '#36436B' attr: 'b' }
         shape_range: { fg: '#025146' attr: 'b' }
-        shape_raw_string: { fg: '#3B3849' attr: 'b' }
+        shape_raw_string: { fg: '#3B3944' attr: 'b' }
         shape_record: { fg: '#094C61' attr: 'b' }
         shape_redirection: { fg: '#094C61' attr: 'b' }
         shape_signature: { fg: '#643824' attr: 'b' }
@@ -83,16 +83,16 @@ export def main [] {
         shape_vardecl: { fg: '#36436B' attr: 'u' }
         shape_variable: '#643824'
 
-        foreground: '#3B3849'
-        background: '#E1E5C7'
-        cursor: '#454254'
+        foreground: '#3B3944'
+        background: '#E1E4CA'
+        cursor: '#45434F'
 
         empty: '#36436B'
         header: { fg: '#344D26' attr: 'b' }
-        hints: '#454254'
+        hints: '#45434F'
         leading_trailing_space_bg: { attr: 'n' }
-        row_index: { fg: '#403D4F' attr: 'b' }
-        search_result: { fg: '#643824' bg: '#BEBAD6' }
+        row_index: { fg: '#403E4A' attr: 'b' }
+        search_result: { fg: '#643824' bg: '#BEBAD3' }
         separator: '#35372B'
     }
 }
