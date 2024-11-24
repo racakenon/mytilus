@@ -3,7 +3,7 @@ export def main [] {
     return {
         binary: '#53395F'
         block: '#025146'
-        cell-path: '#454254'
+        cell-path: '#45444A'
         closure: '#36436B'
         custom: '#53395F'
         duration: '#025146'
@@ -38,10 +38,10 @@ export def main [] {
 
         filesize: {|e|
             if $e == 0b {
-                '#454734'
+                '#454640'
             } else if $e < 1mb {
                 '#025146'
-            } else {{ fg: '#35343F' attr: 'b' }}
+            } else {{ fg: '#35343A' attr: 'b' }}
         }
 
         shape_and: { fg: '#025146' attr: 'b' }
@@ -58,7 +58,7 @@ export def main [] {
         shape_filepath: '#36436B'
         shape_flag: { fg: '#633443' attr: 'b' }
         shape_float: { fg: '#544310' attr: 'b' }
-        shape_garbage: { fg: '#3B3C2A' bg: '$(v3_red)' attr: 'b' }
+        shape_garbage: { fg: '#3A3B35' bg: '$(v3_red)' attr: 'b' }
         shape_glob_interpolation: { fg: '#025146' attr: 'b' }
         shape_globpattern: { fg: '#025146' attr: 'b' }
         shape_int: { fg: '#544310' attr: 'b' }
@@ -73,7 +73,7 @@ export def main [] {
         shape_or: { fg: '#025146' attr: 'b' }
         shape_pipe: { fg: '#36436B' attr: 'b' }
         shape_range: { fg: '#025146' attr: 'b' }
-        shape_raw_string: { fg: '#3B3849' attr: 'b' }
+        shape_raw_string: { fg: '#3A3A3F' attr: 'b' }
         shape_record: { fg: '#094C61' attr: 'b' }
         shape_redirection: { fg: '#094C61' attr: 'b' }
         shape_signature: { fg: '#643824' attr: 'b' }
@@ -83,17 +83,17 @@ export def main [] {
         shape_vardecl: { fg: '#36436B' attr: 'u' }
         shape_variable: '#643824'
 
-        foreground: '#3B3849'
-        background: '#E1E5C7'
-        cursor: '#454254'
+        foreground: '#3A3A3F'
+        background: '#E1E2DB'
+        cursor: '#45444A'
 
         empty: '#36436B'
         header: { fg: '#344D26' attr: 'b' }
-        hints: '#454254'
+        hints: '#45444A'
         leading_trailing_space_bg: { attr: 'n' }
-        row_index: { fg: '#403D4F' attr: 'b' }
-        search_result: { fg: '#643824' bg: '#BEBAD6' }
-        separator: '#35372B'
+        row_index: { fg: '#403F45' attr: 'b' }
+        search_result: { fg: '#643824' bg: '#BEBDC4' }
+        separator: '#353630'
     }
 }
 
