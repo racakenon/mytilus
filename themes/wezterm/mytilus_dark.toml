@@ -1,76 +1,76 @@
 [colors]
-foreground= "#D1D2C7"
-background= "#2C283B"
+foreground= "#D1CFDA"
+background= "#2B2D1B"
 ansi = [
-    "#D1D2C7",
+    "#D1CFDA",
     "#F6C0CF",
     "#A2E0D2",
     "#E1D0A1",
     "#C0D0FD",
     "#E1C5EF",
     "#A3DBF1",
-    "#D1CFDA",
+    "#D1D2C7",
 ]
 brights = [
-    "#BDBFB4",
+    "#BEBCC7",
     "#E7AABC",
     "#86CEBF",
     "#D0BC86",
     "#ABBCEF",
     "#D0B0DF",
     "#88C9E2",
-    "#BEBCC7",
+    "#BDBFB4",
 ]
 
-compose_cursor  = "#BDBFB4"
-cursor_bg       = "#BDBFB4"
-cursor_border   = "#BDBFB4"
-cursor_fg       = "#2C283B"
-selection_bg    = "#40422C"
-selection_fg    = "#D1CFDA"
-scrollbar_thumb = "#BEBCC7"
-split           = "#BEBCC7"
+compose_cursor  = "#BEBCC7"
+cursor_bg       = "#BEBCC7"
+cursor_border   = "#BEBCC7"
+cursor_fg       = "#2B2D1B"
+selection_bg    = "#403D4F"
+selection_fg    = "#D1D2C7"
+scrollbar_thumb = "#BDBFB4"
+split           = "#BDBFB4"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#363246"
+background = "#353725"
 
 [colors.tab_bar.active_tab]
-bg_color      = "#DBDCD1"
-fg_color      = "#2C283B"
+bg_color      = "#DBD9E4"
+fg_color      = "#2B2D1B"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color      = "#BDBFB4"
-fg_color      = "#403C51"
+bg_color      = "#BEBCC7"
+fg_color      = "#40422F"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color      = "#BDBFB4"
-fg_color      = "#363246"
+bg_color      = "#BEBCC7"
+fg_color      = "#353725"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color      = "#C7C8BE"
-fg_color      = "#363246"
+bg_color      = "#C7C6D0"
+fg_color      = "#353725"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab_hover]
-bg_color      = "#D1D2C7"
-fg_color      = "#2C283B"
+bg_color      = "#D1CFDA"
+fg_color      = "#2B2D1B"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false

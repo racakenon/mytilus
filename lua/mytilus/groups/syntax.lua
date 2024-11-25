@@ -8,7 +8,7 @@ local function setup(palette)
 		String         = { p.sy.string }, -- a string constant: "this is a string"
 		Character      = "Constant",   -- a character constant: 'c', '\n'
 		Number         = "Constant",   -- a number constant: 234, 0xff
-		Boolean        = { p.sy.enum }, -- a boolean constant: TRUE, false
+		Boolean        = { p.sy.member }, -- a boolean constant: TRUE, false
 		Float          = "Constant",   -- a floating point constant: 2.3e10
 		Identifier     = { p.sy.variable }, -- any variable name
 		Function       = { p.sy.functions }, -- function name (also: methods for classes)

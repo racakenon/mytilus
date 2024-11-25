@@ -84,7 +84,7 @@ export def main [] {
         shape_variable: '#72422B'
 
         foreground: '#403E47'
-        background: '#E8EBD0'
+        background: '#E8EAD4'
         cursor: '#504E58'
 
         empty: '#404D79'
@@ -92,7 +92,7 @@ export def main [] {
         hints: '#504E58'
         leading_trailing_space_bg: { attr: 'n' }
         row_index: { fg: '#48464F' attr: 'b' }
-        search_result: { fg: '#72422B' bg: '#CECAE3' }
+        search_result: { fg: '#72422B' bg: '#CECBE0' }
         separator: '#383930'
     }
 }
