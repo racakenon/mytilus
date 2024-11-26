@@ -44,14 +44,14 @@ end
 function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     d0 = create_colors(lue[1], 0.015, [hue[1], hue[2]])
     d1 = create_colors(lue[2], 0.015, [hue[1], hue[2]])
-    d1a = make_accents(d1[1], 0.05, 8)
+    d1a = make_accents(d1[1], 0.045, 8)
     d2 = create_colors(lue[3], 0.015, [hue[1], hue[2]])
     d3 = create_colors(lue[4], 0.015, [hue[1], hue[2]])
-    d3a = make_accents(d3[1], 0.06, 8)
-    v3 = create_colors(lue[5], 0.030, [hue[1], hue[2]])
-    v2 = create_colors(lue[6], 0.030, [hue[1], hue[2]])
-    v2a = make_accents(v2[2], 0.03, 8)
-    v1 = create_colors(lue[7], 0.030, [hue[1], hue[2]])
+    d3a = make_accents(d3[1], 0.055, 8)
+    v3 = create_colors(lue[5], 0.015, [hue[1], hue[2]])
+    v2 = create_colors(lue[6], 0.015, [hue[1], hue[2]])
+    v2a = make_accents(v2[2], 0.045, 8)
+    v1 = create_colors(lue[7], 0.015, [hue[1], hue[2]])
     v0 = create_colors(lue[8], 0.015, [hue[1], hue[2]])
 
     colors = [
@@ -100,7 +100,7 @@ function generate_contrast_table(fg::Vector{OKcolor}, fg_names::Vector{String},
     doc *= "|---" * "|---"^length(bg_names_subset) * "|\n"
 
     for (color, name) in zip(fg, fg_names)
-        contrast_values = [cmp_luminance(bg_color, color) for bg_color in bg_subset]
+        contrast_values = [cmp_luminance(bg_color, color) > 7 ? "AAA" : "AA" for bg_color in bg_subset]
         contrast_str = join(string.(contrast_values), " | ")
         doc *= "| $name | $contrast_str |\n"
     end
@@ -142,7 +142,7 @@ function generate_theme(lue::Array{Float64,1}, hue::Array{Float64,1}, name::Stri
     generate_pixels(rgb_colors, "palette/$name.png")
 
     hex_output = "name: \"mytilus_$name\"\n" *
-                 join([string("$name: \"$(color.hex)\"") for (name, color) in zip(color_names, colors)], "\n")
+                 join([string("$name: \"#$(color.hex)\"") for (name, color) in zip(color_names, colors)], "\n")
 
     open("palette/$name.yml", "w") do f
         write(f, hex_output)

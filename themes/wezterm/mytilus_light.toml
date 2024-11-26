@@ -1,76 +1,76 @@
 [colors]
-foreground= "#433D45"
-background= "#E0EDD9"
+foreground= "#3B363D"
+background= "#DAE0D6"
 ansi = [
-    "#433D45",
-    "#583244",
-    "#234746",
-    "#4D3D27",
-    "#393C60",
-    "#4D3557",
-    "#254359",
-    "#3C423A",
+    "#3B363D",
+    "#4E2B3C",
+    "#203E3E",
+    "#433523",
+    "#333455",
+    "#442E4D",
+    "#213B4F",
+    "#353A32",
 ]
 brights = [
-    "#534D56",
-    "#6D3F54",
-    "#2B5957",
-    "#5F4C2F",
-    "#474B76",
-    "#5F436C",
-    "#2D546E",
-    "#4C524A",
+    "#4B454D",
+    "#63384C",
+    "#27504F",
+    "#56442B",
+    "#40446B",
+    "#563C62",
+    "#294C63",
+    "#444A42",
 ]
 
-compose_cursor  = "#534D56"
-cursor_bg       = "#534D56"
-cursor_border   = "#534D56"
-cursor_fg       = "#E0EDD9"
-selection_bg    = "#D5C8DC"
-selection_fg    = "#3C423A"
-scrollbar_thumb = "#4C524A"
-split           = "#4C524A"
+compose_cursor  = "#4B454D"
+cursor_bg       = "#4B454D"
+cursor_border   = "#4B454D"
+cursor_fg       = "#DAE0D6"
+selection_bg    = "#C8C1CB"
+selection_fg    = "#353A32"
+scrollbar_thumb = "#444A42"
+split           = "#444A42"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#D2E0CC"
+background = "#CDD3CA"
 
 [colors.tab_bar.active_tab]
-bg_color      = "#3B363D"
-fg_color      = "#E0EDD9"
+bg_color      = "#332E36"
+fg_color      = "#DAE0D6"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color      = "#534D56"
-fg_color      = "#C6D2BF"
+bg_color      = "#4B454D"
+fg_color      = "#C0C6BD"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color      = "#534D56"
-fg_color      = "#D2E0CC"
+bg_color      = "#4B454D"
+fg_color      = "#CDD3CA"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color      = "#4B454D"
-fg_color      = "#D2E0CC"
+bg_color      = "#433D45"
+fg_color      = "#CDD3CA"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab_hover]
-bg_color      = "#433D45"
-fg_color      = "#E0EDD9"
+bg_color      = "#3B363D"
+fg_color      = "#DAE0D6"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
@@ -79,4 +79,4 @@ underline     = 'None'
 [metadata]
 aliases = []
 author = 'racagogi'
-name = "#mytilus_light"
+name = "mytilus_light"

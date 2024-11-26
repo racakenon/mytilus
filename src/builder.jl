@@ -22,11 +22,11 @@ function replace_placeholders(scheme::String, template::String, output::String)
         placeholder = "\$($key)"
         placeholder_no_hash = "#($key)"
         
-        content = replace(content, placeholder => "#$hex_value")
+        content = replace(content, placeholder => "$hex_value")
         
         for match in eachmatch(alpha_pattern, content)
             if match.captures[1] == key  
-                r, g, b = parse(Int, hex_value[1:2], base=16), parse(Int, hex_value[3:4], base=16), parse(Int, hex_value[5:6], base=16)
+                r, g, b = parse(Int, hex_value[2:3], base=16), parse(Int, hex_value[4:5], base=16), parse(Int, hex_value[6:7], base=16)
                 alpha = parse(Float64, match.captures[2])
                 rgba_value = "rgba($r, $g, $b, $alpha)"
                 content = replace(content, match.match => rgba_value)
