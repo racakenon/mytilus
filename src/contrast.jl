@@ -1,9 +1,9 @@
 include("./OKColor.jl")
+using Colors
 using .OKColor
 
 function cmp_contrasts(l1::Float64, l2::Float64, c1::Float64, c2::Float64, aa::Float64)::Bool
-    diffs = [cmp_luminance(OKcolor([0.01l1, c1, 45.0i]),
-        OKcolor([0.01l2, c2, 45.0j])) for i in 0:7, j in 0:7]
+    diffs = [cmp_luminance(OKcolor(Oklch(0.01l1, c1, 45.0i)), OKcolor(Oklch(0.01l2, c2, 45.0j))) for i in 0:7, j in 0:7]
     return all(x -> x > aa, diffs)
 end
 

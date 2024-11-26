@@ -14,7 +14,7 @@ export generate_theme
 
 using ColorTypes, Colors, Images
 
-function generate_pixels(colours::Vector{Vector{Float64}}, name::String)
+function generate_pixels(colours::Vector{RGB{Float64}}, name::String)
     width = 1600
     height = 100
     block_width = div(width, length(colours))
@@ -24,12 +24,11 @@ function generate_pixels(colours::Vector{Vector{Float64}}, name::String)
     current_x = 1
 
     for colour in colours
-        color_rgb = RGB(colour...)
         block_end = current_x + block_width - 1
         if colour == colours[1]
             block_end += block_remainder
         end
-        img[:, current_x:block_end] .= color_rgb
+        img[:, current_x:block_end] .= colour
         current_x = block_end + 1
     end
 
@@ -39,19 +38,19 @@ end
 
 
 function create_colors(lue::Float64, c::Float64, h::Array{Float64,1})
-    return [OKcolor([lue * 0.01, c, hue]) for hue in h]
+    return [OKcolor(Oklch(lue * 0.01, c, hue)) for hue in h]
 end
 
 function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     d0 = create_colors(lue[1], 0.015, [hue[1], hue[2]])
     d1 = create_colors(lue[2], 0.015, [hue[1], hue[2]])
-    d1a = create_colors(lue[2], 0.065, [c * 45.0 for c in 0:7])
+    d1a = make_accents(d1[1], 0.05, 8)
     d2 = create_colors(lue[3], 0.015, [hue[1], hue[2]])
     d3 = create_colors(lue[4], 0.015, [hue[1], hue[2]])
-    d3a = create_colors(lue[4], 0.075, [c * 45.0 for c in 0:7])
+    d3a = make_accents(d3[1], 0.06, 8)
     v3 = create_colors(lue[5], 0.030, [hue[1], hue[2]])
     v2 = create_colors(lue[6], 0.030, [hue[1], hue[2]])
-    v2a = create_colors(lue[6], 0.050, [c * 45.0 for c in 0:7])
+    v2a = make_accents(v2[2], 0.03, 8)
     v1 = create_colors(lue[7], 0.030, [hue[1], hue[2]])
     v0 = create_colors(lue[8], 0.015, [hue[1], hue[2]])
 
@@ -63,8 +62,7 @@ function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     return colors
 end
 
-function generate_doc(fg::Vector{OKcolor},
-    fg_names::Vector{String}, bg::Vector{OKcolor}, bg_names::Vector{String}, name::String)
+function generate_doc(fg::Vector{OKcolor}, fg_names::Vector{String}, bg::Vector{OKcolor}, bg_names::Vector{String}, name::String)
     doc = generate_header(name)
     doc *= generate_color_table(vcat(fg, bg), vcat(fg_names, bg_names))
 
@@ -87,9 +85,9 @@ function generate_color_table(fg::Vector{OKcolor}, fg_names::Vector{String})
     doc *= "|---|---|---|\n"
 
     for (color, name) in zip(fg, fg_names)
-        rgb_values = round.(color.rgb, digits=2)
-        OKlab_values = round.(color.oklab, digits=2)
-        doc *= "| $name | $(color.hex) | $rgb_values |  $OKlab_values |\n"
+        rgb_values = [round(i, digits=2) for i in [color.rgb.r, color.rgb.g, color.rgb.b]]
+        OKlab_values = [round(i, digits=2) for i in [color.oklab.l, color.oklab.a, color.oklab.b]]
+        doc *= "| $name | #$(color.hex) | $rgb_values |  $OKlab_values |\n"
     end
     doc *= "\n\n"
 
@@ -140,7 +138,7 @@ function generate_theme(lue::Array{Float64,1}, hue::Array{Float64,1}, name::Stri
 
     generate_doc(colors[1], fg_names, colors[2], bg_names, name)
     colors = vcat(colors...)
-    rgb_colors = [color.rgb / 255 for color in colors]
+    rgb_colors = [color.rgb for color in colors]
     generate_pixels(rgb_colors, "palette/$name.png")
 
     hex_output = "name: \"mytilus_$name\"\n" *
