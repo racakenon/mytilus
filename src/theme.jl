@@ -44,15 +44,15 @@ end
 function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     d0 = create_colors(lue[1], 0.015, [hue[1], hue[2]])
     d1 = create_colors(lue[2], 0.015, [hue[1], hue[2]])
-    d1a = make_accents(OKcolor(Oklch(lue[2] * 0.01, 0.035, hue[2])), 0.07, 8)
+    d1a = make_accents(OKcolor(Oklch(lue[2] * 0.01, 0.015, hue[2])), 0.05, 8)
     d2 = create_colors(lue[3], 0.015, [hue[1], hue[2]])
     d3 = create_colors(lue[4], 0.015, [hue[1], hue[2]])
-    d3a = make_accents(OKcolor(Oklch(lue[4] * 0.01, 0.035, hue[2])), 0.09, 8)
-    v3 = create_colors(lue[5], 0.035, [hue[1], hue[2]])
-    v2 = create_colors(lue[6], 0.035, [hue[1], hue[2]])
-    v2a = make_accents(OKcolor(Oklch(lue[6] * 0.01, 0.035, hue[2])), 0.07, 8)
-    v1 = create_colors(lue[7], 0.035, [hue[1], hue[2]])
-    v0 = create_colors(lue[8], 0.035, [hue[1], hue[2]])
+    d3a = make_accents(OKcolor(Oklch(lue[4] * 0.01, 0.015, hue[2])), 0.07, 8)
+    v3 = create_colors(lue[5], 0.015, [hue[1], hue[2]])
+    v2 = create_colors(lue[6], 0.015, [hue[1], hue[2]])
+    v2a = make_accents(OKcolor(Oklch(lue[6] * 0.01, 0.015, hue[2])), 0.05, 8)
+    v1 = create_colors(lue[7], 0.015, [hue[1], hue[2]])
+    v0 = create_colors(lue[8], 0.015, [hue[1], hue[2]])
 
     colors = [
         vcat(d0, d1, d2, d3, d1a, d3a),
@@ -85,8 +85,8 @@ function generate_color_table(fg::Vector{OKcolor}, fg_names::Vector{String})
     doc *= "|---|---|---|\n"
 
     for (color, name) in zip(fg, fg_names)
-        rgb_values = [round(i, digits=2) for i in [color.rgb.r, color.rgb.g, color.rgb.b]]
-        OKlab_values = [round(i, digits=2) for i in [color.oklab.l, color.oklab.a, color.oklab.b]]
+        rgb_values = [round(i, digits=3) for i in [color.rgb.r, color.rgb.g, color.rgb.b]]
+        OKlab_values = [round(i, digits=3) for i in [color.oklab.l, color.oklab.a, color.oklab.b]]
         doc *= "| $name | #$(color.hex) | $rgb_values |  $OKlab_values |\n"
     end
     doc *= "\n\n"
