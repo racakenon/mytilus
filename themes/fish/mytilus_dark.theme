@@ -9,7 +9,7 @@ fish_color_param E0BA85
 fish_color_valid_path #(d3_mint)
 fish_color_option E0BA85
 fish_color_comment C1BFCA
-fish_color_selection 3D3C45
+fish_color_selection 403E47
 fish_color_operator C1BBE2
 fish_color_escape E0BA85
 fish_color_autosuggestion C1BFCA
@@ -28,7 +28,7 @@ fish_pager_color_background 33342B
 fish_pager_color_prefix C1C787
 fish_pager_color_completion C1C2B7
 fish_pager_color_description C1BFCA
-fish_pager_color_selected_background 3D3C45
+fish_pager_color_selected_background 403E47
 fish_pager_color_selected_prefix E0BA85
 fish_pager_color_selected_completion CECFC4
 fish_pager_color_selected_description CECCD7

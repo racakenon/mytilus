@@ -92,7 +92,7 @@ export def main [] {
         hints: '#4D4C55'
         leading_trailing_space_bg: { attr: 'n' }
         row_index: { fg: '#42414A' attr: 'b' }
-        search_result: { fg: '#67460E' bg: '#C7C6D0' }
+        search_result: { fg: '#67460E' bg: '#C4C2CD' }
         separator: '#2E2F26'
     }
 }

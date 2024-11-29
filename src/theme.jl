@@ -50,7 +50,7 @@ function generate_color(lue::Array{Float64,1}, hue::Array{Float64,1})
     d3a = make_accents(OKcolor(Oklch(lue[4] * 0.01, 0.015, hue[2])), 0.07, 8)
     v3 = create_colors(lue[5], 0.015, [hue[1], hue[2]])
     v2 = create_colors(lue[6], 0.015, [hue[1], hue[2]])
-    v2a = make_accents(OKcolor(Oklch(lue[6] * 0.01, 0.015, hue[2])), 0.05, 8)
+    v2a = make_accents(OKcolor(Oklch(lue[6] * 0.01, 0.015, hue[2])), 0.06, 8)
     v1 = create_colors(lue[7], 0.015, [hue[1], hue[2]])
     v0 = create_colors(lue[8], 0.015, [hue[1], hue[2]])
 
@@ -101,7 +101,7 @@ function generate_contrast_table(fg::Vector{OKcolor}, fg_names::Vector{String},
     doc *= "|---" * "|---"^length(bg_names_subset) * "|\n"
 
     for (color, name) in zip(fg, fg_names)
-        contrast_values = [cmp_luminance(bg_color, color) > 7 ? "AAA" : "AA" for bg_color in bg_subset]
+		contrast_values = [cmp_luminance(bg_color, color) > 7 ? "AAA" : cmp_luminance(bg_color, color) > 4.5 ? "AA" : cmp_luminance(bg_color,color) for bg_color in bg_subset]
         contrast_str = join(string.(contrast_values), " | ")
         doc *= "| $name | $contrast_str |\n"
     end
