@@ -51,8 +51,8 @@ end
 
 function make_accents(center::OKcolor, radius::Float64, n::Int)::Vector{OKcolor}
     return [OKcolor(Oklab(center.oklab.l,
-        center.oklab.a + radius * cos(2π * i / n),
-        center.oklab.b + radius * sin(2π * i / n))) for i in 0:n-1]
+        center.oklab.a + radius * cos((2π * i + π) / n),
+        center.oklab.b + radius * sin((2π * i + π) / n))) for i in 0:n-1]
 end
 
 function cmp_luminance(color1::OKcolor, color2::OKcolor)::Float64

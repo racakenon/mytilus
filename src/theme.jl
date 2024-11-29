@@ -87,7 +87,8 @@ function generate_color_table(fg::Vector{OKcolor}, fg_names::Vector{String})
     for (color, name) in zip(fg, fg_names)
         rgb_values = [round(i, digits=3) for i in [color.rgb.r, color.rgb.g, color.rgb.b]]
         OKlab_values = [round(i, digits=3) for i in [color.oklab.l, color.oklab.a, color.oklab.b]]
-        doc *= "| $name | #$(color.hex) | $rgb_values |  $OKlab_values |\n"
+        OKlch_values = [round(i, digits=3) for i in [color.oklch.l, color.oklch.c, color.oklch.h]]
+        doc *= "| $name | #$(color.hex) | $rgb_values | $OKlab_values | $OKlch_values |\n"
     end
     doc *= "\n\n"
 

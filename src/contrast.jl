@@ -19,11 +19,13 @@ function find_unsupport_color(colors::Vector{OKcolor})::Bool
 
 end
 
-function find_chroma(lu::Float64, ll::Float64, u::Float64, l::Float64, lr::Float64, a::Int64, b::Int64, c::Int64, h::Float64, m::Float64)::Bool
+function find_chroma(lu::Float64, ll::Float64, a::Int64, b::Int64, c::Int64, lr::Float64, chorma::Float64)::Bool
     a = 0.01a
     b = 0.01b
     c = 0.01c
-    chorma = m
+    h = chorma + 180
+    u = lu < 0.5 ? 0.04 : -0.04
+    l = lu < 0.5 ? 0.04 : -0.04
     l0 = create_colors(lu - 3u, 0.015, [h, chorma])
     l1 = create_colors(lu - 2u, 0.015, [h, chorma])
     l1a = make_accents(OKcolor(Oklch(lu - 2u, lr, chorma)), a, 8)
@@ -43,26 +45,27 @@ function find_chroma(lu::Float64, ll::Float64, u::Float64, l::Float64, lr::Float
     return true
 end
 
-for h in 67.5:45:292.5
-    for m in 67.5:45:292.5
-        if h != m
-            find_low = false
-            for ll in 80:85
-                if find_chroma(0.01(ll - 42), 0.01ll, 0.04, 0.04, 0.015, 5, 7, 5, 1.0h, 1.0m)
-                    if !find_low
-                        println("$h $m")
-                    end
-					println("$(ll-42) $ll")
-                    find_low = true
+for m in 110:0.5:115
+    r = 0.015
+    i = 5
+    j = 7
+    k = 5
+    d = 41
+        find_low = false
+        for lu in 42:42
+            if find_chroma(0.01lu, 0.01(lu + d), i, j, k, r, 1.0m)
+                if !find_low
+                    println("$m $r $i $j $k")
                 end
+                println("$lu $(lu+d)")
+                find_low = true
             end
-            if find_low
-                for ll in 40:45
-                    if find_chroma(0.01(ll + 42), 0.01ll, -0.04, -0.04, 0.015, 5, 7, 5, 1.0h, 1.0m)
-                        println("$ll")
-                    end
+        end
+        if find_low
+            for ll in 40:50
+                if find_chroma(0.01(ll + d), 0.01ll, i, j, k, r, 1.0m)
+                    println("find $(ll+d) $ll")
                 end
             end
         end
     end
-end
