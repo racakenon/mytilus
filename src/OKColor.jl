@@ -2,7 +2,7 @@ module OKColor
 using LinearAlgebra
 using Colors
 
-export OKcolor, cmp_luminance, make_accents
+export OKcolor, cmp_luminance, make_accents, in_range
 
 struct OKcolor
     hex::String
@@ -62,6 +62,37 @@ function cmp_luminance(color1::OKcolor, color2::OKcolor)::Float64
         (color1.luminance + 0.05) / (color2.luminance + 0.05)
     end
     return round(lum_ratio, digits=2)
+end
+
+function oklab_to_linear_rgb(oklab::Oklab)::Vector{Float64}
+    L = oklab.l
+    a = oklab.a
+    b = oklab.b
+
+    lms = [
+        (L + 0.3963377774 * a + 0.2158037573 * b),
+        (L - 0.1055613458 * a - 0.0638541728 * b),
+        (L - 0.0894841775 * a - 1.2914855480 * b)
+    ]
+
+    lms = lms .^ 3
+
+    M_inv = [
+        4.0767416621 -3.3077115913 0.2309699292;
+        -1.2684380046 2.6097574011 -0.3413193965;
+        -0.0041960863 -0.7034186147 1.7076147010
+    ]
+
+    return M_inv * lms
+end
+
+function linear_rgb_to_srgb(rgb::Vector{Float64})::Vector{Float64}
+    srgb = map(x -> x <= 0.0031308 ? 12.92 * x : 1.055 * x^(1 / 2.4) - 0.055, rgb)
+    return srgb
+end
+
+function in_range(okcolor::OKcolor)::Bool
+    return all(x -> 0 < x < 1, linear_rgb_to_srgb(oklab_to_linear_rgb(okcolor.oklab)))
 end
 
 end

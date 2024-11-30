@@ -12,10 +12,7 @@ function create_colors(lue::Float64, c::Float64, h::Array{Float64,1})
 end
 
 function is_support_color(colors::Vector{OKcolor})::Bool
-    overrange = [(0.01 < i.rgb.r < 0.99) &
-                 (0.01 < i.rgb.b < 0.99) &&
-                 (0.01 < i.rgb.g < 0.99) for i in colors]
-    return all(x -> x, overrange)
+	return all(x -> in_range(x), colors)
 
 end
 
