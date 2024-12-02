@@ -50,9 +50,13 @@ function calculate_relative_luminance(rgb::RGB)::Float64
 end
 
 function make_accents(center::OKcolor, radius::Float64, n::Int)::Vector{OKcolor}
-    return [OKcolor(Oklab(center.oklab.l,
-        center.oklab.a + radius * cos((2π * i + π) / n),
-        center.oklab.b + radius * sin((2π * i + π) / n))) for i in 0:n-1]
+    colors = [OKcolor(Oklab(center.oklab.l,
+        center.oklab.a + radius * cos((2π * i) / n),
+        center.oklab.b + radius * sin((2π * i) / n))) for i in 0:n-1]
+    if all(x -> in_range(x), colors)
+        return colors
+    end
+    return []
 end
 
 function cmp_luminance(color1::OKcolor, color2::OKcolor)::Float64
