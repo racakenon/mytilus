@@ -45,24 +45,56 @@ end
 function find_text(d::Float64, v::Float64, chroma::Float64, aa::Float64)::Bool
     h = chroma + 180
     lr = 0.015
-    rd = find_max(d, chroma)
     l1 = create_colors(d, 0.015, [h, chroma])
-    l1a = make_accents(OKcolor(Oklch(d, lr, chroma)), rd, 8)
     l5 = create_colors(v, lr, [h, chroma])
-    if !is_support_color(vcat(l1, l5, l1a,)) ||
-       !cmp_contrasts(vcat(l1, l1a), l5, aa)
+    if !is_support_color(vcat(l1, l5,)) ||
+       !cmp_contrasts(vcat(l1,), l5, aa)
         return false
     end
     return true
 end
 
-hue = 112.5
-for i in 70:85
-    if find_text(0.01i, 0.01(i - 42), hue, 4.5) &&
-       find_text(0.01i, 0.01(i - 54), 112.5, 7.0) &&
-       find_accent(0.01(i + 6), 0.01(i - 46), 112.5, 7.0) &&
-       find_text(0.01(i + 3), 0.01(i - 50), 112.5, 7.0) &&
-       find_text(0.01(i + 9), 0.01(i - 42), 112.5, 7.0)
-        println("$i")
+function find_scheme(d3::Int64, v3::Int64, d::Int64, v::Int64)::Bool
+    d0 = d3 > 50 ? d3 + 3d : d3 - 3d
+    d1 = d3 > 50 ? d3 + 2d : d3 - 2d
+    d2 = d3 > 50 ? d3 + d : d3 - d
+    v0 = v3 > 50 ? v3 + 3v : v3 - 3v
+    v1 = v3 > 50 ? v3 + 2v : v3 - 2v
+    v2 = v3 > 50 ? v3 + 1v : v3 - 1v
+    if find_accent(0.01d3, 0.01v3, 112.5, 4.5) &&
+       # find_accent(0.01d3, 0.01v0, 112.5, 7.0) &&
+       # find_text(0.01d2, 0.01v1, 112.5, 7.0) &&
+       find_accent(0.01d1, 0.01v2, 112.5, 7.) &&
+       # find_text(0.01d0, 0.01v3, 112.5, 7.0)
+        return true
+    end
+    return false
+end
+
+for diff in 40:50
+    for d in 3:7
+        for v in 4:7
+            find_dark = false
+            for dd3 in 30:50
+                if find_scheme(dd3, dd3 + diff, d, v) && find_max(0.01dd3, 112.5) >= 0.07 && find_max(0.01(dd3 - 2d), 112.5) >= 0.06 && (dd3 + diff + 3v) < 98
+                    r1 = find_max(0.01(dd3 - 2d), 112.5)
+                    r3 = find_max(0.01dd3, 112.5)
+                    r2 = find_max(0.01(dd3 + diff + v), 112.5)
+                    find_dark = true
+                    println("$(dd3-3d) $(dd3-2d) $(dd3-d) $(dd3) $(dd3+diff) $(dd3+diff+v) $(dd3+diff+2v) $(dd3 + diff + 3v) $r1 $r3 $r2")
+                end
+            end
+            if find_dark
+                for ld3 in 70:85
+                    if find_scheme(ld3, ld3 - diff, d, v) && find_max(0.01ld3, 112.5) >= 0.07 && find_max(0.01(ld3 + 2d), 112.5) >= 0.06 && find_max(0.01(ld3 - diff - v), 112.5) >= 0.06
+                        r1 = find_max(0.01(ld3 + 2d), 112.5)
+                        r3 = find_max(0.01ld3, 112.5)
+                        r2 = find_max(0.01(ld3 - diff - v), 112.5)
+                        find_dark = true
+                        println("$(ld3+3d) $(ld3+2d) $(ld3+d) $(ld3) $(ld3-diff) $(ld3-diff-v) $(ld3-diff-2v) $(ld3 - diff - 3v) $r1 $r3 $r2")
+                    end
+                end
+            end
+        end
     end
 end
