@@ -4,10 +4,10 @@ local function setup(palette)
 	local p = palette
 	local swap = require("mytilus").swap
 	return {
-		MiniStatuslineDevinfo     = { p.ui.bar.active },
-		MiniStatuslineFileinfo    = { p.ui.bar.active },
-		MiniStatuslineFilename    = { p.ui.bar.active, p.at.italic },
-		MiniStatuslineInactive    = { p.ui.bar.inactive },
+		MiniStatuslineDevinfo     = { p.ui.line.active },
+		MiniStatuslineFileinfo    = { p.ui.line.active },
+		MiniStatuslineFilename    = { p.ui.line.active, p.at.italic },
+		MiniStatuslineInactive    = { p.ui.line.inactive },
 
 		MiniStatuslineModeCommand = { swap(p.tc.bright_yellow), p.at.bold, swap(p.bg.float) },
 		MiniStatuslineModeInsert  = { swap(p.tc.bright_green), p.at.bold, swap(p.bg.float) },

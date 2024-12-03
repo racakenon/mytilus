@@ -18,7 +18,7 @@ local function setup(palette)
 
 		["@label"]                       = "Statement",                -- GOTO and other labels (e.g. label: in C), including heredoc labels
 		["@string"]                      = { p.sy.string },            -- string literals
-		["@string.documentation"]        = { p.ui.doc },               -- string documenting code (e.g. Python docstrings)
+		-- ["@string.documentation"]        = { p.ui.doc },               -- string documenting code (e.g. Python docstrings)
 		["@string.regexp"]               = { p.sy.special },           -- regular expressions
 		["@string.escape"]               = { p.sy.special },           -- escape sequences
 		["@string.special"]              = { p.sy.special },           -- other special strings (e.g. dates)
@@ -63,7 +63,7 @@ local function setup(palette)
 		["@punctuation.bracket"]         = { p.sy.special },           -- brackets (e.g. (), {}, [])
 		["@punctuation.special"]         = { p.sy.special },           -- special symbols (e.g. {} in string interpolation)
 		["@comment"]                     = { p.fg.comment },           -- line and block comments
-		["@comment.documentation"]       = { p.ui.doc },               -- comments documenting code
+		-- ["@comment.documentation"]       = { p.ui.doc },               -- comments documenting code
 		["@comment.error"]               = { p.ui.important, p.at.bold }, -- error-type comments (e.g. ERROR, FIXME, DEPRECATED)
 		["@comment.warning"]             = { p.ui.warning, p.at.bold }, -- warning-type comments (e.g. WARNING, FIX, HACK)
 		["@comment.todo"]                = { p.ui.info, p.at.bold },   -- todo-type comments (e.g. TODO, WIP)

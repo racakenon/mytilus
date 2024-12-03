@@ -122,29 +122,25 @@
 ---@field info       Color
 ---@field hint       Color
 ---@field select     Color
----@field note       Color
----@field doc        Color
----@field sign       Color
----@field cursorline Color
----@field bar        Bar
----@field board      Board
----@field border     Color
+---@field candidate  Color
+---@field line		 Line
 ---@field inactive   Color
 ---@field cursor     Color
----@field dir        Color
 ---@field fold       Color
 ---@field nontext    Color
----@field candidate  Color
+---@field special	 Color
+---@field sign       Color
 ---@field pmenu      Color
 ---@field pselect    Color
 
----@class Bar
+---@class Line
 ---@field active     Color
 ---@field inactive   Color
-
----@class Board
 ---@field light      Color
 ---@field dark       Color
+---@field cursor	 Color
+---@field side		 Color
+---@field border     Color
 
 ---@class Syntax
 ---@field keyword    Color

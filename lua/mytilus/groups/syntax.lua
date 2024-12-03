@@ -33,7 +33,7 @@ local function setup(palette)
 		Tag            = { p.sy.special }, -- you can use CTRL-] on this
 		Delimiter      = { p.sy.special }, -- character that needs attention
 		SpecialComment = { p.at.italic }, -- special things inside a comment
-		Debug          = { p.ui.note }, -- debugging statements
+		Debug          = { p.ui.warning}, -- debugging statements
 		Underlined     = { p.at.underline }, -- text that stands out, HTML links
 		Ignore         = { p.ui.nontext }, -- left blank, hidden  hl-Ignore
 		Error          = { p.di.error }, -- any erroneous construct
