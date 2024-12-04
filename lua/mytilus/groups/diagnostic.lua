@@ -30,11 +30,11 @@ local function setup(palette)
 		DiagnosticUnderlineOk      = { p.at.underline, p.di.ok },
 		DiagnosticUnderlineWarn    = { p.at.underline, p.di.warn },
 
-		DiagnosticVirtualTextError = "DiagnosticError",
-		DiagnosticVirtualTextHint  = "DiagnosticHint",
-		DiagnosticVirtualTextInfo  = "DiagnosticInfo",
-		DiagnosticVirtualTextOk    = "DiagnosticOk",
-		DiagnosticVirtualTextWarn  = "DiagnosticWarn",
+		DiagnosticVirtualTextError = { p.di.error, p.ui.error },
+		DiagnosticVirtualTextHint  = { p.di.hint, p.ui.hint },
+		DiagnosticVirtualTextInfo  = { p.di.info, p.ui.info },
+		DiagnosticVirtualTextOk    = { p.di.ok, p.ui.ok },
+		DiagnosticVirtualTextWarn  = { p.di.warn, p.ui.warn },
 	}
 end
 

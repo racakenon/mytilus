@@ -64,10 +64,10 @@ local function setup(palette)
 		["@punctuation.special"]         = { p.sy.special },           -- special symbols (e.g. {} in string interpolation)
 		["@comment"]                     = { p.fg.comment },           -- line and block comments
 		-- ["@comment.documentation"]       = { p.ui.doc },               -- comments documenting code
-		["@comment.error"]               = { p.ui.important, p.at.bold }, -- error-type comments (e.g. ERROR, FIXME, DEPRECATED)
-		["@comment.warning"]             = { p.ui.warning, p.at.bold }, -- warning-type comments (e.g. WARNING, FIX, HACK)
-		["@comment.todo"]                = { p.ui.info, p.at.bold },   -- todo-type comments (e.g. TODO, WIP)
-		["@comment.note"]                = { p.ui.hint, p.at.bold },   -- note-type comments (e.g. NOTE, INFO, XXX)
+		["@comment.error"]               = { p.sy.error, p.at.bold }, -- error-type comments (e.g. ERROR, FIXME, DEPRECATED)
+		["@comment.warning"]             = { p.sy.warn, p.at.bold }, -- warning-type comments (e.g. WARNING, FIX, HACK)
+		["@comment.todo"]                = { p.sy.todo, p.at.bold },   -- todo-type comments (e.g. TODO, WIP)
+		["@comment.note"]                = { p.sy.note, p.at.bold },   -- note-type comments (e.g. NOTE, INFO, XXX)
 		["@markup.strong"]               = { p.at.italic, p.at.bold },            -- bold text
 		["@markup.italic"]               = { p.at.italic },            -- italic text
 		["@markup.strikethrough"]        = { p.at.strikethrough },     -- struck-through text

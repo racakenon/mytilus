@@ -117,21 +117,24 @@
 ---@field visual        Color
 
 ---@class UI
----@field important  Color
----@field warning    Color
+---@field error		 Color
+---@field warn	     Color
+---@field ok		 Color
 ---@field info       Color
 ---@field hint       Color
 ---@field select     Color
 ---@field candidate  Color
+---@field match		 Color
 ---@field line		 Line
----@field inactive   Color
 ---@field cursor     Color
 ---@field fold       Color
+---@field subtitute  Color
 ---@field nontext    Color
 ---@field special	 Color
 ---@field sign       Color
 ---@field pmenu      Color
 ---@field pselect    Color
+---@field nc	     Color
 
 ---@class Line
 ---@field active     Color
@@ -143,6 +146,10 @@
 ---@field border     Color
 
 ---@class Syntax
+---@field error		 Color
+---@field warn		 Color
+---@field todo		 Color
+---@field note		 Color
 ---@field keyword    Color
 ---@field constant   Color
 ---@field type       Color
