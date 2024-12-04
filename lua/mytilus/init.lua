@@ -111,6 +111,7 @@ local M = (function()
 				warn      = { bg = c.v2_yellow, },
 				todo      = { bg = c.v2_purple, },
 				note      = { bg = c.v2_blue, },
+
 				keyword   = { fg = c.d3_purple, bold = true },
 				constant  = { fg = c.d1_purple, },
 				type      = { fg = c.d3_blue, bold = true },
