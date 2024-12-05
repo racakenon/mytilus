@@ -42,8 +42,8 @@ local function setup(palette)
 		Normal               = { p.fg.text, p.bg.plain },        -- Normal text.
 		NormalFloat          = { p.bg.float },                   --	Normal text in floating windows.
 		FloatBorder          = { p.fg.strong, p.at.bold, p.bg.float }, --	Border of floating windows.
-		FloatTitle           = { p.fg.strong, p.at.bold, p.bg.float }, --	Title of floating windows.
-		FloatFooter          = { p.fg.strong, p.at.bold, p.bg.float }, --	Footer of floating windows.
+		FloatTitle           = { p.ui.title, p.at.bold, p.bg.float }, --	Title of floating windows.
+		FloatFooter          = { p.ui.title, p.at.bold, p.bg.float }, --	Footer of floating windows.
 		NormalNC             = { p.ui.nc },                      --	Normal text in non-current windows.
 		Pmenu                = { p.ui.pmenu },                   --	Popup menu: Normal item.
 		PmenuSel             = { p.ui.pselect },                 --	Popup menu: Normal item.
@@ -71,7 +71,7 @@ local function setup(palette)
 		TabLine              = { p.ui.line.active },             --	Tab pages line, not active tab page label.
 		TabLineFill          = { p.ui.line.inactive },           --	Tab pages line, where there are no labels.
 		TabLineSel           = { p.ui.line.active },             --	Tab pages line, active tab page label.
-		Title                = { p.at.bold, p.di.info },         --	Titles for output from ":set all", ":autocmd" etc.
+		Title                = { p.at.bold, p.ui.title },         --	Titles for output from ":set all", ":autocmd" etc.
 		Visual               = { p.bg.visual },                  --	Visual mode selection.
 		VisualNOS            = { p.at.clear },                   --	Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg           = { p.di.warn },                    --	Warning messages.

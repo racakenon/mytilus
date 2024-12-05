@@ -131,6 +131,7 @@
 ---@field subtitute  Color
 ---@field nontext    Color
 ---@field special	 Color
+---@field title      Color
 ---@field sign       Color
 ---@field pmenu      Color
 ---@field pselect    Color

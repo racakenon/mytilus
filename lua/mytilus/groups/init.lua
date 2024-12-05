@@ -10,9 +10,7 @@ function M.highlightgroups(palette)
 		"base",
 		"diagnostic",
 		"expr",
-		"lsp",
 		"syntax",
-		"treesitter",
 		"rainbow_delimiters",
 		"mini_statusline"
 	}
