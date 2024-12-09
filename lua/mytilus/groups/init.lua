@@ -72,7 +72,7 @@ local function makeHighlightFromGrouptable(tbl, palette, prefix, result)
 			end
 			makeHighlightFromGrouptable(value, palette[key], fullKey, result)
 		else
-			result[value] = { palette }
+			result[value] = palette ~= nil and { palette } or {  }
 		end
 	end
 	return result

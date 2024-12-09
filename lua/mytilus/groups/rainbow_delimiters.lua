@@ -11,7 +11,7 @@ local colorlist = {
 local grouptable = {
 	rb = {
 		rb1 = {
-			"RainbowDelimiterRed"
+			"RainbowDelimiterRed",
 		},
 		rb2 = {
 			"RainbowDelimiterYellow"
