@@ -67,52 +67,58 @@ local function makeHighlightFromGrouptable(tbl, palette, prefix, result)
 	for key, value in pairs(tbl) do
 		if type(value) == "table" then
 			local fullKey = prefix ~= "" and (prefix .. "." .. key) or key
-			if palette[key] == nil then
+			if palette == nil or palette[key] == nil then
 				vim.print("mytilus not defined scheme " .. fullKey)
+			else
+				makeHighlightFromGrouptable(value, palette[key], fullKey, result)
 			end
-			makeHighlightFromGrouptable(value, palette[key], fullKey, result)
 		else
-			result[value] = palette ~= nil and { palette } or {  }
+			result[value] = palette ~= nil and { palette } or {}
 		end
 	end
 	return result
 end
 
 
+---@param colors table<Color>
+---@return vim.api.keyset.highlight
+local function mix_colors(colors)
+	if type(colors) == "string" then
+		return { link = colors }
+	end
+	local result = {}
+	for _, v in pairs(colors) do
+		result = vim.tbl_extend('keep', result, v)
+	end
+	return result
+end
+
 ---@param palette Palette
 ---@return HighlightGroups
 function M.highlightgroups(palette)
 	local groups = {}
-	local mix = require("mytilus").mix_colors
-
+	local colors = require("mytilus").get_colors()
 	local category = {
-		"base",
-		"diagnostic",
-		"expr",
-		"syntax",
-		"mini_statusline"
-	}
-
-	for _, group in ipairs(category) do
-		local group_module = require("mytilus." .. "groups." .. group)
-		local group_highlights = group_module.setup(palette)
-		for k, v in pairs(group_highlights) do
-			groups[k] = mix(v)
-		end
-	end
-
-	category = {
 		"rainbow_delimiters",
+		"mini_statusline"
 	}
 
 	for _, group in ipairs(category) do
 		local group_module = require("mytilus." .. "groups." .. group)
 		local colorlist = group_module.colorlist
 		local grouptable = group_module.grouptable
+		local localpalette = group_module.palette
+
+		if type(localpalette) == "function" then
+			palette = vim.tbl_deep_extend('force', palette, localpalette(colors))
+		end
+
 		list_equal(colorlist, flatten(grouptable))
+
 		local group_highlights = makeHighlightFromGrouptable(grouptable, palette)
+
 		for k, v in pairs(group_highlights) do
-			groups[k] = mix(v)
+			groups[k] = mix_colors(v)
 		end
 	end
 	return groups

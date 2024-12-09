@@ -17,6 +17,10 @@ local M = (function()
 		overides = {}
 	}
 
+	local function get_colors()
+		return configs.colors
+	end
+
 	---@return Palette
 	local function gen_palette()
 		local c = configs.colors
@@ -45,101 +49,6 @@ local M = (function()
 				bright_purple     = { fg = c.d3_purple },
 				bright_white      = { fg = c.d3_white },
 			},
-			rb = {
-				rb1 = { fg = c.d3_red },
-				rb2 = { fg = c.d3_yellow },
-				rb3 = { fg = c.d3_blue },
-				rb4 = { fg = c.d3_orange },
-				rb5 = { fg = c.d3_green },
-				rb6 = { fg = c.d3_purple },
-				rb7 = { fg = c.d3_cyan },
-			},
-			di = {
-				error = { fg = c.d3_red },
-				warn  = { fg = c.d3_yellow },
-				ok    = { fg = c.d3_green },
-				info  = { fg = c.d3_purple },
-				hint  = { fg = c.d3_blue },
-			},
-			df = {
-				delete   = { bg = c.v2_orange },
-				add      = { bg = c.v2_chartreuse },
-				change   = { bg = c.v2_cyan },
-				difftext = { bg = c.d3_blue, fg = c.v1_white },
-			},
-			fg = {
-				strong  = { fg = c.d0_black },
-				text    = { fg = c.d1_black },
-				comment = { fg = c.d3_black },
-			},
-			bg = {
-				float  = { bg = c.v0_white },
-				plain  = { bg = c.v1_white },
-				visual = { bg = c.v3_white },
-			},
-			ui = {
-				error     = { bg = c.v2_red },
-				warn      = { bg = c.v2_yellow },
-				ok        = { bg = c.v2_green },
-				info      = { bg = c.v2_purple },
-				hint      = { bg = c.v2_blue },
-				match     = { bg = c.d3_chartreuse, fg = c.v1_white },
-				subtitute = { bg = c.d3_cyan, fg = c.v1_white },
-				select    = { bg = c.d3_green, fg = c.v1_white },
-				candidate = { bg = c.d3_orange, fg = c.v1_white },
-				cursor    = { bg = c.d3_black, fg = c.v1_white },
-				sign      = { fg = c.d3_cyan },
-				special   = { fg = c.d3_chartreuse },
-				title     = { fg = c.d3_orange },
-				nontext   = { fg = c.d3_white },
-				pselect   = { bg = c.v2_black },
-				pmenu     = { bg = c.v0_black },
-				nc        = { bg = c.v1_white },
-				fold      = { bg = c.v3_black },
-				line      = {
-					cursor   = { bg = c.v2_white },
-					side     = { bg = c.v1_black },
-					light    = { bg = c.v0_black },
-					active   = { fg = c.d1_white, bg = c.v3_black },
-					inactive = { fg = c.d3_black, bg = c.v2_black },
-					dark     = { bg = c.d1_white },
-					border   = { fg = c.d1_white },
-				},
-			},
-			sy = {
-				error     = { bg = c.v2_red, },
-				warn      = { bg = c.v2_yellow, },
-				todo      = { bg = c.v2_purple, },
-				note      = { bg = c.v2_blue, },
-
-				keyword   = { fg = c.d3_purple, bold = true },
-				constant  = { fg = c.d1_purple, },
-				type      = { fg = c.d3_blue, bold = true },
-				macro     = { fg = c.d1_blue, },
-				functions = { fg = c.d3_cyan, bold = true },
-				statement = { fg = c.d1_cyan },
-				modifier  = { fg = c.d3_chartreuse, bold = true },
-				operator  = { fg = c.d1_chartreuse },
-				symbol    = { fg = c.d3_green, bold = true },
-				string    = { fg = c.d1_green, },
-				parameter = { fg = c.d3_yellow, bold = true },
-				member    = { fg = c.d1_yellow, },
-				struct    = { fg = c.d3_orange, bold = true },
-				variable  = { fg = c.d1_orange },
-				construct = { fg = c.d3_red, bold = true },
-				special   = { fg = c.d1_red },
-			},
-			at = {
-				clear         = { default = true },
-				bold          = { bold = true },
-				italic        = { italic = true },
-				undercurl     = { undercurl = true },
-				underline     = { underline = true },
-				underdashed   = { underdashed = true },
-				underdotted   = { underdotted = true },
-				underdouble   = { underdouble = true },
-				strikethrough = { strikethrough = true }
-			},
 		}
 
 		for option, palettes in pairs(configs.options) do
@@ -152,38 +61,6 @@ local M = (function()
 		end
 
 		return palette
-	end
-
-	---@param color Color
-	---@return Color
-	local function swap(color)
-		if type(color) == "string" then
-			return color
-		end
-		local result = {}
-		for k, v in pairs(color) do
-			if k == 'fg' then
-				result['bg'] = v
-			elseif k == 'bg' then
-				result['fg'] = v
-			else
-				result[k] = v
-			end
-		end
-		return result
-	end
-
-	---@param colors table<Color>
-	---@return vim.api.keyset.highlight
-	local function mix_colors(colors)
-		if type(colors) == "string" then
-			return { link = colors }
-		end
-		local result = {}
-		for _, v in pairs(colors) do
-			result = vim.tbl_extend('keep', result, v)
-		end
-		return result
 	end
 
 	---@param user_config UserConfig
@@ -258,9 +135,7 @@ local M = (function()
 	return {
 		setup = setup,
 		load = load,
-		mix_colors = mix_colors,
-		gen_palette = gen_palette,
-		swap = swap
+		get_colors = get_colors,
 	}
 end)()
 

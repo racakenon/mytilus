@@ -1,23 +1,51 @@
----@param palette Palette
----@return table<string,vim.api.keyset.highlight|string>
-local function setup(palette)
-	local p = palette
-	local swap = require("mytilus").swap
-	return {
-		MiniStatuslineDevinfo     = { p.ui.line.active },
-		MiniStatuslineFileinfo    = { p.ui.line.active },
-		MiniStatuslineFilename    = { p.ui.line.active, p.at.italic },
-		MiniStatuslineInactive    = { p.ui.line.inactive },
+local colorlist = {
+	"MiniStatuslineDevinfo",
+	"MiniStatuslineFileinfo",
+	"MiniStatuslineFilename",
+	"MiniStatuslineInactive",
+	"MiniStatuslineModeCommand",
+	"MiniStatuslineModeInsert",
+	"MiniStatuslineModeNormal",
+	"MiniStatuslineModeOther",
+	"MiniStatuslineModeReplace",
+	"MiniStatuslineModeVisual",
+}
 
-		MiniStatuslineModeCommand = { swap(p.tc.bright_yellow), p.at.bold, swap(p.bg.float) },
-		MiniStatuslineModeInsert  = { swap(p.tc.bright_green), p.at.bold, swap(p.bg.float) },
-		MiniStatuslineModeNormal  = { swap(p.tc.bright_blue), p.at.bold, swap(p.bg.float) },
-		MiniStatuslineModeOther   = { swap(p.tc.bright_cyan), p.at.bold, swap(p.bg.float) },
-		MiniStatuslineModeReplace = { swap(p.tc.bright_red), p.at.bold, swap(p.bg.float) },
-		MiniStatuslineModeVisual  = { swap(p.tc.bright_purple), p.at.bold, swap(p.bg.float) },
+local grouptable = {
+	mini = {
+		info = {
+			"MiniStatuslineDevinfo",
+			"MiniStatuslineFileinfo",
+			"MiniStatuslineFilename",
+		},
+		inactive = { "MiniStatuslineInactive" },
+		replace = { "MiniStatuslineModeReplace" },
+		command = { "MiniStatuslineModeCommand" },
+		insert = { "MiniStatuslineModeInsert" },
+		normal = { "MiniStatuslineModeNormal" },
+		other = { "MiniStatuslineModeOther" },
+		visual = { "MiniStatuslineModeVisual" }
+	}
+}
+
+---@param c Scheme
+local function palette(c)
+	return {
+		mini = {
+			info = { bg = c.v3_black, italic = true },
+			inactive = { bg = c.v2_black },
+			replace = { fg = c.v0_white, bg = c.d3_red, bold = true },
+			other = { fg = c.v0_white, bg = c.d3_cyan, bold = true },
+			visual = { fg = c.v0_white, bg = c.d3_purple, bold = true },
+			insert = { fg = c.v0_white, bg = c.d3_green, bold = true },
+			normal = { fg = c.v0_white, bg = c.d3_blue, bold = true },
+			command = { fg = c.v0_white, bg = c.d3_yellow, bold = true }
+		}
 	}
 end
 
 return {
-	setup = setup,
+	colorlist = colorlist,
+	grouptable = grouptable,
+	palette = palette
 }
