@@ -299,55 +299,63 @@ local grouptable = {
 		}
 	},
 	di = {
-		error = {
-			"@comment.error",
-			"@comment.warning",
-			"@comment.todo",
-			"@comment.note",
-			"ErrorMsg",
-			"SpellBad",
-			"Error",
-			"DiagnosticError",
-			"DiagnosticVirtualTextError",
-			"DiagnosticUnderlineError",
-			"DiagnosticFloatingError",
-			"DiagnosticSignError",
+		sign = {
+			error = { "DiagnosticSignError", },
+			warn = { "DiagnosticSignWarn", },
+			ok = { "DiagnosticSignOk" },
+			hint = { "DiagnosticSignHint" },
+			info = { "DiagnosticSignInfo" },
+		},
+		underline = {
+			error = { "DiagnosticUnderlineError", },
+			warn = { "DiagnosticUnderlineWarn", },
+			ok = { "DiagnosticUnderlineOk" },
+			hint = { "DiagnosticUnderlineHint" },
+			info = { "DiagnosticUnderlineInfo" },
+		},
+		virtual = {
+			error = { "DiagnosticVirtualTextError", },
+			warn = { "DiagnosticVirtualTextWarn", },
+			ok = { "DiagnosticVirtualTextOk" },
+			hint = { "DiagnosticVirtualTextHint" },
+			info = { "DiagnosticVirtualTextInfo" },
+		},
+		removerble = {
 			"DiagnosticDeprecated",
 			"@lsp.mod.deprecated",
 			"DiagnosticUnnecessary",
 		},
+		error = {
+			"@comment.error",
+			"ErrorMsg",
+			"SpellBad",
+			"Error",
+			"DiagnosticError",
+			"DiagnosticFloatingError",
+		},
 		warn = {
+			"@comment.warning",
 			"ColorColumn",
 			"SpellCap",
 			"WarningMsg",
-			"DiagnosticSignWarn",
-			"DiagnosticVirtualTextWarn",
 			"DiagnosticWarn",
-			"DiagnosticUnderlineWarn",
 			"DiagnosticFloatingWarn",
 		},
 		ok = {
 			"DiagnosticOk",
-			"DiagnosticVirtualTextOk",
-			"DiagnosticUnderlineOk",
 			"DiagnosticFloatingOk",
-			"DiagnosticSignOk",
 		},
 		info = {
+			"@comment.todo",
 			"DiagnosticInfo",
-			"DiagnosticSignInfo",
-			"DiagnosticVirtualTextInfo",
-			"DiagnosticUnderlineInfo",
 			"DiagnosticFloatingInfo",
 			"SpellLocal",
 			"SpellRare",
 		},
 		hint = {
-			"DiagnosticSignHint",
+			"@comment.note",
 			"DiagnosticHint",
-			"DiagnosticVirtualTextHint",
 			"DiagnosticFloatingHint",
-			"DiagnosticUnderlineHint",
 		}
 	},
 	cursor = {
@@ -358,65 +366,84 @@ local grouptable = {
 		"TermCursorNC",
 	},
 	sign = {
-		"Tag",
-		"Directory",
-		"SpecialKey",
-		"Ignore",
+		special = {
+			"Tag",
+			"Directory",
+			"SpecialKey",
+			"Ignore",
+		},
 
-		"Conceal",
-		"EndOfBuffer",
-		"NonText",
-		"Whitespace",
+		nontext = {
+			"Conceal",
+			"EndOfBuffer",
+			"NonText",
+			"Whitespace",
+		},
 
-		"LspReferenceText",
-		"LspReferenceRead",
-		"LspReferenceWrite",
-		"LspInlayHint",
-		"LspCodeLens",
-		"LspCodeLensSeparator",
-		"LspSignatureActiveParameter",
+		lsp = {
 
-		"ModeMsg",
-		"MoreMsg",
-		"Question",
+			"LspReferenceText",
+			"LspReferenceRead",
+			"LspReferenceWrite",
+			"LspInlayHint",
+			"LspCodeLens",
+			"LspCodeLensSeparator",
+			"LspSignatureActiveParameter",
+		},
 
-		"LineNr",
-		"LineNrAbove",
-		"LineNrBelow",
-		"FoldColumn",
-		"SignColumn",
+		msg = {
+			"ModeMsg",
+			"MoreMsg",
+			"Question",
+		},
 
-		"CursorLineNr",
-		"CursorLineFold",
-		"CursorLineSign",
+		linenr = {
+			"LineNr",
+			"LineNrAbove",
+			"LineNrBelow",
+			"FoldColumn",
+			"SignColumn",
+		},
+		cursorline = {
+			"CursorLineNr",
+			"CursorLineFold",
+			"CursorLineSign",
+		},
 
-		"FloatTitle",
-		"FloatFooter",
-		"Title",
+		title = {
+			"FloatTitle",
+			"FloatFooter",
+			"Title",
+		}
 	},
 	select = {
 		cursorline = {
 			"CursorColumn",
 			"CursorLine",
-
+		},
+		search = {
 			"Search",
-
-			"MatchParen",
-
-			"CurSearch",
 			"IncSearch",
-
-			"Folded",
-
+		},
+		cursearch = {
+			"CurSearch",
+		},
+		mathparen = {
+			"MatchParen",
+		},
+		substitute = {
 			"Substitute",
-
+		},
+		folded = {
+			"Folded",
+		},
+		selcet = {
 			"QuickFixLine",
 			"TabLineSel",
 			"PmenuSel",
 			"PmenuKindSel",
 			"PmenuExtraSel",
 		},
-
 	},
 	ui = {
 		"WinSeparator",
@@ -448,18 +475,21 @@ local grouptable = {
 			"WildMenu",
 		},
 		bar = {
-			"StatusLine",
-			"TabLine",
-			"WinBar",
-
-			"WinBarNC",
-			"TabLineFill",
-			"StatusLineNC",
-
-
-			"Menu",
-			"Scrollbar",
-			"Tooltip",
+			active = {
+				"StatusLine",
+				"TabLine",
+				"WinBar",
+			},
+			inactive = {
+				"WinBarNC",
+				"TabLineFill",
+				"StatusLineNC",
+			},
+			ui = {
+				"Menu",
+				"Scrollbar",
+				"Tooltip",
+			}
 		},
 	},
 	doc = {
@@ -726,107 +756,115 @@ local function palette(c)
 			bg = c.v3_white
 		},
 		di = {
-			error = {
-				fg = c.d3_red
+			sign       = {
+				error = { fg = c.d3_red, bg = c.v2_white },
+				warn = { fg = c.d3_yellow, bg = c.v2_white },
+				ok = { fg = c.d3_green, bg = c.v2_white },
+				info = { fg = c.d3_purple, bg = c.v2_white },
+				hint = { fg = c.d3_blue, bg = c.v2_white }
+
 			},
-			warn = {
-				fg = c.d3_yellow
+			underline  = {
+				error = { fg = c.d3_red, underline = true },
+				warn = { fg = c.d3_yellow, underline = true },
+				ok = { fg = c.d3_green, underline = true },
+				info = { fg = c.d3_purple, underline = true },
+				hint = { fg = c.d3_blue, underline = true }
 			},
-			ok = {
-				fg = c.d3_green
+			virtual    = {
+				error = { fg = c.d3_red, bg = c.v2_red },
+				warn = { fg = c.d3_yellow, bg = c.v2_yellow },
+				ok = { fg = c.d3_green, bg = c.v2_green },
+				info = { fg = c.d3_purple, bg = c.v2_purple },
+				hint = { fg = c.d3_blue, bg = c.v2_blue }
 			},
-			info = {
-				fg = c.d3_purple
+			removerble = {
+				strikethrough = true
+
 			},
-			hint = {
-				fg = c.d3_blue
-			}
+			lsp        = {
+				bg = c.v1_black
+			},
+			error      = { fg = c.d3_red },
+			warn       = { fg = c.d3_yellow },
+			ok         = { fg = c.d3_green },
+			info       = { fg = c.d3_purple },
+			hint       = { fg = c.d3_blue }
 		},
 		area = {
-			normal = {
-				fg = c.d1_black,
-				bg = c.v1_white
-			},
-			visual = {
-				bg = c.v3_white
-			},
-			float = {
-				bg = c.v0_white
-			},
-			menu = {
-				bg = c.v1_black
+			normal = { fg = c.d1_black, bg = c.v1_white },
+			visual = { bg = c.v3_white },
+			float = { bg = c.v0_white },
+			menu = { bg = c.v1_black },
+			bar = {
+				ui = {},
+				active = { bg = c.v3_black },
+				inactive = { bg = c.v2_black }
 			}
+		},
+		ui = {
+			bg = c.v1_white
 		},
 		select = {
-			cursorline = {
-				bg = c.v2_white
-			}
+			cursorline = { bg = c.v2_white },
+			search = { fg = c.v1_white, bg = c.d3_white },
+			cursearch = { fg = c.v1_white, bg = c.d3_cyan },
+			mathparen = { fg = c.v1_white, bg = c.d3_green },
+			substitute = { fg = c.v1_white, bg = c.d3_blue },
+			folded = { bg = c.v2_black },
+			select = { bg = c.v1_black }
+		},
+		sign = {
+			special = { bold = true },
+			linenr = { bg = c.v2_white },
+			cursorline = { bg = c.v2_white, fg = c.d1_orange },
+			title = { bold = true },
+			nontext = { fg = c.d3_chartreuse },
+			msg = { fg = c.d3_purple }
 		},
 		literal = {
-			constant = {
-				fg = c.d3_yellow
-			},
-			symbol = {
-				fg = c.d3_yellow
-			},
-			number = {
-				fg = c.d1_yellow
-			},
-			char = {
-				fg = c.d1_orange
-			},
-			spstring = {
-				fg = c.d3_orange,
-				underline = true
-			},
-			float = {
-				fg = c.d1_orange
-			},
-			string = {
-				fg = c.d1_green
-			},
+			constant = { fg = c.d3_yellow },
+			symbol = { fg = c.d3_yellow },
+			number = { fg = c.d1_yellow },
+			char = { fg = c.d1_orange },
+			spstring = { fg = c.d3_orange, underline = true },
+			float = { fg = c.d1_orange },
+			string = { fg = c.d1_green },
 		},
 		identifier = {
-			variable = {
-				fg = c.d1_black
-			},
-			parameter = {
-				fg = c.d1_cyan
-			},
-			member = {
-				fg = c.d1_yellow
-			},
-			func = {
-				fg = c.d3_blue,
-			},
-			spfunc = {
-				fg = c.d3_blue
-			},
-			operator = {
-				fg = c.d3_cyan
-			},
-			type = {
-				fg = c.d3_purple
-			},
+			variable = { fg = c.d1_black },
+			parameter = { fg = c.d1_cyan },
+			member = { fg = c.d1_yellow },
+			func = { fg = c.d3_blue, },
+			spfunc = { fg = c.d3_blue },
+			operator = { fg = c.d3_cyan },
+			type = { fg = c.d3_purple },
 		},
 		reserve = {
-			statement = {
-				fg = c.d3_red
-			},
-			modifier = {
-				fg = c.d3_cyan
-			},
-			spchar = {
-				fg = c.d3_orange
-			},
-			def = {
-				fg = c.d3_red
-			},
-			delimiter = {
-				fg = c.d1_black
-			}
+			statement = { fg = c.d3_red },
+			modifier = { fg = c.d3_cyan },
+			spchar = { fg = c.d3_orange },
+			def = { fg = c.d3_red },
+			delimiter = { fg = c.d1_black }
 		},
 		doc = {
+			head = {
+				h1 = { fg = c.d3_red, bold = true },
+				h2 = { fg = c.d3_chartreuse, bold = true },
+				h3 = { fg = c.d3_blue, bold = true },
+				h4 = { fg = c.d3_orange, bold = true },
+				h5 = { fg = c.d3_green, bold = true },
+				h6 = { fg = c.d3_purple, bold = true },
+			},
+			documentation = {
+				fg = c.d1_green
+			},
+			comment = {
+				fg = c.d3_black
+			},
+			spcomment = {
+				bold = true
+			},
 			fg = c.d3_black
 		},
 	}
