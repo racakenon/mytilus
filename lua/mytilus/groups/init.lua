@@ -99,6 +99,7 @@ function M.highlightgroups(palette)
 	local groups = {}
 	local colors = require("mytilus").get_colors()
 	local category = {
+		"base",
 		"rainbow_delimiters",
 		"mini_statusline"
 	}
