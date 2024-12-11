@@ -17,6 +17,7 @@ local colorlist = {
 	"TermCursorNC",              --Cursor in an unfocused terminal.
 	"ErrorMsg",                  --Error messages on the command line.
 	"WinSeparator",              --Separators between window splits.
+	"VertSplit",
 	"Folded",                    --Line used for closed folds.
 	"FoldColumn",                --foldcolumn
 	"SignColumn",                --Column where signs are displayed.
@@ -64,6 +65,7 @@ local colorlist = {
 	"TabLineSel",                --Tab pages line, active tab page label.
 	"Title",                     --Titles for output from :set all, :autocmd etc.
 	"Visual",                    --Visual mode selection.
+	"VisualNC",
 	"VisualNOS",                 --Visual mode selection when vim is Not Owning the Selection.
 	"WarningMsg",                --Warning messages.
 	"Whitespace",                --nbsp, space, tab, multispace, lead and trail in listchars.
@@ -194,6 +196,7 @@ local colorlist = {
 	"@keyword.conditional.ternary", --ternary operator (e.g. `?`, `:`)
 	"@keyword.directive",        --various preprocessor directives and shebangs
 	"@keyword.directive.define", --preprocessor definition directives
+	"@punctuation",
 	"@punctuation.delimiter",    --delimiters (e.g. `;`, `.`, `,`)
 	"@punctuation.bracket",      --brackets (e.g. `()`, `{}`, `[]`)
 	"@punctuation.special",      --special symbols (e.g. `{}` in string interpolation)
@@ -203,6 +206,7 @@ local colorlist = {
 	"@comment.warning",          --warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
 	"@comment.todo",             --todo-type comments (e.g. `TODO`, `WIP`)
 	"@comment.note",             --note-type comments (e.g. `NOTE`, `INFO`, `XXX`)
+	"@markup",
 	"@markup.strong",            --bold text
 	"@markup.italic",            --italic text
 	"@markup.strikethrough",     --struck-through text
@@ -224,6 +228,7 @@ local colorlist = {
 	"@markup.list",              --list markers
 	"@markup.list.checked",      --checked todo-style list markers
 	"@markup.list.unchecked",    --unchecked todo-style list markers
+	"@diff",
 	"@diff.plus",                --added text (for diff files)
 	"@diff.minus",               --deleted text (for diff files)
 	"@diff.delta",               --changed text (for diff files)
@@ -274,31 +279,44 @@ local colorlist = {
 	"@lsp.mod.modification",     --Variable references where the variable is assigned to
 	"@lsp.mod.readonly",         --Readonly variables and member fields (constants)
 	"@lsp.mod.static",           --Class members (static members)
+	"@lsp",
+	"RedrawDebugClear",
+	"RedrawDebugComposed",
+	"RedrawDebugNormal",
+	"RedrawDebugRecompose",
 }
 
 local grouptable = {
 
-	df = {
+	df             = {
 		add = {
 			"Added",
 			"DiffAdd",
 			"@diff.plus",
 		},
+
 		delete = {
 			"Removed",
 			"DiffDelete",
 			"@diff.minus",
 		},
+
 		change = {
 			"Changed",
 			"DiffChange",
 			"@diff.delta",
 		},
+
 		text = {
 			"DiffText",
+		},
+
+		base = {
+			"@diff"
 		}
 	},
-	di = {
+
+	di             = {
 		sign = {
 			error = { "DiagnosticSignError", },
 			warn = { "DiagnosticSignWarn", },
@@ -306,6 +324,7 @@ local grouptable = {
 			hint = { "DiagnosticSignHint" },
 			info = { "DiagnosticSignInfo" },
 		},
+
 		underline = {
 			error = { "DiagnosticUnderlineError", },
 			warn = { "DiagnosticUnderlineWarn", },
@@ -313,6 +332,7 @@ local grouptable = {
 			hint = { "DiagnosticUnderlineHint" },
 			info = { "DiagnosticUnderlineInfo" },
 		},
+
 		virtual = {
 			error = { "DiagnosticVirtualTextError", },
 			warn = { "DiagnosticVirtualTextWarn", },
@@ -320,68 +340,79 @@ local grouptable = {
 			hint = { "DiagnosticVirtualTextHint" },
 			info = { "DiagnosticVirtualTextInfo" },
 		},
+
+		spell = {
+			bad = { "SpellBad", },
+			cap = { "SpellCap", },
+			loc = { "SpellLocal", },
+			rare = { "SpellRare", }
+		},
+
+		redraw = {
+			clear = { "RedrawDebugClear" },
+			composed = { "RedrawDebugComposed" },
+			normal = { "RedrawDebugNormal" },
+			recompose = { "RedrawDebugRecompose" },
+		},
+
 		removerble = {
 			"DiagnosticDeprecated",
 			"@lsp.mod.deprecated",
 			"DiagnosticUnnecessary",
 		},
+
 		error = {
-			"@comment.error",
 			"ErrorMsg",
-			"SpellBad",
 			"Error",
 			"DiagnosticError",
 			"DiagnosticFloatingError",
 		},
+
 		warn = {
-			"@comment.warning",
 			"ColorColumn",
-			"SpellCap",
 			"WarningMsg",
 			"DiagnosticWarn",
 			"DiagnosticFloatingWarn",
 		},
+
 		ok = {
 			"DiagnosticOk",
 			"DiagnosticFloatingOk",
 		},
+
 		info = {
-			"@comment.todo",
 			"DiagnosticInfo",
 			"DiagnosticFloatingInfo",
-			"SpellLocal",
-			"SpellRare",
 		},
+
 		hint = {
-			"@comment.note",
 			"DiagnosticHint",
 			"DiagnosticFloatingHint",
 		}
 	},
-	cursor = {
+
+	cursor         = {
 		"Cursor",
 		"lCursor",
 		"CursorIM",
 		"TermCursor",
 		"TermCursorNC",
 	},
-	sign = {
-		special = {
-			"Tag",
-			"Directory",
-			"SpecialKey",
-			"Ignore",
-		},
 
-		nontext = {
-			"Conceal",
-			"EndOfBuffer",
-			"NonText",
-			"Whitespace",
-		},
+	cursorline     = { "CursorColumn", "CursorLine", },
+	search         = { "Search", "IncSearch", },
+	cursearch      = { "CurSearch", },
+	mathparen      = { "MatchParen", },
+	substitute     = { "Substitute", },
+	folded         = { "Folded", },
+	snippetTabstop = { "SnippetTabstop" },
+	tag            = { "Tag" },
+	Directory      = { "Directory", },
+	msg            = { "ModeMsg", "MoreMsg", "Question", },
+	gui            = { "Menu", "Scrollbar", "Tooltip", },
 
-		lsp = {
-
+	lsp            = {
+		base = { "@lsp",
 			"LspReferenceText",
 			"LspReferenceRead",
 			"LspReferenceWrite",
@@ -390,115 +421,84 @@ local grouptable = {
 			"LspCodeLensSeparator",
 			"LspSignatureActiveParameter",
 		},
+	},
 
-		msg = {
-			"ModeMsg",
-			"MoreMsg",
-			"Question",
-		},
-
-		linenr = {
+	side           = {
+		plain = {
 			"LineNr",
 			"LineNrAbove",
 			"LineNrBelow",
 			"FoldColumn",
 			"SignColumn",
 		},
-		cursorline = {
+
+		cursor = {
 			"CursorLineNr",
 			"CursorLineFold",
 			"CursorLineSign",
 		},
-
-		title = {
-			"FloatTitle",
-			"FloatFooter",
-			"Title",
-		}
 	},
-	select = {
-		cursorline = {
-			"CursorColumn",
-			"CursorLine",
-		},
-		search = {
-			"Search",
-			"IncSearch",
-		},
-		cursearch = {
-			"CurSearch",
-		},
-		mathparen = {
-			"MatchParen",
-		},
-		substitute = {
-			"Substitute",
-		},
-		folded = {
-			"Folded",
-		},
-		selcet = {
-			"QuickFixLine",
+
+	bar            = {
+		active   = {
+			"MsgSeparator",
 			"TabLineSel",
+			"StatusLine",
+			"WinBar",
+		},
+		inactive = {
+			"WinBarNC",
+			"TabLine",
+			"TabLineFill",
+			"StatusLineNC",
+		},
+	},
+
+	nontext        = {
+		"Conceal",
+		"EndOfBuffer",
+		"NonText",
+		"SpecialKey",
+		"Whitespace",
+		"Ignore",
+	},
+
+	normal         = {
+		plain  = { "MsgArea", "Normal", },
+		nc     = { "NormalNC" },
+		border = { "WinSeparator", "VertSplit" },
+		title  = { "Title", },
+	},
+
+	visual         = {
+		plain = { "Visual" },
+		nc = { "VisualNC", "VisualNOS" },
+	},
+
+	float          = {
+		plain = { "NormalFloat" },
+		border = { "FloatBorder", },
+		title = { "FloatTitle", "FloatFooter", }
+	},
+
+	menu           = {
+		select = {
+			"QuickFixLine",
 			"PmenuSel",
 			"PmenuKindSel",
 			"PmenuExtraSel",
 		},
-	},
-	ui = {
-		"WinSeparator",
-
-		"MsgSeparator",
-
-		"FloatBorder",
-		"SnippetTabstop",
-		"PmenuSbar",
-		"PmenuThumb",
-	},
-	area = {
-		normal = {
-			"MsgArea",
-			"Normal",
-			"NormalNC",
-		},
-		visual = {
-			"Visual",
-			"VisualNOS",
-		},
-		float = {
-			"NormalFloat",
-		},
-		menu = {
+		candidate = {
 			"Pmenu",
 			"PmenuKind",
 			"PmenuExtra",
-			"WildMenu",
-		},
-		bar = {
-			active = {
-				"StatusLine",
-				"TabLine",
-				"WinBar",
-			},
-			inactive = {
-				"WinBarNC",
-				"TabLineFill",
-				"StatusLineNC",
-			},
-			ui = {
-				"Menu",
-				"Scrollbar",
-				"Tooltip",
-			}
-		},
+			"WildMenu" },
+		bar = { "PmenuSbar" },
+		thumb = { "PmenuThumb" },
 	},
-	doc = {
-		comment = {
-			"@lsp.type.comment",
-			"Comment",
-			"@comment",
-		},
 
+	doc            = {
+		comment = { "@lsp.type.comment", "Comment", "@comment", },
 		documentation = {
 			"@string.documentation",
 			"@lsp.mod.documentation",
@@ -506,50 +506,48 @@ local grouptable = {
 		},
 
 		spcomment = {
-			"Todo",
-			"SpecialComment",
+			plain = { "SpecialComment", "Todo" },
+			error = { "@comment.error" },
+			warnig = { "@comment.warning" },
+			note = { "@comment.note" },
+			todo = { "@comment.todo" },
 		},
 
 		markup = {
-			"@markup.strong",
-			"@markup.italic",
-			"@markup.strikethrough",
-			"@markup.underline",
-			"@markup.quote",
-			"@markup.math",
-			"@markup.link",
-			"@markup.link.label",
-			"@markup.link.url",
-			"@markup.raw",
-			"@markup.raw.block",
-			"@markup.list",
-			"@markup.list.checked",
-			"@markup.list.unchecked",
-		},
-		head = {
-			h1 = {
-				"@markup.heading",
-				"@markup.heading.1",
+			base          = { "@markup" },
+			strong        = { "@markup.strong" },
+			italic        = { "@markup.italic" },
+			strikethrough = { "@markup.strikethrough" },
+			underline     = { "@markup.underline" },
+			quote         = { "@markup.quote" },
+			raw           = {
+				"@markup.math",
+				"@markup.raw",
+				"@markup.raw.block",
 			},
-			h2 = {
-				"@markup.heading.2",
+			link          = {
+				plain = { "@markup.link" },
+				label = { "@markup.link.label" },
+				url   = { "@markup.link.url" },
 			},
-			h3 = {
-				"@markup.heading.3",
-			},
-			h4 = {
-				"@markup.heading.4",
-			},
-			h5 = {
-				"@markup.heading.5",
-			},
-			h6 = {
-				"@markup.heading.6",
+			list          = {
+				plain     = { "@markup.list" },
+				checked   = { "@markup.list.checked" },
+				unchecked = { "@markup.list.unchecked" },
 			}
 		},
 
+		head = {
+			h1 = { "@markup.heading", "@markup.heading.1", },
+			h2 = { "@markup.heading.2", },
+			h3 = { "@markup.heading.3", },
+			h4 = { "@markup.heading.4", },
+			h5 = { "@markup.heading.5", },
+			h6 = { "@markup.heading.6", }
+		},
 	},
-	literal = {
+
+	literal        = {
 		constant = {
 			"Constant",
 			"@constant",
@@ -557,73 +555,82 @@ local grouptable = {
 			"@constant.macro",
 			"@lsp.mod.readonly",
 		},
+
 		string = {
 			"String",
 			"@string",
 			"@lsp.type.string",
 		},
+
 		char = {
 			"Character",
 			"@character",
 		},
+
 		number = {
 			"Number",
 			"@number",
 			"@lsp.type.number",
 		},
+
 		float = {
 			"Float",
 			"@number.float",
 		},
+
 		spstring = {
 			"Underlined",
 			"@string.special.path",
 			"@string.special.url",
 		},
+
 		symbol = {
 			"Special",
 			"@string.special",
 			"@string.special.symbol",
 		}
 	},
-	identifier = {
+
+	identifier     = {
+		base = {
+			"@lsp.mod.definition",
+			"@lsp.mod.declaration",
+		},
+
 		variable = {
 			"Identifier",
 			"@variable",
 			"@variable.builtin",
+			"@lsp.type.variable",
 			"@lsp.mod.modification",
 			"@lsp.mod.defaultLibrary",
-			"@lsp.mod.definition",
-			"@lsp.type.variable",
 		},
 
 		func = {
 			"Function",
-			"@lsp.type.function",
 			"@function",
 			"@function.builtin",
 			"@function.call",
+			"@lsp.type.function",
 			"@function.method",
-			"@keyword.function",
-			"@lsp.type.macro",
-			"@lsp.type.method",
 			"@function.method.call",
+			"@lsp.type.method",
 		},
 
 		spfunc = {
 			"Macro",
 			"@function.macro",
+			"@lsp.type.macro",
 			"@constructor",
 			"@lsp.mod.abstract",
 			"@lsp.mod.async",
-			"@lsp.mod.declaration",
 		},
 
 		operator = {
-			"@lsp.type.operator",
 			"Operator",
-			"@keyword.operator",
 			"@operator",
+			"@keyword.operator",
+			"@lsp.type.operator",
 		},
 
 		type = {
@@ -633,10 +640,11 @@ local grouptable = {
 			"@type.builtin",
 			"@type.definition",
 			"@lsp.type.type",
+		},
+		class = {
 			"@module",
 			"@module.builtin",
 			"@lsp.type.class",
-			"@lsp.mod.static",
 			"@lsp.type.namespace",
 			"@lsp.type.interface",
 			"@lsp.type.struct",
@@ -645,49 +653,49 @@ local grouptable = {
 		parameter = {
 			"@variable.parameter",
 			"@variable.parameter.builtin",
-			"@lsp.type.typeParameter",
-			"@tag.attribute",
-			"@attribute",
 			"@lsp.type.parameter",
+			"@lsp.type.typeParameter",
+			"@attribute",
 			"@attribute.builtin",
+			"@tag.attribute",
 			"@lsp.type.decorator",
 		},
 
 		member = {
 			"@variable.member",
-			"Boolean",
-			"@boolean",
 			"@tag",
-			"@lsp.type.enumMember",
 			"@tag.builtin",
 			"@lsp.type.property",
+			"Boolean",
+			"@boolean",
+			"@lsp.type.enumMember",
 			"@lsp.type.event",
 			"@property",
+			"@lsp.mod.static",
 		},
 
-
 	},
-	reserve = {
+
+	reserve        = {
 		statement = {
 			"Statement",
-
 			"Conditional",
 			"@keyword.conditional",
 			"@keyword.conditional.ternary",
-
 			"Repeat",
 			"@keyword.repeat",
+			"@keyword.return",
+		},
 
-			"Label",
-			"@label",
-
+		spstatement = {
 			"Exception",
 			"@keyword.exception",
-
+			"Label",
+			"@label",
 			"Debug",
 			"@keyword.debug",
-
-			"@keyword.return",
+			"PreProc",
+			"PreCondit",
 		},
 
 		modifier = {
@@ -698,19 +706,18 @@ local grouptable = {
 			"@keyword.modifier",
 			"@lsp.type.modifier",
 			"@keyword.coroutine",
-			"Structure",
 		},
 
 		def = {
+			"Structure",
 			"Typedef",
+			"Include",
+			"Define",
 			"@keyword.type",
 			"@keyword.import",
 			"@keyword.directive",
 			"@keyword.directive.define",
-			"PreProc",
-			"Include",
-			"Define",
-			"PreCondit",
+			"@keyword.function",
 		},
 
 		spchar = {
@@ -723,149 +730,206 @@ local grouptable = {
 		},
 
 		delimiter = {
-			"Delimiter",
-			"@punctuation.delimiter",
-			"@tag.delimiter",
-			"@punctuation.bracket",
+			base = { "@punctuation" },
+			bracket = { "@punctuation.bracket" },
+			delimiter = {
+				"Delimiter",
+				"@punctuation.delimiter",
+				"@tag.delimiter",
+			}
 		}
 	},
-
 }
 
 ---@param c Scheme
 local function palette(c)
 	return {
-		df = {
-			add = {
-				bg = c.v2_chartreuse
-			},
-			delete = {
-				bg = c.v2_orange
-			},
-			change = {
-				bg = c.v2_cyan
-			},
-			text = {
-				fg = c.v1_white,
-				bg = c.d3_purple
-			}
 
+		df             = {
+			add    = { bg = c.v2_chartreuse },
+			delete = { bg = c.v2_orange },
+			change = { bg = c.v2_cyan },
+			text   = { fg = c.v1_white, bg = c.d3_purple },
+			base   = { default = true }
 		},
-		cursor = {
-			fg = c.v1_white,
-			bg = c.v3_white
-		},
-		di = {
+
+		di             = {
 			sign       = {
-				error = { fg = c.d3_red, bg = c.v2_white },
-				warn = { fg = c.d3_yellow, bg = c.v2_white },
-				ok = { fg = c.d3_green, bg = c.v2_white },
-				info = { fg = c.d3_purple, bg = c.v2_white },
-				hint = { fg = c.d3_blue, bg = c.v2_white }
-
+				error = { fg = c.d3_red, bg = c.v3_white },
+				warn  = { fg = c.d3_yellow, bg = c.v3_white },
+				ok    = { fg = c.d3_green, bg = c.v3_white },
+				hint  = { fg = c.d3_purple, bg = c.v3_white },
+				info  = { fg = c.d3_blue, bg = c.v3_white },
 			},
+
 			underline  = {
 				error = { fg = c.d3_red, underline = true },
-				warn = { fg = c.d3_yellow, underline = true },
-				ok = { fg = c.d3_green, underline = true },
-				info = { fg = c.d3_purple, underline = true },
-				hint = { fg = c.d3_blue, underline = true }
+				warn  = { fg = c.d3_yellow, underline = true },
+				ok    = { fg = c.d3_green, underline = true },
+				hint  = { fg = c.d3_purple, underline = true },
+				info  = { fg = c.d3_blue, underline = true },
 			},
+
 			virtual    = {
 				error = { fg = c.d3_red, bg = c.v2_red },
-				warn = { fg = c.d3_yellow, bg = c.v2_yellow },
-				ok = { fg = c.d3_green, bg = c.v2_green },
-				info = { fg = c.d3_purple, bg = c.v2_purple },
-				hint = { fg = c.d3_blue, bg = c.v2_blue }
+				warn  = { fg = c.d3_yellow, bg = c.v2_yellow },
+				ok    = { fg = c.d3_green, bg = c.v2_green },
+				hint  = { fg = c.d3_purple, bg = c.v2_purple },
+				info  = { fg = c.d3_blue, bg = c.v2_blue },
 			},
-			removerble = {
-				strikethrough = true
 
+			spell      = {
+				bad  = { fg = c.d3_red, undercurl = true },
+				cap  = { fg = c.d3_yellow, undercurl = true },
+				loc  = { fg = c.d3_purple, undercurl = true },
+				rare = { fg = c.d3_blue, undercurl = true }
 			},
-			lsp        = {
-				bg = c.v1_black
+
+			redraw     = {
+				clear = { fg = c.v1_white, bg = c.d3_yellow },
+				normal = { fg = c.v1_white, bg = c.d3_blue },
+				composed = { fg = c.v1_white, bg = c.d3_green },
+				recompose = { fg = c.v1_white, bg = c.d3_red },
 			},
+
+			removerble = { strikethrough = true },
 			error      = { fg = c.d3_red },
 			warn       = { fg = c.d3_yellow },
 			ok         = { fg = c.d3_green },
 			info       = { fg = c.d3_purple },
 			hint       = { fg = c.d3_blue }
 		},
-		area = {
-			normal = { fg = c.d1_black, bg = c.v1_white },
-			visual = { bg = c.v3_white },
-			float = { bg = c.v0_white },
-			menu = { bg = c.v1_black },
-			bar = {
-				ui = {},
-				active = { bg = c.v3_black },
-				inactive = { bg = c.v2_black }
+
+		cursor         = { fg = c.v1_white, bg = c.d2_black },
+
+		cursorline     = { bg = c.v2_white },
+		search         = { fg = c.v1_white, bg = c.d3_white },
+		cursearch      = { fg = c.v1_white, bg = c.d3_chartreuse },
+		mathparen      = { fg = c.v1_white, bg = c.d3_green },
+		substitute     = { fg = c.v1_white, bg = c.d3_orange },
+		snippetTabstop = { fg = c.v1_white, bg = c.d2_white },
+		folded         = { bg = c.v2_black },
+		tag            = { underline = true },
+		Directory      = { fg = c.d3_blue },
+		msg            = { fg = c.d3_purple },
+		gui            = { default = true },
+
+		lsp            = {
+			base = { default = true }
+		},
+
+		side           = {
+			plain = { bg = c.v3_white },
+			cursor = { fg = c.d3_orange, bg = c.v3_white },
+		},
+
+		bar            = {
+			active   = { bg = c.v3_black },
+			inactive = { bg = c.v2_black },
+		},
+
+		nontext        = { fg = c.d2_white },
+
+		normal         = {
+			plain  = { fg = c.d1_black, bg = c.v1_white },
+			nc     = { bg = c.v3_white },
+			border = { fg = c.d1_white, bg = c.v2_white },
+			title  = { fg = c.d0_black, bold = true },
+		},
+
+		visual         = {
+			plain = { bg = c.v3_white },
+			nc    = { default = true },
+		},
+
+		float          = {
+			plain  = { bg = c.v0_white },
+			border = { bg = c.v0_white },
+			title  = { bg = c.v0_white }
+		},
+
+		menu           = {
+			select    = { bg = c.v3_black },
+			candidate = { bg = c.v1_black },
+			bar       = { bg = c.v0_black },
+			thumb     = { bg = c.d3_black },
+		},
+
+		doc            = {
+			comment       = { fg = c.d2_white },
+			documentation = { fg = c.d1_chartreuse },
+
+			spcomment     = {
+				plain  = { bold = true },
+				error  = { bg = c.v2_red },
+				warnig = { bg = c.v2_yellow },
+				note   = { bg = c.v2_blue },
+				todo   = { bg = c.v2_purple },
+			},
+
+			markup        = {
+				base          = { default = true },
+				strong        = { bold = true },
+				italic        = { italic = true },
+				strikethrough = { strikethrough = true },
+				underline     = { underline = true },
+				quote         = { italic = true },
+				raw           = { bg = c.v1_black },
+				link          = {
+					plain = { underline = true },
+					label = { fg = c.d1_orange, underline = true },
+					url   = { fg = c.d1_chartreuse, underline = true },
+				},
+				list          = {
+					plain     = { bold = true },
+					checked   = { bg = c.v2_black, bold = true },
+					unchecked = { bg = c.v2_white, bold = true },
+				}
+			},
+
+			head          = {
+				h1 = { fg = c.d3_blue, bold = true },
+				h2 = { fg = c.d3_orange, bold = true },
+				h3 = { fg = c.d3_green, bold = true },
+				h4 = { fg = c.d3_purple, bold = true },
+				h5 = { fg = c.d3_yellow, bold = true },
+				h6 = { fg = c.d3_cyan, bold = true }
+			},
+		},
+
+		literal        = {
+			constant = { fg = c.d1_yellow },
+			string   = { fg = c.d1_green },
+			char     = { fg = c.d1_yellow },
+			number   = { fg = c.d1_yellow },
+			float    = { fg = c.d3_yellow },
+			spstring = { fg = c.d3_green, underline = true },
+			symbol   = { fg = c.d3_yellow, bold = true }
+		},
+
+		identifier     = {
+			base      = { default = true },
+			variable  = { fg = c.d1_black },
+			func      = { fg = c.d3_blue },
+			spfunc    = { fg = c.d3_blue, bold = true },
+			operator  = { fg = c.d3_cyan },
+			type      = { fg = c.d3_purple, bold = true },
+			class     = { fg = c.d1_purple },
+			parameter = { fg = c.d3_cyan },
+			member    = { fg = c.d1_cyan },
+		},
+
+		reserve        = {
+			statement   = { fg = c.d1_red },
+			spstatement = { fg = c.d3_red },
+			modifier    = { fg = c.d3_orange },
+			def         = { fg = c.d3_purple },
+			spchar      = { fg = c.d3_orange },
+			delimiter   = {
+				base = { default = true },
+				bracket = { default = true },
+				delimiter = { bold = true }
 			}
-		},
-		ui = {
-			bg = c.v1_white
-		},
-		select = {
-			cursorline = { bg = c.v2_white },
-			search = { fg = c.v1_white, bg = c.d3_white },
-			cursearch = { fg = c.v1_white, bg = c.d3_cyan },
-			mathparen = { fg = c.v1_white, bg = c.d3_green },
-			substitute = { fg = c.v1_white, bg = c.d3_blue },
-			folded = { bg = c.v2_black },
-			select = { bg = c.v1_black }
-		},
-		sign = {
-			special = { bold = true },
-			linenr = { bg = c.v2_white },
-			cursorline = { bg = c.v2_white, fg = c.d1_orange },
-			title = { bold = true },
-			nontext = { fg = c.d3_chartreuse },
-			msg = { fg = c.d3_purple }
-		},
-		literal = {
-			constant = { fg = c.d3_yellow },
-			symbol = { fg = c.d3_yellow },
-			number = { fg = c.d1_yellow },
-			char = { fg = c.d1_orange },
-			spstring = { fg = c.d3_orange, underline = true },
-			float = { fg = c.d1_orange },
-			string = { fg = c.d1_green },
-		},
-		identifier = {
-			variable = { fg = c.d1_black },
-			parameter = { fg = c.d1_cyan },
-			member = { fg = c.d1_yellow },
-			func = { fg = c.d3_blue, },
-			spfunc = { fg = c.d3_blue },
-			operator = { fg = c.d3_cyan },
-			type = { fg = c.d3_purple },
-		},
-		reserve = {
-			statement = { fg = c.d3_red },
-			modifier = { fg = c.d3_cyan },
-			spchar = { fg = c.d3_orange },
-			def = { fg = c.d3_red },
-			delimiter = { fg = c.d1_black }
-		},
-		doc = {
-			head = {
-				h1 = { fg = c.d3_red, bold = true },
-				h2 = { fg = c.d3_chartreuse, bold = true },
-				h3 = { fg = c.d3_blue, bold = true },
-				h4 = { fg = c.d3_orange, bold = true },
-				h5 = { fg = c.d3_green, bold = true },
-				h6 = { fg = c.d3_purple, bold = true },
-			},
-			documentation = {
-				fg = c.d1_green
-			},
-			comment = {
-				fg = c.d3_black
-			},
-			spcomment = {
-				bold = true
-			},
-			fg = c.d3_black
 		},
 	}
 end
