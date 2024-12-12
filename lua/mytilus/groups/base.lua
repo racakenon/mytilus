@@ -930,7 +930,7 @@ local function palette(config)
 			func          = { fg = c.d3_blue, },
 			spfunc        = { fg = c.d3_blue, bold = true },
 			operator      = { fg = c.d1_blue, },
-			parameter     = { fg = c.d1_cyan,  },
+			parameter     = { fg = c.d1_cyan, },
 			type          = { fg = c.d3_purple, },
 			typemember    = { fg = c.d1_purple, },
 			typeparameter = { fg = c.d3_cyan },
@@ -938,10 +938,10 @@ local function palette(config)
 
 		reserve        = {
 			statement   = { fg = c.d1_red },
-			spstatement = { fg = c.d3_red, bold = true },
+			spstatement = { fg = c.d3_red, },
 			def         = { fg = c.d3_red },
 			modifier    = { fg = c.d1_orange, },
-			spchar      = { fg = c.d3_orange, bold = true },
+			spchar      = { fg = c.d3_orange, },
 			delimiter   = {
 				base = { default = true },
 				bracket = { default = true },
