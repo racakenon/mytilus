@@ -307,13 +307,8 @@ local grouptable = {
 			"@diff.delta",
 		},
 
-		text = {
-			"DiffText",
-		},
-
-		base = {
-			"@diff"
-		}
+		text = { "DiffText", },
+		base = { "@diff" }
 	},
 
 	di             = {
@@ -412,31 +407,35 @@ local grouptable = {
 	gui            = { "Menu", "Scrollbar", "Tooltip", },
 
 	lsp            = {
-		base = { "@lsp",
+		base = { "@lsp" },
+		reference = {
 			"LspReferenceText",
 			"LspReferenceRead",
 			"LspReferenceWrite",
-			"LspInlayHint",
-			"LspCodeLens",
-			"LspCodeLensSeparator",
-			"LspSignatureActiveParameter",
 		},
+		inlay = { "LspInlayHint", },
+		codelens = { "LspCodeLens" },
+		separator = { "LspCodeLensSeparator" },
+		signature = { "LspSignatureActiveParameter" },
 	},
 
 	side           = {
-		plain = {
+		linr = {
 			"LineNr",
 			"LineNrAbove",
 			"LineNrBelow",
+		},
+		sign = {
 			"FoldColumn",
 			"SignColumn",
 		},
-
-		cursor = {
+		cursornr = {
 			"CursorLineNr",
+		},
+		cursorsign = {
 			"CursorLineFold",
 			"CursorLineSign",
-		},
+		}
 	},
 
 	bar            = {
@@ -447,10 +446,10 @@ local grouptable = {
 			"WinBar",
 		},
 		inactive = {
-			"WinBarNC",
 			"TabLine",
 			"TabLineFill",
 			"StatusLineNC",
+			"WinBarNC",
 		},
 	},
 
@@ -492,7 +491,8 @@ local grouptable = {
 			"Pmenu",
 			"PmenuKind",
 			"PmenuExtra",
-			"WildMenu" },
+			"WildMenu"
+		},
 		bar = { "PmenuSbar" },
 		thumb = { "PmenuThumb" },
 	},
@@ -520,11 +520,8 @@ local grouptable = {
 			strikethrough = { "@markup.strikethrough" },
 			underline     = { "@markup.underline" },
 			quote         = { "@markup.quote" },
-			raw           = {
-				"@markup.math",
-				"@markup.raw",
-				"@markup.raw.block",
-			},
+			raw           = { "@markup.raw", },
+			block         = { "@markup.raw.block", "@markup.math", },
 			link          = {
 				plain = { "@markup.link" },
 				label = { "@markup.link.label" },
@@ -592,32 +589,32 @@ local grouptable = {
 	},
 
 	identifier     = {
-		base = {
+		base          = {
 			"@lsp.mod.definition",
 			"@lsp.mod.declaration",
+			"@lsp.mod.defaultLibrary",
 		},
 
-		variable = {
+		variable      = {
 			"Identifier",
 			"@variable",
 			"@variable.builtin",
 			"@lsp.type.variable",
 			"@lsp.mod.modification",
-			"@lsp.mod.defaultLibrary",
 		},
 
-		func = {
+		func          = {
 			"Function",
 			"@function",
+			"@lsp.type.function",
 			"@function.builtin",
 			"@function.call",
-			"@lsp.type.function",
 			"@function.method",
-			"@function.method.call",
 			"@lsp.type.method",
+			"@function.method.call",
 		},
 
-		spfunc = {
+		spfunc        = {
 			"Macro",
 			"@function.macro",
 			"@lsp.type.macro",
@@ -626,14 +623,14 @@ local grouptable = {
 			"@lsp.mod.async",
 		},
 
-		operator = {
+		operator      = {
 			"Operator",
 			"@operator",
 			"@keyword.operator",
 			"@lsp.type.operator",
 		},
 
-		type = {
+		type          = {
 			"Type",
 			"@type",
 			"@lsp.type.enum",
@@ -641,7 +638,8 @@ local grouptable = {
 			"@type.definition",
 			"@lsp.type.type",
 		},
-		class = {
+
+		class         = {
 			"@module",
 			"@module.builtin",
 			"@lsp.type.class",
@@ -650,30 +648,36 @@ local grouptable = {
 			"@lsp.type.struct",
 		},
 
-		parameter = {
+		parameter     = {
 			"@variable.parameter",
 			"@variable.parameter.builtin",
 			"@lsp.type.parameter",
-			"@lsp.type.typeParameter",
+		},
+
+		typeparameter = { "@lsp.type.typeParameter", },
+
+		typemember    = {
+			"Boolean",
+			"@boolean",
+			"@lsp.type.enumMember",
+		},
+
+		member        = {
+			"@variable.member",
+			"@lsp.mod.static",
+			"@lsp.type.event",
+		},
+
+		spmember      = {
 			"@attribute",
 			"@attribute.builtin",
 			"@tag.attribute",
 			"@lsp.type.decorator",
-		},
-
-		member = {
-			"@variable.member",
 			"@tag",
 			"@tag.builtin",
 			"@lsp.type.property",
-			"Boolean",
-			"@boolean",
-			"@lsp.type.enumMember",
-			"@lsp.type.event",
 			"@property",
-			"@lsp.mod.static",
 		},
-
 	},
 
 	reserve        = {
@@ -815,12 +819,19 @@ local function palette(c)
 		gui            = { default = true },
 
 		lsp            = {
-			base = { default = true }
+			base = { default = true },
+			separator = { default = true },
+			reference = { default = true },
+			inlay = { default = true },
+			codelens = { default = true },
+			signature = { default = true }
 		},
 
 		side           = {
-			plain = { bg = c.v3_white },
-			cursor = { fg = c.d3_orange, bg = c.v3_white },
+			linr = { bg = c.v3_white },
+			sign = { bg = c.v3_white },
+			cursorsign = { bg = c.v3_white },
+			cursornr = { bg = c.v3_white },
 		},
 
 		bar            = {
@@ -875,6 +886,7 @@ local function palette(c)
 				underline     = { underline = true },
 				quote         = { italic = true },
 				raw           = { bg = c.v1_black },
+				block         = { bg = c.v1_white },
 				link          = {
 					plain = { underline = true },
 					label = { fg = c.d1_orange, underline = true },
@@ -898,37 +910,40 @@ local function palette(c)
 		},
 
 		literal        = {
-			constant = { fg = c.d1_yellow },
-			string   = { fg = c.d1_green },
-			char     = { fg = c.d1_yellow },
-			number   = { fg = c.d1_yellow },
-			float    = { fg = c.d3_yellow },
-			spstring = { fg = c.d3_green, underline = true },
-			symbol   = { fg = c.d3_yellow, bold = true }
+			constant = { fg = c.d1_green, },
+			symbol   = { fg = c.d3_green, bold = true },
+			string   = { fg = c.d1_yellow },
+			char     = { fg = c.d3_yellow, bold = true },
+			spstring = { fg = c.d1_yellow, underline = true },
+			number   = { fg = c.d1_chartreuse },
+			float    = { fg = c.d3_chartreuse, bold = true },
 		},
 
 		identifier     = {
-			base      = { default = true },
-			variable  = { fg = c.d1_black },
-			func      = { fg = c.d3_blue },
-			spfunc    = { fg = c.d3_blue, bold = true },
-			operator  = { fg = c.d3_cyan },
-			type      = { fg = c.d3_purple, bold = true },
-			class     = { fg = c.d1_purple },
-			parameter = { fg = c.d3_cyan },
-			member    = { fg = c.d1_cyan },
+			base          = { default = true },
+			variable      = { fg = c.d1_black },
+			member        = { fg = c.d1_cyan, },
+			parameter     = { fg = c.d3_cyan, },
+			spmember      = { fg = c.d3_cyan, },
+			func          = { fg = c.d1_blue, bold = true },
+			spfunc        = { fg = c.d3_blue, bold = true },
+			operator      = { fg = c.d1_blue, },
+			type          = { fg = c.d3_purple, bold = true },
+			class         = { fg = c.d1_purple, },
+			typemember    = { fg = c.d1_purple },
+			typeparameter = { fg = c.d3_purple },
 		},
 
 		reserve        = {
 			statement   = { fg = c.d1_red },
 			spstatement = { fg = c.d3_red },
-			modifier    = { fg = c.d3_orange },
-			def         = { fg = c.d3_purple },
-			spchar      = { fg = c.d3_orange },
+			modifier    = { fg = c.d1_orange },
+			def         = { fg = c.d3_orange },
+			spchar      = { fg = c.d3_orange, bold = true },
 			delimiter   = {
 				base = { default = true },
 				bracket = { default = true },
-				delimiter = { bold = true }
+				delimiter = { default = true }
 			}
 		},
 	}
