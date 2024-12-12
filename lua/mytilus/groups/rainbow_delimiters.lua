@@ -34,17 +34,19 @@ local grouptable = {
 	}
 }
 
----@param c Scheme
-local function palette(c)
+---@param config Config
+local function palette( config)
+	config = config == nil and {} or config
+	local c = config.colors
 	return {
 		rb = {
-			rb1 = { fg = c.d3_red },
-			rb2 = { fg = c.d3_yellow },
-			rb3 = { fg = c.d3_blue },
-			rb4 = { fg = c.d3_orange },
-			rb5 = { fg = c.d3_green },
-			rb6 = { fg = c.d3_purple },
-			rb7 = { fg = c.d3_cyan },
+			rb1 = { fg = c.d1_red },
+			rb2 = { fg = c.d1_yellow },
+			rb3 = { fg = c.d1_blue },
+			rb4 = { fg = c.d1_orange },
+			rb5 = { fg = c.d1_green },
+			rb6 = { fg = c.d1_purple },
+			rb7 = { fg = c.d1_cyan },
 		}
 	}
 end

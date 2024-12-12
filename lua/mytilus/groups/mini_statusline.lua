@@ -28,8 +28,10 @@ local grouptable = {
 	}
 }
 
----@param c Scheme
-local function palette(c)
+---@param config Config
+local function palette(config)
+	config = config == nil and {} or config
+	local c = config.colors
 	return {
 		mini = {
 			info = { bg = c.v3_black, italic = true },

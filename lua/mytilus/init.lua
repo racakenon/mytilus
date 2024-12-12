@@ -7,10 +7,6 @@ local M = (function()
 		overides = {}
 	}
 
-	local function get_colors()
-		return configs.colors
-	end
-
 	---@param user_config UserConfig
 	local function setup(user_config)
 		user_config = user_config or {}
@@ -70,7 +66,6 @@ local M = (function()
 	return {
 		setup = setup,
 		load = load,
-		get_colors = get_colors
 	}
 end)()
 

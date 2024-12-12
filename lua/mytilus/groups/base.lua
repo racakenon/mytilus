@@ -501,7 +501,6 @@ local grouptable = {
 		comment = { "@lsp.type.comment", "Comment", "@comment", },
 		documentation = {
 			"@string.documentation",
-			"@lsp.mod.documentation",
 			"@comment.documentation",
 		},
 
@@ -514,7 +513,7 @@ local grouptable = {
 		},
 
 		markup = {
-			base          = { "@markup" },
+			base          = { "@markup", "@lsp.mod.documentation", },
 			strong        = { "@markup.strong" },
 			italic        = { "@markup.italic" },
 			strikethrough = { "@markup.strikethrough" },
@@ -603,6 +602,29 @@ local grouptable = {
 			"@lsp.mod.modification",
 		},
 
+		member        = {
+			"@variable.member",
+			"@lsp.mod.static",
+			"@lsp.type.event",
+			"@lsp.type.property",
+			"@property",
+		},
+
+		parameter     = {
+			"@variable.parameter",
+			"@variable.parameter.builtin",
+			"@lsp.type.parameter",
+		},
+
+		spmember      = {
+			"@attribute",
+			"@attribute.builtin",
+			"@tag.attribute",
+			"@lsp.type.decorator",
+			"@tag",
+			"@tag.builtin",
+		},
+
 		func          = {
 			"Function",
 			"@function",
@@ -618,7 +640,6 @@ local grouptable = {
 			"Macro",
 			"@function.macro",
 			"@lsp.type.macro",
-			"@constructor",
 			"@lsp.mod.abstract",
 			"@lsp.mod.async",
 		},
@@ -626,6 +647,7 @@ local grouptable = {
 		operator      = {
 			"Operator",
 			"@operator",
+			"@constructor",
 			"@keyword.operator",
 			"@lsp.type.operator",
 		},
@@ -648,12 +670,6 @@ local grouptable = {
 			"@lsp.type.struct",
 		},
 
-		parameter     = {
-			"@variable.parameter",
-			"@variable.parameter.builtin",
-			"@lsp.type.parameter",
-		},
-
 		typeparameter = { "@lsp.type.typeParameter", },
 
 		typemember    = {
@@ -662,22 +678,6 @@ local grouptable = {
 			"@lsp.type.enumMember",
 		},
 
-		member        = {
-			"@variable.member",
-			"@lsp.mod.static",
-			"@lsp.type.event",
-		},
-
-		spmember      = {
-			"@attribute",
-			"@attribute.builtin",
-			"@tag.attribute",
-			"@lsp.type.decorator",
-			"@tag",
-			"@tag.builtin",
-			"@lsp.type.property",
-			"@property",
-		},
 	},
 
 	reserve        = {
@@ -745,25 +745,26 @@ local grouptable = {
 	},
 }
 
----@param c Scheme
-local function palette(c)
+---@param config Config
+local function palette(config)
+	config = config == nil and {} or config
+	local c = config.colors
 	return {
-
 		df             = {
 			add    = { bg = c.v2_chartreuse },
 			delete = { bg = c.v2_orange },
 			change = { bg = c.v2_cyan },
-			text   = { fg = c.v1_white, bg = c.d3_purple },
+			text   = { fg = c.v0_white, bg = c.d3_purple },
 			base   = { default = true }
 		},
 
 		di             = {
 			sign       = {
-				error = { fg = c.d3_red, bg = c.v3_white },
-				warn  = { fg = c.d3_yellow, bg = c.v3_white },
-				ok    = { fg = c.d3_green, bg = c.v3_white },
-				hint  = { fg = c.d3_purple, bg = c.v3_white },
-				info  = { fg = c.d3_blue, bg = c.v3_white },
+				error = { fg = c.d3_red, bg = c.v1_black },
+				warn  = { fg = c.d3_yellow, bg = c.v1_black },
+				ok    = { fg = c.d3_green, bg = c.v1_black },
+				hint  = { fg = c.d3_purple, bg = c.v1_black },
+				info  = { fg = c.d3_blue, bg = c.v1_black },
 			},
 
 			underline  = {
@@ -805,19 +806,19 @@ local function palette(c)
 		},
 
 		cursor         = { fg = c.v1_white, bg = c.d2_black },
-
 		cursorline     = { bg = c.v2_white },
-		search         = { fg = c.v1_white, bg = c.d3_white },
-		cursearch      = { fg = c.v1_white, bg = c.d3_chartreuse },
-		mathparen      = { fg = c.v1_white, bg = c.d3_green },
-		substitute     = { fg = c.v1_white, bg = c.d3_orange },
-		snippetTabstop = { fg = c.v1_white, bg = c.d2_white },
+		search         = { bg = c.v2_blue },
+		cursearch      = { fg = c.v0_white, bg = c.d3_purple },
+		substitute     = { fg = c.v0_white, bg = c.d3_purple },
+		mathparen      = { fg = c.v0_white, bg = c.d3_green },
+		snippetTabstop = { fg = c.v0_white, bg = c.d3_chartreuse },
 		folded         = { bg = c.v2_black },
-		tag            = { underline = true },
-		Directory      = { fg = c.d3_blue },
-		msg            = { fg = c.d3_purple },
+		tag            = { default = true, underline = true },
+		Directory      = { fg = c.d3_blue, bold = true },
+		msg            = { fg = c.d3_purple, bold = true },
 		gui            = { default = true },
 
+		--TODO
 		lsp            = {
 			base = { default = true },
 			separator = { default = true },
@@ -826,26 +827,27 @@ local function palette(c)
 			codelens = { default = true },
 			signature = { default = true }
 		},
+		--
 
 		side           = {
-			linr = { bg = c.v3_white },
-			sign = { bg = c.v3_white },
-			cursorsign = { bg = c.v3_white },
-			cursornr = { bg = c.v3_white },
+			linr = { bg = c.v1_black },
+			sign = { bg = c.v1_black },
+			cursorsign = { bg = c.v1_black },
+			cursornr = { fg = c.d3_purple, bg = c.v1_black },
 		},
 
 		bar            = {
-			active   = { bg = c.v3_black },
-			inactive = { bg = c.v2_black },
+			active   = { bg = c.v1_black },
+			inactive = { fg = c.v0_white, bg = c.d2_black },
 		},
 
 		nontext        = { fg = c.d2_white },
 
 		normal         = {
 			plain  = { fg = c.d1_black, bg = c.v1_white },
-			nc     = { bg = c.v3_white },
-			border = { fg = c.d1_white, bg = c.v2_white },
-			title  = { fg = c.d0_black, bold = true },
+			nc     = { bg = c.v2_white },
+			border = { fg = c.d1_white, bg = c.v1_white },
+			title  = { fg = c.d0_black, italic = true },
 		},
 
 		visual         = {
@@ -855,42 +857,42 @@ local function palette(c)
 
 		float          = {
 			plain  = { bg = c.v0_white },
-			border = { bg = c.v0_white },
-			title  = { bg = c.v0_white }
+			border = { bg = c.v0_white, bold = true },
+			title  = { bg = c.v0_white, italic = true }
 		},
 
 		menu           = {
 			select    = { bg = c.v3_black },
-			candidate = { bg = c.v1_black },
-			bar       = { bg = c.v0_black },
+			candidate = { bg = c.v0_black },
+			bar       = { bg = c.v1_black },
 			thumb     = { bg = c.d3_black },
 		},
 
 		doc            = {
-			comment       = { fg = c.d2_white },
-			documentation = { fg = c.d1_chartreuse },
+			comment       = { bg = c.v2_black },
+			documentation = { bg = c.v1_black, },
 
 			spcomment     = {
 				plain  = { bold = true },
-				error  = { bg = c.v2_red },
-				warnig = { bg = c.v2_yellow },
-				note   = { bg = c.v2_blue },
-				todo   = { bg = c.v2_purple },
+				error  = { bold = true, bg = c.v2_red },
+				warnig = { bold = true, bg = c.v2_yellow },
+				note   = { bold = true, bg = c.v2_blue },
+				todo   = { bold = true, bg = c.v2_purple },
 			},
 
 			markup        = {
 				base          = { default = true },
-				strong        = { bold = true },
-				italic        = { italic = true },
-				strikethrough = { strikethrough = true },
-				underline     = { underline = true },
-				quote         = { italic = true },
+				strong        = { default = true, bold = true },
+				italic        = { default = true, italic = true },
+				strikethrough = { default = true, strikethrough = true },
+				underline     = { default = true, underline = true },
+				quote         = { bg = c.v2_black },
 				raw           = { bg = c.v1_black },
-				block         = { bg = c.v1_white },
+				block         = { default = true, italic = true },
 				link          = {
 					plain = { underline = true },
-					label = { fg = c.d1_orange, underline = true },
-					url   = { fg = c.d1_chartreuse, underline = true },
+					label = { fg = c.d1_chartreuse, underline = true },
+					url   = { fg = c.d3_chartreuse, underline = true },
 				},
 				list          = {
 					plain     = { bold = true },
@@ -910,35 +912,35 @@ local function palette(c)
 		},
 
 		literal        = {
-			constant = { fg = c.d1_green, },
-			symbol   = { fg = c.d3_green, bold = true },
+			constant = { fg = c.d1_chartreuse, },
+			symbol   = { fg = c.d1_chartreuse, bold = true },
+			spstring = { fg = c.d3_chartreuse, underline = true },
 			string   = { fg = c.d1_yellow },
-			char     = { fg = c.d3_yellow, bold = true },
-			spstring = { fg = c.d1_yellow, underline = true },
-			number   = { fg = c.d1_chartreuse },
-			float    = { fg = c.d3_chartreuse, bold = true },
+			char     = { fg = c.d1_yellow, bold = true },
+			number   = { fg = c.d3_yellow },
+			float    = { fg = c.d3_yellow, bold = true },
 		},
 
 		identifier     = {
-			base          = { default = true },
+			base          = { default = true, },
 			variable      = { fg = c.d1_black },
-			member        = { fg = c.d1_cyan, },
-			parameter     = { fg = c.d3_cyan, },
-			spmember      = { fg = c.d3_cyan, },
-			func          = { fg = c.d1_blue, bold = true },
+			class         = { fg = c.d3_green, },
+			member        = { fg = c.d1_green, },
+			spmember      = { fg = c.d1_green, bold = true },
+			func          = { fg = c.d3_blue, },
 			spfunc        = { fg = c.d3_blue, bold = true },
 			operator      = { fg = c.d1_blue, },
-			type          = { fg = c.d3_purple, bold = true },
-			class         = { fg = c.d1_purple, },
-			typemember    = { fg = c.d1_purple },
-			typeparameter = { fg = c.d3_purple },
+			parameter     = { fg = c.d1_cyan,  },
+			type          = { fg = c.d3_purple, },
+			typemember    = { fg = c.d1_purple, },
+			typeparameter = { fg = c.d3_cyan },
 		},
 
 		reserve        = {
 			statement   = { fg = c.d1_red },
-			spstatement = { fg = c.d3_red },
-			modifier    = { fg = c.d1_orange },
-			def         = { fg = c.d3_orange },
+			spstatement = { fg = c.d3_red, bold = true },
+			def         = { fg = c.d3_red },
+			modifier    = { fg = c.d1_orange, },
 			spchar      = { fg = c.d3_orange, bold = true },
 			delimiter   = {
 				base = { default = true },

@@ -100,7 +100,6 @@ end
 function M.highlightgroups(configs)
 	local groups = {}
 	local palette = {}
-	local colors = require("mytilus").get_colors()
 	local category = {
 		"base",
 		"rainbow_delimiters",
@@ -114,7 +113,7 @@ function M.highlightgroups(configs)
 		local localpalette = group_module.palette
 
 		if type(localpalette) == "function" then
-			palette = vim.tbl_deep_extend('force', palette, localpalette(colors))
+			palette = vim.tbl_deep_extend('force', palette, localpalette(configs))
 		end
 
 		list_equal(colorlist, flatten(grouptable))
