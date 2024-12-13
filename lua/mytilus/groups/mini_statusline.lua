@@ -34,7 +34,7 @@ local function palette(config)
 	local c = config.colors
 	return {
 		mini = {
-			info = { bg = c.v3_black, italic = true },
+			info = { bg = c.v2_black, italic = true },
 			inactive = { bg = c.v2_black },
 			replace = { fg = c.v0_white, bg = c.d3_red, bold = true },
 			other = { fg = c.v0_white, bg = c.d3_cyan, bold = true },

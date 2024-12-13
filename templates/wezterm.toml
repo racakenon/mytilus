@@ -22,11 +22,11 @@ brights = [
     "$(d3_white)",
 ]
 
-compose_cursor  = "$(d3_black)"
-cursor_bg       = "$(d3_black)"
-cursor_border   = "$(d3_black)"
-cursor_fg       = "$(v1_white)"
-selection_bg    = "$(v3_black)"
+compose_cursor  = "$(d2_black)"
+cursor_bg       = "$(d2_black)"
+cursor_border   = "$(d2_black)"
+cursor_fg       = "$(v0_white)"
+selection_bg    = "$(v3_white)"
 selection_fg    = "$(d1_white)"
 scrollbar_thumb = "$(d3_white)"
 split           = "$(d3_white)"
@@ -34,7 +34,7 @@ split           = "$(d3_white)"
 [colors.indexed]
 
 [colors.tab_bar]
-background = "$(v2_white)"
+background = "$(v2_black)"
 
 [colors.tab_bar.active_tab]
 bg_color      = "$(d0_black)"

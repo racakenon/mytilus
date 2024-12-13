@@ -552,7 +552,7 @@ local grouptable = {
 			"@lsp.mod.readonly",
 		},
 
-		string = {
+		str = {
 			"String",
 			"@string",
 			"@lsp.type.string",
@@ -749,6 +749,7 @@ local grouptable = {
 local function palette(config)
 	config = config == nil and {} or config
 	local c = config.colors
+	local o = config.options == nil and {} or config.options
 	return {
 		df             = {
 			add    = { bg = c.v2_chartreuse },
@@ -759,13 +760,21 @@ local function palette(config)
 		},
 
 		di             = {
-			sign       = {
-				error = { fg = c.d3_red, bg = c.v1_black },
-				warn  = { fg = c.d3_yellow, bg = c.v1_black },
-				ok    = { fg = c.d3_green, bg = c.v1_black },
-				hint  = { fg = c.d3_purple, bg = c.v1_black },
-				info  = { fg = c.d3_blue, bg = c.v1_black },
-			},
+			sign       = (o.sideBarDim == nil or o.sideBarDim == true)
+				and {
+					error = { fg = c.d3_red, bg = c.v2_black },
+					warn  = { fg = c.d3_yellow, bg = c.v2_black },
+					ok    = { fg = c.d3_green, bg = c.v2_black },
+					hint  = { fg = c.d3_purple, bg = c.v2_black },
+					info  = { fg = c.d3_blue, bg = c.v2_black },
+				}
+				or {
+					error = { fg = c.d3_red, },
+					warn  = { fg = c.d3_yellow, },
+					ok    = { fg = c.d3_green, },
+					hint  = { fg = c.d3_purple, },
+					info  = { fg = c.d3_blue, },
+				},
 
 			underline  = {
 				error = { fg = c.d3_red, underline = true },
@@ -829,23 +838,34 @@ local function palette(config)
 		},
 		--
 
-		side           = {
-			linr = { bg = c.v1_black },
-			sign = { bg = c.v1_black },
-			cursorsign = { bg = c.v1_black },
-			cursornr = { fg = c.d3_purple, bg = c.v1_black },
-		},
+		side           = (o.sideBarDim == nil or o.sideBarDim == true)
+			and {
+				linr = { bg = c.v2_black },
+				sign = { bg = c.v2_black },
+				cursorsign = { bg = c.v2_black },
+				cursornr = { fg = c.d3_purple, bg = c.v2_black },
+			}
+			or {
+				linr = { bg = c.v1_white },
+				sign = { bg = c.v1_white },
+				cursorsign = { bg = c.v1_white },
+				cursornr = { fg = c.d3_purple, bg = c.v1_white },
+			},
 
 		bar            = {
-			active   = { bg = c.v1_black },
-			inactive = { fg = c.v0_white, bg = c.d2_black },
+			active   = (o.statusBarRevers == nil or o.statusBarRevers == true)
+				and { bg = c.v2_black }
+				or { fg = c.v0_white, bg = c.d2_black },
+			inactive = { fg = c.d3_black, bg = c.v1_black },
 		},
 
 		nontext        = { fg = c.d2_white },
 
 		normal         = {
 			plain  = { fg = c.d1_black, bg = c.v1_white },
-			nc     = { bg = c.v2_white },
+			nc     = (o.NCWindowDim == nil or o.NCWindowDim == true)
+				and { bg = c.v2_white }
+				or { bg = c.v1_white },
 			border = { fg = c.d1_white, bg = c.v1_white },
 			title  = { fg = c.d0_black, italic = true },
 		},
@@ -869,8 +889,8 @@ local function palette(config)
 		},
 
 		doc            = {
-			comment       = { bg = c.v2_black },
-			documentation = { bg = c.v1_black, },
+			comment       = { fg = c.d3_black },
+			documentation = { default = true, fg = c.d2_black, },
 
 			spcomment     = {
 				plain  = { bold = true },
@@ -912,36 +932,114 @@ local function palette(config)
 		},
 
 		literal        = {
-			constant = { fg = c.d1_chartreuse, },
-			symbol   = { fg = c.d1_chartreuse, bold = true },
-			spstring = { fg = c.d3_chartreuse, underline = true },
-			string   = { fg = c.d1_yellow },
-			char     = { fg = c.d1_yellow, bold = true },
+			constant = (o.constant == nil or o.constant == "none")
+				and { fg = c.d1_chartreuse, }
+				or (o.constant == "bold")
+				and { fg = c.d1_chartreuse, bold = true }
+				or (o.constant == "italic")
+				and { fg = c.d1_chartreuse, italic = true }
+				or { fg = c.d1_chartreuse, },
+			symbol   = (o.constant == nil or o.constant == "none")
+				and { fg = c.d3_chartreuse, }
+				or (o.constant == "bold")
+				and { fg = c.d3_chartreuse, bold = true }
+				or (o.constant == "italic")
+				and { fg = c.d3_chartreuse, italic = true }
+				or { fg = c.d3_chartreuse, },
+			spstring = (o.str == nil or o.str == "none")
+				and { fg = c.d1_chartreuse, }
+				or (o.str == "bold")
+				and { fg = c.d1_chartreuse, bold = true }
+				or (o.str == "italic")
+				and { fg = c.d1_chartreuse, italic = true }
+				or { fg = c.d1_chartreuse, },
+			str      = (o.str == nil or o.str == "none")
+				and { fg = c.d1_yellow, }
+				or (o.str == "bold")
+				and { fg = c.d1_yellow, bold = true }
+				or (o.str == "italic")
+				and { fg = c.d1_yellow, italic = true }
+				or { fg = c.d1_yellow, },
+			char     = { fg = c.d1_yellow, },
 			number   = { fg = c.d3_yellow },
-			float    = { fg = c.d3_yellow, bold = true },
+			float    = { fg = c.d3_yellow, },
 		},
 
 		identifier     = {
 			base          = { default = true, },
 			variable      = { fg = c.d1_black },
-			class         = { fg = c.d3_green, },
+			class         = { fg = c.d1_black, bold = true },
 			member        = { fg = c.d1_green, },
-			spmember      = { fg = c.d1_green, bold = true },
-			func          = { fg = c.d3_blue, },
-			spfunc        = { fg = c.d3_blue, bold = true },
-			operator      = { fg = c.d1_blue, },
+			spmember      = { fg = c.d3_green, },
 			parameter     = { fg = c.d1_cyan, },
-			type          = { fg = c.d3_purple, },
-			typemember    = { fg = c.d1_purple, },
 			typeparameter = { fg = c.d3_cyan },
+			func          = (o.func == nil or o.func == "none")
+				and { fg = c.d1_blue, }
+				or (o.func == "bold")
+				and { fg = c.d1_blue, bold = true }
+				or (o.func == "italic")
+				and { fg = c.d1_blue, italic = true }
+				or { fg = c.d1_blue, },
+			operator      = (o.func == nil or o.func == "none")
+				and { fg = c.d1_blue, }
+				or (o.func == "bold")
+				and { fg = c.d1_blue, bold = true }
+				or (o.func == "italic")
+				and { fg = c.d1_blue, italic = true }
+				or { fg = c.d1_blue, },
+			spfunc        = (o.func == nil or o.func == "none")
+				and { fg = c.d3_blue, }
+				or (o.func == "bold")
+				and { fg = c.d3_blue, bold = true }
+				or (o.func == "italic")
+				and { fg = c.d3_blue, italic = true }
+				or { fg = c.d3_blue, },
+			type          = (o.type == nil or o.type == "none")
+				and { fg = c.d3_purple, }
+				or (o.type == "bold")
+				and { fg = c.d3_purple, bold = true }
+				or (o.type == "italic")
+				and { fg = c.d3_purple, italic = true }
+				or { fg = c.d3_purple, },
+			typemember    = (o.type == nil or o.type == "none")
+				and { fg = c.d1_purple, }
+				or (o.type == "bold")
+				and { fg = c.d1_purple, bold = true }
+				or (o.type == "italic")
+				and { fg = c.d1_purple, italic = true }
+				or { fg = c.d1_purple, },
 		},
 
 		reserve        = {
-			statement   = { fg = c.d1_red },
-			spstatement = { fg = c.d3_red, },
-			def         = { fg = c.d3_red },
-			modifier    = { fg = c.d1_orange, },
-			spchar      = { fg = c.d3_orange, },
+			statement   = (o.statement == nil or o.statement == "none")
+				and { fg = c.d1_red, }
+				or (o.statement == "bold")
+				and { fg = c.d1_red, bold = true }
+				or (o.statement == "italic")
+				and { fg = c.d1_red, italic = true }
+				or { fg = c.d1_red, },
+			spstatement = (o.statement == nil or o.statement == "none")
+				and { fg = c.d3_red, }
+				or (o.statement == "bold")
+				and { fg = c.d3_red, bold = true }
+				or (o.statement == "italic")
+				and { fg = c.d3_red, italic = true }
+				or { fg = c.d3_red, },
+			def         = (o.keyword == nil or o.keyword == "none")
+				and { fg = c.d1_red, }
+				or (o.keyword == "bold")
+				and { fg = c.d1_red, bold = true }
+				or (o.keyword == "italic")
+				and { fg = c.d1_red, italic = true }
+				or { fg = c.d1_red, },
+			modifier    = (o.keyword == nil or o.keyword == "none")
+				and { fg = c.d3_orange, }
+				or (o.keyword == "bold")
+				and { fg = c.d3_orange, bold = true }
+				or (o.keyword == "italic")
+				and { fg = c.d3_orange, italic = true }
+				or { fg = c.d3_orange, },
+			spchar      = { fg = c.d1_orange, },
 			delimiter   = {
 				base = { default = true },
 				bracket = { default = true },

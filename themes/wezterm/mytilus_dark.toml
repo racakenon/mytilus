@@ -22,11 +22,11 @@ brights = [
     "#C7C8BD",
 ]
 
-compose_cursor  = "#C8C5D0"
-cursor_bg       = "#C8C5D0"
-cursor_border   = "#C8C5D0"
-cursor_fg       = "#35362E"
-selection_bg    = "#4B4952"
+compose_cursor  = "#D2CFDA"
+cursor_bg       = "#D2CFDA"
+cursor_border   = "#D2CFDA"
+cursor_fg       = "#2B2C24"
+selection_bg    = "#4A4B42"
 selection_fg    = "#DBDCD1"
 scrollbar_thumb = "#C7C8BD"
 split           = "#C7C8BD"
@@ -34,7 +34,7 @@ split           = "#C7C8BD"
 [colors.indexed]
 
 [colors.tab_bar]
-background = "#404138"
+background = "#403E47"
 
 [colors.tab_bar.active_tab]
 bg_color      = "#E5E3EE"

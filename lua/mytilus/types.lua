@@ -40,30 +40,26 @@
 ---@field v2_blue       string
 ---@field v2_purple     string
 
----@class Palette
-
 ---@class Config
 ---@field colors	Scheme
----@field options?  Options
+---@field options   Options
 ---@field overides? HighlightGroups
 ---@field theme		string
-
----@class Options
----@field clear?         OptionTable
----@field bold?          OptionTable
----@field strikethrough? OptionTable
----@field underline?     OptionTable
----@field undercurl?     OptionTable
----@field underdouble?   OptionTable
----@field underdotted?   OptionTable
----@field underdashed?   OptionTable
----@field italic?        OptionTable
 
 ---@class UserConfig
 ---@field options?  Options
 ---@field overides? HighlightGroups
 ---@field theme?	string
 
----@alias OptionTable table<string,boolean>
----@alias HighlightGroups table<string,vim.api.keyset.highlight>
----@alias Color table<vim.api.keyset.highlight> | string
+---@alias HighlightGroups table<string,vim.api.keyset.highlight> -- ["@string"] = { fg = "#222222", italic = true },
+
+---@class Options
+---@field sideBarDim?	   boolean -- if false then sidebar bg is same normal, default is true
+---@field statusBarRevers? boolean -- if false then statusBarRevers bg is d2_black, default is true
+---@field NCWindowDim?     boolean -- if false then not current window bg is same normal, default is true
+---@field str?			   string -- none, bold or italic, default is none
+---@field statement?       string -- none, bold or italic, default is none
+---@field func?			   string -- none, bold or italic, default is none
+---@field type?			   string -- none, bold or italic, default is none
+---@field constant?        string -- none, bold or italic, default is none
+---@field keyword?         string -- none, bold or italic, default is none
