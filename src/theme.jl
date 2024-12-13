@@ -82,7 +82,7 @@ end
 
 function generate_color_table(fg::Vector{OKcolor}, fg_names::Vector{String})
     doc = "| | hex | rgb | OKlab |\n"
-    doc *= "|---|---|---|\n"
+    doc *= "|---|---|---|---|\n"
 
     for (color, name) in zip(fg, fg_names)
         rgb_values = [round(i, digits=3) for i in [color.rgb.r, color.rgb.g, color.rgb.b]]
