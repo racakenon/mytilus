@@ -1,99 +1,99 @@
 # Retrieve the theme settings
 export def main [] {
     return {
-        binary: '#664774'
-        block: '#066357'
-        cell-path: '#555265'
-        closure: '#445282'
-        custom: '#664774'
-        duration: '#066357'
-        float: '#675317'
-        glob: '#066357'
-        int: '#675317'
-        list: '#105E77'
-        nothing: '#794153'
-        range: '#066357'
-        record: '#105E77'
-        string: '#415F30'
+        binary: '#5E4663'
+        block: '#155D49'
+        cell-path: '#504E57'
+        closure: '#404F6F'
+        custom: '#5E4663'
+        duration: '#155D49'
+        float: '#5F4E09'
+        glob: '#155D49'
+        int: '#5F4E09'
+        list: '#185965'
+        nothing: '#6F4046'
+        range: '#155D49'
+        record: '#185965'
+        string: '#3F5925'
 
-        bool: {|| if $in { '#066357' } else { "#794153" } }
+        bool: {|| if $in { '#155D49' } else { "#6F4046" } }
 
         date: {|| (date now) - $in |
             if $in < 1hr {
-                '#794153'
+                '#6F4046'
             } else if $in < 6hr {
-                '#7A462E'
+                '#704423'
             } else if $in < 1day {
-                '#675317'
+                '#5F4E09'
             } else if $in < 3day {
-                '#415F30'
+                '#3F5925'
             } else if $in < 1wk {
                 '$(d3_int)' 
             } else if $in < 6wk {
-                '#105E77'
+                '#185965'
             } else if $in < 52wk {
-                '#445282'
-            } else { '#664774'}
+                '#404F6F'
+            } else { '#5E4663'}
         }
 
         filesize: {|e|
             if $e == 0b {
-                '#555744'
+                '#505147'
             } else if $e < 1mb {
-                '#066357'
-            } else {{ fg: '#2E2B3C' attr: 'b' }}
+                '#155D49'
+            } else {{ fg: '#39363F' attr: 'b' }}
         }
 
-        shape_and: { fg: '#066357' attr: 'b' }
-        shape_binary: { fg: '#664774' attr: 'b' }
-        shape_block: { fg: '#066357' attr: 'b' }
-        shape_bool: '#675317'
-        shape_closure: { fg: '#445282' attr: 'b' }
-        shape_custom: '#664774'
-        shape_datetime: { fg: '#675317' attr: 'b' }
-        shape_directory: '#445282'
-        shape_external: '#415F30'
-        shape_external_resolved: '#415F30'
-        shape_externalarg: { fg: '#675317' attr: 'b' }
-        shape_filepath: '#445282'
-        shape_flag: { fg: '#794153' attr: 'b' }
-        shape_float: { fg: '#675317' attr: 'b' }
-        shape_garbage: { fg: '#3B3C2A' bg: '#EAA9BB' attr: 'b' }
-        shape_glob_interpolation: { fg: '#066357' attr: 'b' }
-        shape_globpattern: { fg: '#066357' attr: 'b' }
-        shape_int: { fg: '#675317' attr: 'b' }
-        shape_internalcall: { fg: '#066357' attr: 'b' }
-        shape_keyword: { fg: '#794153' attr: 'b' }
-        shape_list: { fg: '#105E77' attr: 'b' }
-        shape_literal: '#675317'
+        shape_and: { fg: '#155D49' attr: 'b' }
+        shape_binary: { fg: '#5E4663' attr: 'b' }
+        shape_block: { fg: '#155D49' attr: 'b' }
+        shape_bool: '#5F4E09'
+        shape_closure: { fg: '#404F6F' attr: 'b' }
+        shape_custom: '#5E4663'
+        shape_datetime: { fg: '#5F4E09' attr: 'b' }
+        shape_directory: '#404F6F'
+        shape_external: '#3F5925'
+        shape_external_resolved: '#3F5925'
+        shape_externalarg: { fg: '#5F4E09' attr: 'b' }
+        shape_filepath: '#404F6F'
+        shape_flag: { fg: '#6F4046' attr: 'b' }
+        shape_float: { fg: '#5F4E09' attr: 'b' }
+        shape_garbage: { fg: '#404138' bg: '$(v3_red)' attr: 'b' }
+        shape_glob_interpolation: { fg: '#155D49' attr: 'b' }
+        shape_globpattern: { fg: '#155D49' attr: 'b' }
+        shape_int: { fg: '#5F4E09' attr: 'b' }
+        shape_internalcall: { fg: '#155D49' attr: 'b' }
+        shape_keyword: { fg: '#6F4046' attr: 'b' }
+        shape_list: { fg: '#185965' attr: 'b' }
+        shape_literal: '#5F4E09'
         shape_match_pattern: '$(d3_orage)'
         shape_matching_brackets: { attr: 'u' }
-        shape_nothing: '#794153'
-        shape_operator: '#445282'
-        shape_or: { fg: '#066357' attr: 'b' }
-        shape_pipe: { fg: '#445282' attr: 'b' }
-        shape_range: { fg: '#066357' attr: 'b' }
-        shape_raw_string: { fg: '#3B3849' attr: 'b' }
-        shape_record: { fg: '#105E77' attr: 'b' }
-        shape_redirection: { fg: '#105E77' attr: 'b' }
-        shape_signature: { fg: '#7A462E' attr: 'b' }
-        shape_string: '#415F30'
-        shape_string_interpolation: { fg: '#066357' attr: 'b' }
-        shape_table: { fg: '#105E77' attr: 'b' }
-        shape_vardecl: { fg: '#445282' attr: 'u' }
-        shape_variable: '#7A462E'
+        shape_nothing: '#6F4046'
+        shape_operator: '#404F6F'
+        shape_or: { fg: '#155D49' attr: 'b' }
+        shape_pipe: { fg: '#404F6F' attr: 'b' }
+        shape_range: { fg: '#155D49' attr: 'b' }
+        shape_raw_string: { fg: '#403E47' attr: 'b' }
+        shape_record: { fg: '#185965' attr: 'b' }
+        shape_redirection: { fg: '#185965' attr: 'b' }
+        shape_signature: { fg: '#704423' attr: 'b' }
+        shape_string: '#3F5925'
+        shape_string_interpolation: { fg: '#155D49' attr: 'b' }
+        shape_table: { fg: '#185965' attr: 'b' }
+        shape_vardecl: { fg: '#404F6F' attr: 'u' }
+        shape_variable: '#704423'
 
-        foreground: '#3B3849'
-        background: '#DEE0CA'
-        cursor: '#555265'
+        foreground: '#403E47'
+        background: '#E8E9DE'
+        cursor: '#504E57'
 
-        empty: '#445282'
-        header: { fg: '#415F30' attr: 'b' }
-        hints: '#555265'
+        empty: '#404F6F'
+        header: { fg: '#3F5925' attr: 'b' }
+        hints: '#504E57'
         leading_trailing_space_bg: { attr: 'n' }
-        row_index: { fg: '#484557' attr: 'b' }
-        search_result: { fg: '#7A462E' bg: '#BEBBD0' }
-        separator: '#2E2F1E'
+        row_index: { fg: '#48464F' attr: 'b' }
+        search_result: { fg: '#704423' bg: '#CFCCD7' }
+        separator: '#383930'
     }
 }
 

@@ -6,7 +6,7 @@ using .builder
 
 function main()
     open("README.md", "w") do f
-    content = """
+        content = """
 # Mytilus
 
 Mytilus is a theme inspired by the shell of Mytilus edulis, the blue mussel.
@@ -43,21 +43,20 @@ vim.cmd[[colorscheme mytilus-dark]]
 config = function()
 	require("mytilus").setup(
 		{
-			theme = 'light' -- light or dark
-			options = {  -- add or remove attrs
-				clear = {},
-				bold = { ["sy.type"] = true, ["sy.keyword"] = true },
-				undercurl = {},
-				underline = {},
-				underdashed = {},
-				underdotted = {},
-				underdouble = {},
-				strikethrough = {},
-				italic = { ["sy.string"] = true }
-			}
-			overides = { 
-				Normal = { bg = nil } -- overide highlight groups directly
-			}
+			theme = 'mytilus-light', -- can be light, dark or mytilus_dark
+			options = {
+				sideBarDim = true, --if false then sidebar bg is same normal
+				statusBarRevers = true, --if false, statusBarRevers bg is d2_black,
+				NCWindowDim = true, --if false, not current window bg is same normal
+
+				constant = "none", -- or "bold", "italic"
+				str = "none",     -- or "bold", "italic"
+				func = "none",    -- or "bold", "italic"
+				type = "none",    -- or "bold", "italic"
+				statement = "none", -- or "bold", "italic"
+				keyword = "none", -- or "bold", "italic"
+			},
+			overides = {}         -- ["@string"] = { fg = "#222222", italic = true },
 		}
 	)
 	vim.cmd [[colorscheme mytilus-dark]] -- colorscheme takes precedence over theme
@@ -69,136 +68,13 @@ end
 
         write(f, content)
 
-	end
-    generate_theme([30.0, 35.0, 40.0, 45.0, 80.0, 85.0, 90.0, 95.0], [292.5, 112.5], "light")
-    generate_theme([95.0, 90.0, 85.0, 80.0, 45.0, 40.0, 35.0, 30.0], [112.5, 292.5], "dark")
+    end
+    generate_theme([34.0, 37.0, 40.0, 43.0, 85.0, 89.0, 93.0, 97.0], [297.5, 112.5], "light")
+    generate_theme([92.0, 89.0, 86.0, 83.0, 41.0, 37.0, 33.0, 29.0], [297.5, 112.5], "dark")
 
     open("README.md", "a") do f
-    content = """
+        content = """
 
-</details>
-
-## Color Palette
-
-<details>
-
-```lua
----@class Palette
----@field tc TerminalColor
----@field di Diagnostic
----@field fg Foreground
----@field bg Background
----@field sy Syntax
----@field df Diff
----@field rb Rainbow
----@field at Attr
----@field ui UI
-
----@class TerminalColor
----@field black         Color
----@field red           Color
----@field orange        Color
----@field yellow        Color
----@field green         Color
----@field mint          Color
----@field cyan          Color
----@field blue          Color
----@field magenta       Color
----@field white         Color
----@field bright_black  Color
----@field bright_white  Color
-
----@class Diagnostic
----@field error         Color
----@field warn          Color
----@field ok            Color
----@field info          Color
----@field hint          Color
-
----@class Rainbow
----@field rb1           Color
----@field rb2           Color
----@field rb3           Color
----@field rb4           Color
----@field rb5           Color
----@field rb6           Color
----@field rb7           Color
-
----@class Diff
----@field delete        Color
----@field add           Color
----@field change        Color
----@field difftext      Color
-
----@class Attr
----@field clear         Color
----@field bold          Color
----@field strikethrough Color
----@field underline     Color
----@field undercurl     Color
----@field underdouble   Color
----@field underdotted   Color
----@field underdashed   Color
----@field italic        Color
-
----@class Foreground
----@field strong        Color
----@field text          Color
----@field comment       Color
-
----@class Background
----@field float         Color
----@field plain	        Color
----@field visual        Color
-
----@class UI
----@field important  Color
----@field warning    Color
----@field info       Color
----@field hint       Color
----@field select     Color
----@field note       Color
----@field doc        Color
----@field sign       Color
----@field cursorline Color
----@field bar        Bar
----@field board      Board
----@field border     Color
----@field inactive   Color
----@field cursor     Color
----@field dir        Color
----@field fold       Color
----@field nontext    Color
----@field candidate  Color
----@field pmenu      Color
----@field pselect    Color
-
----@class Bar
----@field active     Color
----@field inactive   Color
-
----@class Board
----@field light      Color
----@field dark       Color
-
----@class Syntax
----@field keyword    Color
----@field constant   Color
----@field type       Color
----@field macro      Color
----@field functions  Color
----@field statement  Color
----@field modifier   Color
----@field operator   Color
----@field string     Color
----@field symbol     Color
----@field struct     Color
----@field member     Color
----@field parameter  Color
----@field variable   Color
----@field construct  Color
----@field special    Color
-```
 </details>
 	
 ## Ports

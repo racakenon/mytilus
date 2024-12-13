@@ -23,14 +23,14 @@ colors:
   v2_white:      '#(v2_white)'
   v3_black:      '#(v3_black)'
   v3_white:      '#(v3_white)'
-  v3_red:        '#(v3_red)'
-  v3_orange:     '#(v3_orange)'
-  v3_yellow:     '#(v3_yellow)'
-  v3_chartreuse: '#(v3_chartreuse)'
-  v3_green:      '#(v3_green)'
-  v3_cyan:       '#(v3_cyan)'
-  v3_blue:       '#(v3_blue)'
-  v3_purple:     '#(v3_purple)'
+  v2_red:        '#(v2_red)'
+  v2_orange:     '#(v2_orange)'
+  v2_yellow:     '#(v2_yellow)'
+  v2_chartreuse: '#(v2_chartreuse)'
+  v2_green:      '#(v2_green)'
+  v2_cyan:       '#(v2_cyan)'
+  v2_blue:       '#(v2_blue)'
+  v2_purple:     '#(v2_purple)'
 
 core:
   normal_text: 
@@ -80,22 +80,22 @@ core:
     font-style: italic
   setuid: 
     foreground: d1_white
-    background: v3_red
+    background: v2_red
   setgid: 
     foreground: d1_black
-    background: v3_yellow
+    background: v2_yellow
   file_with_capability: 
     foreground: d1_black
     font-style: bold 
   sticky_other_writable: 
     foreground: d1_black
-    background: v3_chartreuse 
+    background: v2_chartreuse 
   other_writable: 
     foreground: d3_blue
-    background: v3_chartreuse
+    background: v2_chartreuse
   sticky: 
     foreground: d1_white
-    background: v3_blue
+    background: v2_blue
   executable_file: 
     foreground: d3_chartreuse
     font-style: bold

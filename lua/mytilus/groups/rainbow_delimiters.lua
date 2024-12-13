@@ -1,18 +1,58 @@
----@param palette Palette
----@return table<string,vim.api.keyset.highlight|string>
-local function setup(palette)
-	local p = palette
+local colorlist = {
+	"RainbowDelimiterRed",
+	"RainbowDelimiterYellow",
+	"RainbowDelimiterBlue",
+	"RainbowDelimiterOrange",
+	"RainbowDelimiterGreen",
+	"RainbowDelimiterViolet",
+	"RainbowDelimiterCyan",
+}
+
+local grouptable = {
+	rb = {
+		rb1 = {
+			"RainbowDelimiterRed",
+		},
+		rb2 = {
+			"RainbowDelimiterYellow"
+		},
+		rb3 = {
+			"RainbowDelimiterBlue"
+		},
+		rb4 = {
+			"RainbowDelimiterOrange"
+		},
+		rb5 = {
+			"RainbowDelimiterGreen"
+		},
+		rb6 = {
+			"RainbowDelimiterViolet"
+		},
+		rb7 = {
+			"RainbowDelimiterCyan"
+		},
+	}
+}
+
+---@param config Config
+local function palette( config)
+	config = config == nil and {} or config
+	local c = config.colors
 	return {
-		["RainbowDelimiterRed"]    = { p.rb.rb1 },
-		["RainbowDelimiterYellow"] = { p.rb.rb2 },
-		["RainbowDelimiterBlue"]   = { p.rb.rb2 },
-		["RainbowDelimiterOrange"] = { p.rb.rb3 },
-		["RainbowDelimiterGreen"]  = { p.rb.rb4 },
-		["RainbowDelimiterViolet"] = { p.rb.rb5 },
-		["RainbowDelimiterCyan"]   = { p.rb.rb6 },
+		rb = {
+			rb1 = { fg = c.d1_red },
+			rb2 = { fg = c.d1_yellow },
+			rb3 = { fg = c.d1_blue },
+			rb4 = { fg = c.d1_orange },
+			rb5 = { fg = c.d1_green },
+			rb6 = { fg = c.d1_purple },
+			rb7 = { fg = c.d1_cyan },
+		}
 	}
 end
 
 return {
-	setup = setup,
+	colorlist = colorlist,
+	grouptable = grouptable,
+	palette = palette
 }

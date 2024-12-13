@@ -1,2 +1,3 @@
 build:
-	julia --project=. -e "using Mytilus; using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Mytilus.main()"
+	julia --project=. -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate();"
+	julia --project=. -e "using Mytilus; Mytilus.main()"

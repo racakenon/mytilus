@@ -34,21 +34,20 @@ vim.cmd[[colorscheme mytilus-dark]]
 config = function()
 	require("mytilus").setup(
 		{
-			theme = 'light' -- light or dark
-			options = {  -- add or remove attrs
-				clear = {},
-				bold = { ["sy.type"] = true, ["sy.keyword"] = true },
-				undercurl = {},
-				underline = {},
-				underdashed = {},
-				underdotted = {},
-				underdouble = {},
-				strikethrough = {},
-				italic = { ["sy.string"] = true }
-			}
-			overides = { 
-				Normal = { bg = nil } -- overide highlight groups directly
-			}
+			theme = 'mytilus-light', -- can be light, dark or mytilus_dark
+			options = {
+				sideBarDim = true, --if false then sidebar bg is same normal
+				statusBarRevers = true, --if false, statusBarRevers bg is d2_black,
+				NCWindowDim = true, --if false, not current window bg is same normal
+
+				constant = "none", -- or "bold", "italic"
+				str = "none",     -- or "bold", "italic"
+				func = "none",    -- or "bold", "italic"
+				type = "none",    -- or "bold", "italic"
+				statement = "none", -- or "bold", "italic"
+				keyword = "none", -- or "bold", "italic"
+			},
+			overides = {}         -- ["@string"] = { fg = "#222222", italic = true },
 		}
 	)
 	vim.cmd [[colorscheme mytilus-dark]] -- colorscheme takes precedence over theme
@@ -59,287 +58,212 @@ end
 ## light colors
 
 | | hex | rgb | OKlab |
-|---|---|---|
-| d0_black | #2E2B3C | [46.04, 43.13, 59.77] |  [0.3, 0.01, -0.03] |
-| d0_white | #2E2F1E | [45.85, 47.48, 29.83] |  [0.3, -0.01, 0.03] |
-| d1_black | #3B3849 | [58.71, 55.79, 73.09] |  [0.35, 0.01, -0.03] |
-| d1_white | #3B3C2A | [58.51, 60.29, 42.14] |  [0.35, -0.01, 0.03] |
-| d2_black | #484557 | [71.84, 68.91, 86.8] |  [0.4, 0.01, -0.03] |
-| d2_white | #484A37 | [71.65, 73.55, 54.92] |  [0.4, -0.01, 0.03] |
-| d3_black | #555265 | [85.4, 82.45, 100.88] |  [0.45, 0.01, -0.03] |
-| d3_white | #555744 | [85.2, 87.22, 68.12] |  [0.45, -0.01, 0.03] |
-| d3_red | #794153 | [120.93, 65.24, 83.36] |  [0.45, 0.08, 0.0] |
-| d3_orange | #7A462E | [121.63, 69.87, 45.94] |  [0.45, 0.06, 0.06] |
-| d3_yellow | #675317 | [102.51, 82.85, 23.38] |  [0.45, 0.0, 0.08] |
-| d3_chartreuse | #415F30 | [65.37, 95.09, 48.14] |  [0.45, -0.06, 0.06] |
-| d3_green | #066357 | [5.71, 99.47, 86.89] |  [0.45, -0.08, 0.0] |
-| d3_cyan | #105E77 | [15.8, 94.09, 118.54] |  [0.45, -0.06, -0.06] |
-| d3_blue | #445282 | [67.93, 82.48, 129.84] |  [0.45, -0.0, -0.08] |
-| d3_purple | #664774 | [101.96, 71.0, 115.75] |  [0.45, 0.06, -0.06] |
-| v0_black | #EFEBFF | [238.51, 235.27, 255.0] |  [0.95, 0.01, -0.03] |
-| v0_white | #EEF1DA | [238.27, 240.98, 218.33] |  [0.95, -0.01, 0.03] |
-| v1_black | #DEDBF1 | [222.02, 218.81, 240.8] |  [0.9, 0.01, -0.03] |
-| v1_white | #DEE0CA | [221.79, 224.45, 202.08] |  [0.9, -0.01, 0.03] |
-| v2_black | #CECBE0 | [205.76, 202.58, 224.25] |  [0.85, 0.01, -0.03] |
-| v2_white | #CED0BA | [205.54, 208.14, 186.08] |  [0.85, -0.01, 0.03] |
-| v3_black | #BEBBD0 | [189.74, 186.59, 207.93] |  [0.8, 0.01, -0.03] |
-| v3_white | #BEC0AA | [189.52, 192.07, 170.32] |  [0.8, -0.01, 0.03] |
-| v3_red | #EAA9BB | [233.66, 168.56, 187.48] |  [0.8, 0.08, 0.0] |
-| v3_orange | #EAAE93 | [234.12, 173.93, 147.18] |  [0.8, 0.06, 0.06] |
-| v3_yellow | #D2BC82 | [209.66, 188.01, 129.62] |  [0.8, 0.0, 0.08] |
-| v3_chartreuse | #A8CA96 | [167.77, 201.8, 149.86] |  [0.8, -0.06, 0.06] |
-| v3_green | #82CFC0 | [129.81, 207.04, 191.56] |  [0.8, -0.08, 0.0] |
-| v3_cyan | #84C9E5 | [131.56, 201.14, 228.69] |  [0.8, -0.06, -0.06] |
-| v3_blue | #A9BCF2 | [169.45, 187.86, 242.2] |  [0.8, -0.0, -0.08] |
-| v3_purple | #D1AFE2 | [209.45, 174.61, 225.6] |  [0.8, 0.06, -0.06] |
+|---|---|---|---|
+| d0_black | #39363F | [0.222, 0.213, 0.247] | [0.34, 0.007, -0.013] | [0.34, 0.015, 297.5] |
+| d0_white | #383930 | [0.219, 0.223, 0.188] | [0.34, -0.006, 0.014] | [0.34, 0.015, 112.5] |
+| d1_black | #403E47 | [0.253, 0.244, 0.278] | [0.37, 0.007, -0.013] | [0.37, 0.015, 297.5] |
+| d1_white | #404138 | [0.249, 0.254, 0.218] | [0.37, -0.006, 0.014] | [0.37, 0.015, 112.5] |
+| d2_black | #48464F | [0.284, 0.275, 0.31] | [0.4, 0.007, -0.013] | [0.4, 0.015, 297.5] |
+| d2_white | #48493F | [0.281, 0.285, 0.249] | [0.4, -0.006, 0.014] | [0.4, 0.015, 112.5] |
+| d3_black | #504E57 | [0.316, 0.307, 0.342] | [0.43, 0.007, -0.013] | [0.43, 0.015, 297.5] |
+| d3_white | #505147 | [0.312, 0.317, 0.28] | [0.43, -0.006, 0.014] | [0.43, 0.015, 112.5] |
+| d1_red | #5A3336 | [0.351, 0.2, 0.213] | [0.37, 0.054, 0.014] | [0.37, 0.056, 14.327] |
+| d1_orange | #5A3619 | [0.354, 0.211, 0.097] | [0.37, 0.037, 0.056] | [0.37, 0.067, 56.904] |
+| d1_yellow | #4C3F03 | [0.3, 0.245, 0.011] | [0.37, -0.006, 0.074] | [0.37, 0.074, 94.444] |
+| d1_chartreuse | #32471A | [0.196, 0.28, 0.103] | [0.37, -0.048, 0.056] | [0.37, 0.074, 130.556] |
+| d1_green | #0F4B39 | [0.06, 0.294, 0.223] | [0.37, -0.066, 0.014] | [0.37, 0.067, 168.096] |
+| d1_cyan | #124850 | [0.07, 0.281, 0.315] | [0.37, -0.048, -0.029] | [0.37, 0.056, 210.673] |
+| d1_blue | #334059 | [0.199, 0.25, 0.347] | [0.37, -0.006, -0.046] | [0.37, 0.046, 262.909] |
+| d1_purple | #4B374E | [0.296, 0.218, 0.307] | [0.37, 0.037, -0.029] | [0.37, 0.046, 322.091] |
+| d3_red | #6F4046 | [0.436, 0.251, 0.274] | [0.43, 0.064, 0.014] | [0.43, 0.066, 12.17] |
+| d3_orange | #704423 | [0.439, 0.265, 0.136] | [0.43, 0.044, 0.063] | [0.43, 0.077, 55.369] |
+| d3_yellow | #5F4E09 | [0.373, 0.307, 0.034] | [0.43, -0.006, 0.084] | [0.43, 0.084, 93.916] |
+| d3_chartreuse | #3F5925 | [0.247, 0.349, 0.144] | [0.43, -0.055, 0.063] | [0.43, 0.084, 131.084] |
+| d3_green | #155D49 | [0.083, 0.365, 0.286] | [0.43, -0.076, 0.014] | [0.43, 0.077, 169.631] |
+| d3_cyan | #185965 | [0.095, 0.349, 0.397] | [0.43, -0.055, -0.036] | [0.43, 0.066, 212.83] |
+| d3_blue | #404F6F | [0.251, 0.312, 0.436] | [0.43, -0.006, -0.056] | [0.43, 0.056, 264.162] |
+| d3_purple | #5E4663 | [0.369, 0.273, 0.387] | [0.43, 0.044, -0.036] | [0.43, 0.056, 320.838] |
+| v0_black | #F6F3FE | [0.965, 0.954, 0.997] | [0.97, 0.007, -0.013] | [0.97, 0.015, 297.5] |
+| v0_white | #F5F6EB | [0.961, 0.966, 0.921] | [0.97, -0.006, 0.014] | [0.97, 0.015, 112.5] |
+| v1_black | #E9E6F1 | [0.912, 0.902, 0.945] | [0.93, 0.007, -0.013] | [0.93, 0.015, 297.5] |
+| v1_white | #E8E9DE | [0.908, 0.914, 0.87] | [0.93, -0.006, 0.014] | [0.93, 0.015, 112.5] |
+| v2_black | #DCD9E4 | [0.861, 0.85, 0.893] | [0.89, 0.007, -0.013] | [0.89, 0.015, 297.5] |
+| v2_white | #DBDCD1 | [0.857, 0.862, 0.819] | [0.89, -0.006, 0.014] | [0.89, 0.015, 112.5] |
+| v3_black | #CFCCD7 | [0.81, 0.799, 0.841] | [0.85, 0.007, -0.013] | [0.85, 0.015, 297.5] |
+| v3_white | #CECFC4 | [0.806, 0.811, 0.768] | [0.85, -0.006, 0.014] | [0.85, 0.015, 112.5] |
+| v2_red | #FECCCF | [0.995, 0.801, 0.813] | [0.89, 0.054, 0.014] | [0.89, 0.056, 14.327] |
+| v2_orange | #FED0B0 | [0.996, 0.817, 0.69] | [0.89, 0.037, 0.056] | [0.89, 0.067, 56.904] |
+| v2_yellow | #EADBA3 | [0.919, 0.858, 0.639] | [0.89, -0.006, 0.074] | [0.89, 0.074, 94.444] |
+| v2_chartreuse | #CAE5B2 | [0.793, 0.899, 0.698] | [0.89, -0.048, 0.056] | [0.89, 0.074, 130.556] |
+| v2_green | #B0EAD2 | [0.689, 0.916, 0.825] | [0.89, -0.066, 0.014] | [0.89, 0.067, 168.096] |
+| v2_cyan | #B0E5F0 | [0.692, 0.9, 0.94] | [0.89, -0.048, -0.029] | [0.89, 0.056, 210.673] |
+| v2_blue | #CBDBFA | [0.795, 0.86, 0.982] | [0.89, -0.006, -0.046] | [0.89, 0.046, 262.909] |
+| v2_purple | #EAD1ED | [0.917, 0.82, 0.931] | [0.89, 0.037, -0.029] | [0.89, 0.046, 322.091] |
 
 
 ### contrast
 
 | | v0_black | v0_white | v1_black | v1_white | v2_black | v2_white |
 |---|---|---|---|---|---|---|
-| d0_black | 11.78 | 11.93 | 10.13 | 10.25 | 8.64 | 8.74 |
-| d0_white | 11.63 | 11.78 | 10.0 | 10.12 | 8.53 | 8.63 |
-| d1_black | 9.78 | 9.9 | 8.41 | 8.5 | 7.16 | 7.25 |
-| d1_white | 9.64 | 9.76 | 8.29 | 8.38 | 7.06 | 7.15 |
-| d2_black | 7.97 | 8.07 | 6.85 | 6.93 | 5.84 | 5.91 |
-| d2_white | 7.85 | 7.95 | 6.75 | 6.82 | 5.75 | 5.82 |
-| d3_black | 6.44 | 6.52 | 5.53 | 5.6 | 4.72 | 4.77 |
-| d3_white | 6.34 | 6.42 | 5.45 | 5.51 | 4.64 | 4.7 |
-| d3_red | 6.67 | 6.76 | 5.74 | 5.8 | 4.89 | 4.95 |
-| d3_orange | 6.59 | 6.67 | 5.66 | 5.73 | 4.83 | 4.89 |
-| d3_yellow | 6.4 | 6.48 | 5.5 | 5.56 | 4.69 | 4.74 |
-| d3_chartreuse | 6.19 | 6.27 | 5.32 | 5.38 | 4.54 | 4.59 |
-| d3_green | 6.11 | 6.19 | 5.26 | 5.31 | 4.48 | 4.53 |
-| d3_cyan | 6.23 | 6.31 | 5.36 | 5.42 | 4.57 | 4.62 |
-| d3_blue | 6.46 | 6.54 | 5.55 | 5.62 | 4.73 | 4.79 |
-| d3_purple | 6.63 | 6.71 | 5.7 | 5.77 | 4.86 | 4.92 |
+| d0_black | AAA | AAA | AAA | AAA | AAA | AAA |
+| d0_white | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_black | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_white | AAA | AAA | AAA | AAA | AAA | AAA |
+| d2_black | AAA | AAA | AAA | AAA | AA | AA |
+| d2_white | AAA | AAA | AAA | AAA | AA | AA |
+| d3_black | AAA | AAA | AA | AA | AA | AA |
+| d3_white | AAA | AAA | AA | AA | AA | AA |
+| d1_red | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_orange | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_yellow | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_chartreuse | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_green | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_cyan | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_blue | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_purple | AAA | AAA | AAA | AAA | AAA | AAA |
+| d3_red | AAA | AAA | AA | AA | AA | AA |
+| d3_orange | AAA | AAA | AA | AA | AA | AA |
+| d3_yellow | AAA | AAA | AA | AA | AA | AA |
+| d3_chartreuse | AAA | AAA | AA | AA | AA | AA |
+| d3_green | AAA | AAA | AA | AA | AA | AA |
+| d3_cyan | AAA | AAA | AA | AA | AA | AA |
+| d3_blue | AAA | AAA | AA | AA | AA | AA |
+| d3_purple | AAA | AAA | AA | AA | AA | AA |
 
 
-| | v3_black | v3_white | v3_red | v3_orange | v3_yellow | v3_chartreuse | v3_green | v3_cyan | v3_blue | v3_purple |
+| | v3_black | v3_white | v2_red | v2_orange | v2_yellow | v2_chartreuse | v2_green | v2_cyan | v2_blue | v2_purple |
 |---|---|---|---|---|---|---|---|---|---|---|
-| d0_black | 7.3 | 7.4 | 7.1 | 7.18 | 7.36 | 7.54 | 7.61 | 7.5 | 7.3 | 7.14 |
-| d0_white | 7.21 | 7.3 | 7.01 | 7.09 | 7.26 | 7.45 | 7.51 | 7.41 | 7.21 | 7.05 |
-| d1_black | 6.06 | 6.14 | 5.89 | 5.96 | 6.1 | 6.26 | 6.31 | 6.23 | 6.06 | 5.93 |
-| d1_white | 5.97 | 6.05 | 5.81 | 5.87 | 6.02 | 6.17 | 6.22 | 6.14 | 5.97 | 5.84 |
-| d2_black | 4.94 | 5.0 | 4.8 | 4.85 | 4.97 | 5.1 | 5.15 | 5.07 | 4.94 | 4.83 |
-| d2_white | 4.86 | 4.93 | 4.73 | 4.78 | 4.9 | 5.02 | 5.07 | 5.0 | 4.86 | 4.76 |
-| d3_black | 3.99 | 4.04 | 3.88 | 3.92 | 4.02 | 4.12 | 4.16 | 4.1 | 3.99 | 3.9 |
-| d3_white | 3.93 | 3.98 | 3.82 | 3.86 | 3.96 | 4.06 | 4.09 | 4.04 | 3.93 | 3.84 |
-| d3_red | 4.14 | 4.19 | 4.02 | 4.06 | 4.17 | 4.27 | 4.31 | 4.25 | 4.13 | 4.04 |
-| d3_orange | 4.08 | 4.13 | 3.97 | 4.01 | 4.11 | 4.22 | 4.25 | 4.19 | 4.08 | 3.99 |
-| d3_yellow | 3.96 | 4.01 | 3.85 | 3.9 | 3.99 | 4.09 | 4.13 | 4.07 | 3.96 | 3.88 |
-| d3_chartreuse | 3.84 | 3.88 | 3.73 | 3.77 | 3.86 | 3.96 | 4.0 | 3.94 | 3.84 | 3.75 |
-| d3_green | 3.79 | 3.84 | 3.68 | 3.72 | 3.82 | 3.91 | 3.95 | 3.89 | 3.79 | 3.71 |
-| d3_cyan | 3.86 | 3.91 | 3.75 | 3.8 | 3.89 | 3.99 | 4.02 | 3.97 | 3.86 | 3.78 |
-| d3_blue | 4.0 | 4.05 | 3.89 | 3.94 | 4.03 | 4.13 | 4.17 | 4.11 | 4.0 | 3.92 |
-| d3_purple | 4.11 | 4.16 | 3.99 | 4.04 | 4.14 | 4.24 | 4.28 | 4.22 | 4.11 | 4.02 |
+| d0_black | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d0_white | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_black | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_white | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d2_black | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d2_white | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_black | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_white | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d1_red | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_orange | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_yellow | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_chartreuse | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_green | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_cyan | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_blue | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_purple | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d3_red | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_orange | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_yellow | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_chartreuse | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_green | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_cyan | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_blue | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_purple | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
 
 
 ## dark colors
 
 | | hex | rgb | OKlab |
-|---|---|---|
-| d0_black | #EEF1DA | [238.27, 240.98, 218.33] |  [0.95, -0.01, 0.03] |
-| d0_white | #EFEBFF | [238.51, 235.27, 255.0] |  [0.95, 0.01, -0.03] |
-| d1_black | #DEE0CA | [221.79, 224.45, 202.08] |  [0.9, -0.01, 0.03] |
-| d1_white | #DEDBF1 | [222.02, 218.81, 240.8] |  [0.9, 0.01, -0.03] |
-| d2_black | #CED0BA | [205.54, 208.14, 186.08] |  [0.85, -0.01, 0.03] |
-| d2_white | #CECBE0 | [205.76, 202.58, 224.25] |  [0.85, 0.01, -0.03] |
-| d3_black | #BEC0AA | [189.52, 192.07, 170.32] |  [0.8, -0.01, 0.03] |
-| d3_white | #BEBBD0 | [189.74, 186.59, 207.93] |  [0.8, 0.01, -0.03] |
-| d3_red | #EAA9BB | [233.66, 168.56, 187.48] |  [0.8, 0.08, 0.0] |
-| d3_orange | #EAAE93 | [234.12, 173.93, 147.18] |  [0.8, 0.06, 0.06] |
-| d3_yellow | #D2BC82 | [209.66, 188.01, 129.62] |  [0.8, 0.0, 0.08] |
-| d3_chartreuse | #A8CA96 | [167.77, 201.8, 149.86] |  [0.8, -0.06, 0.06] |
-| d3_green | #82CFC0 | [129.81, 207.04, 191.56] |  [0.8, -0.08, 0.0] |
-| d3_cyan | #84C9E5 | [131.56, 201.14, 228.69] |  [0.8, -0.06, -0.06] |
-| d3_blue | #A9BCF2 | [169.45, 187.86, 242.2] |  [0.8, -0.0, -0.08] |
-| d3_purple | #D1AFE2 | [209.45, 174.61, 225.6] |  [0.8, 0.06, -0.06] |
-| v0_black | #2E2F1E | [45.85, 47.48, 29.83] |  [0.3, -0.01, 0.03] |
-| v0_white | #2E2B3C | [46.04, 43.13, 59.77] |  [0.3, 0.01, -0.03] |
-| v1_black | #3B3C2A | [58.51, 60.29, 42.14] |  [0.35, -0.01, 0.03] |
-| v1_white | #3B3849 | [58.71, 55.79, 73.09] |  [0.35, 0.01, -0.03] |
-| v2_black | #484A37 | [71.65, 73.55, 54.92] |  [0.4, -0.01, 0.03] |
-| v2_white | #484557 | [71.84, 68.91, 86.8] |  [0.4, 0.01, -0.03] |
-| v3_black | #555744 | [85.2, 87.22, 68.12] |  [0.45, -0.01, 0.03] |
-| v3_white | #555265 | [85.4, 82.45, 100.88] |  [0.45, 0.01, -0.03] |
-| v3_red | #794153 | [120.93, 65.24, 83.36] |  [0.45, 0.08, 0.0] |
-| v3_orange | #7A462E | [121.63, 69.87, 45.94] |  [0.45, 0.06, 0.06] |
-| v3_yellow | #675317 | [102.51, 82.85, 23.38] |  [0.45, 0.0, 0.08] |
-| v3_chartreuse | #415F30 | [65.37, 95.09, 48.14] |  [0.45, -0.06, 0.06] |
-| v3_green | #066357 | [5.71, 99.47, 86.89] |  [0.45, -0.08, 0.0] |
-| v3_cyan | #105E77 | [15.8, 94.09, 118.54] |  [0.45, -0.06, -0.06] |
-| v3_blue | #445282 | [67.93, 82.48, 129.84] |  [0.45, -0.0, -0.08] |
-| v3_purple | #664774 | [101.96, 71.0, 115.75] |  [0.45, 0.06, -0.06] |
+|---|---|---|---|
+| d0_black | #E5E3EE | [0.9, 0.889, 0.931] | [0.92, 0.007, -0.013] | [0.92, 0.015, 297.5] |
+| d0_white | #E4E6DB | [0.896, 0.901, 0.857] | [0.92, -0.006, 0.014] | [0.92, 0.015, 112.5] |
+| d1_black | #DCD9E4 | [0.861, 0.85, 0.893] | [0.89, 0.007, -0.013] | [0.89, 0.015, 297.5] |
+| d1_white | #DBDCD1 | [0.857, 0.862, 0.819] | [0.89, -0.006, 0.014] | [0.89, 0.015, 112.5] |
+| d2_black | #D2CFDA | [0.823, 0.812, 0.854] | [0.86, 0.007, -0.013] | [0.86, 0.015, 297.5] |
+| d2_white | #D1D2C7 | [0.819, 0.824, 0.781] | [0.86, -0.006, 0.014] | [0.86, 0.015, 112.5] |
+| d3_black | #C8C5D0 | [0.785, 0.774, 0.816] | [0.83, 0.007, -0.013] | [0.83, 0.015, 297.5] |
+| d3_white | #C7C8BD | [0.781, 0.786, 0.743] | [0.83, -0.006, 0.014] | [0.83, 0.015, 112.5] |
+| d1_red | #FECCCF | [0.995, 0.801, 0.813] | [0.89, 0.054, 0.014] | [0.89, 0.056, 14.327] |
+| d1_orange | #FED0B0 | [0.996, 0.817, 0.69] | [0.89, 0.037, 0.056] | [0.89, 0.067, 56.904] |
+| d1_yellow | #EADBA3 | [0.919, 0.858, 0.639] | [0.89, -0.006, 0.074] | [0.89, 0.074, 94.444] |
+| d1_chartreuse | #CAE5B2 | [0.793, 0.899, 0.698] | [0.89, -0.048, 0.056] | [0.89, 0.074, 130.556] |
+| d1_green | #B0EAD2 | [0.689, 0.916, 0.825] | [0.89, -0.066, 0.014] | [0.89, 0.067, 168.096] |
+| d1_cyan | #B0E5F0 | [0.692, 0.9, 0.94] | [0.89, -0.048, -0.029] | [0.89, 0.056, 210.673] |
+| d1_blue | #CBDBFA | [0.795, 0.86, 0.982] | [0.89, -0.006, -0.046] | [0.89, 0.046, 262.909] |
+| d1_purple | #EAD1ED | [0.917, 0.82, 0.931] | [0.89, 0.037, -0.029] | [0.89, 0.046, 322.091] |
+| d3_red | #EFB6BC | [0.936, 0.715, 0.736] | [0.83, 0.064, 0.014] | [0.83, 0.066, 12.17] |
+| d3_orange | #EFBB97 | [0.938, 0.732, 0.594] | [0.83, 0.044, 0.063] | [0.83, 0.077, 55.369] |
+| d3_yellow | #D9C788 | [0.852, 0.78, 0.532] | [0.83, -0.006, 0.084] | [0.83, 0.084, 93.916] |
+| d3_chartreuse | #B4D39A | [0.707, 0.828, 0.603] | [0.83, -0.055, 0.063] | [0.83, 0.084, 131.084] |
+| d3_green | #94D8BF | [0.581, 0.847, 0.75] | [0.83, -0.076, 0.014] | [0.83, 0.077, 169.631] |
+| d3_cyan | #95D3E1 | [0.585, 0.828, 0.881] | [0.83, -0.055, -0.036] | [0.83, 0.066, 212.83] |
+| d3_blue | #B5C8ED | [0.71, 0.783, 0.929] | [0.83, -0.006, -0.056] | [0.83, 0.056, 264.162] |
+| d3_purple | #D9BCDE | [0.85, 0.737, 0.871] | [0.83, 0.044, -0.036] | [0.83, 0.056, 320.838] |
+| v0_black | #2C2A32 | [0.173, 0.164, 0.196] | [0.29, 0.007, -0.013] | [0.29, 0.015, 297.5] |
+| v0_white | #2B2C24 | [0.17, 0.173, 0.14] | [0.29, -0.006, 0.014] | [0.29, 0.015, 112.5] |
+| v1_black | #36343C | [0.212, 0.203, 0.236] | [0.33, 0.007, -0.013] | [0.33, 0.015, 297.5] |
+| v1_white | #35362E | [0.209, 0.213, 0.178] | [0.33, -0.006, 0.014] | [0.33, 0.015, 112.5] |
+| v2_black | #403E47 | [0.253, 0.244, 0.278] | [0.37, 0.007, -0.013] | [0.37, 0.015, 297.5] |
+| v2_white | #404138 | [0.249, 0.254, 0.218] | [0.37, -0.006, 0.014] | [0.37, 0.015, 112.5] |
+| v3_black | #4B4952 | [0.294, 0.285, 0.32] | [0.41, 0.007, -0.013] | [0.41, 0.015, 297.5] |
+| v3_white | #4A4B42 | [0.291, 0.295, 0.259] | [0.41, -0.006, 0.014] | [0.41, 0.015, 112.5] |
+| v2_red | #5A3336 | [0.351, 0.2, 0.213] | [0.37, 0.054, 0.014] | [0.37, 0.056, 14.327] |
+| v2_orange | #5A3619 | [0.354, 0.211, 0.097] | [0.37, 0.037, 0.056] | [0.37, 0.067, 56.904] |
+| v2_yellow | #4C3F03 | [0.3, 0.245, 0.011] | [0.37, -0.006, 0.074] | [0.37, 0.074, 94.444] |
+| v2_chartreuse | #32471A | [0.196, 0.28, 0.103] | [0.37, -0.048, 0.056] | [0.37, 0.074, 130.556] |
+| v2_green | #0F4B39 | [0.06, 0.294, 0.223] | [0.37, -0.066, 0.014] | [0.37, 0.067, 168.096] |
+| v2_cyan | #124850 | [0.07, 0.281, 0.315] | [0.37, -0.048, -0.029] | [0.37, 0.056, 210.673] |
+| v2_blue | #334059 | [0.199, 0.25, 0.347] | [0.37, -0.006, -0.046] | [0.37, 0.046, 262.909] |
+| v2_purple | #4B374E | [0.296, 0.218, 0.307] | [0.37, 0.037, -0.029] | [0.37, 0.046, 322.091] |
 
 
 ### contrast
 
 | | v0_black | v0_white | v1_black | v1_white | v2_black | v2_white |
 |---|---|---|---|---|---|---|
-| d0_black | 11.78 | 11.93 | 9.76 | 9.9 | 7.95 | 8.07 |
-| d0_white | 11.63 | 11.78 | 9.64 | 9.78 | 7.85 | 7.97 |
-| d1_black | 10.12 | 10.25 | 8.38 | 8.5 | 6.82 | 6.93 |
-| d1_white | 10.0 | 10.13 | 8.29 | 8.41 | 6.75 | 6.85 |
-| d2_black | 8.63 | 8.74 | 7.15 | 7.25 | 5.82 | 5.91 |
-| d2_white | 8.53 | 8.64 | 7.06 | 7.16 | 5.75 | 5.84 |
-| d3_black | 7.3 | 7.4 | 6.05 | 6.14 | 4.93 | 5.0 |
-| d3_white | 7.21 | 7.3 | 5.97 | 6.06 | 4.86 | 4.94 |
-| d3_red | 7.01 | 7.1 | 5.81 | 5.89 | 4.73 | 4.8 |
-| d3_orange | 7.09 | 7.18 | 5.87 | 5.96 | 4.78 | 4.85 |
-| d3_yellow | 7.26 | 7.36 | 6.02 | 6.1 | 4.9 | 4.97 |
-| d3_chartreuse | 7.45 | 7.54 | 6.17 | 6.26 | 5.02 | 5.1 |
-| d3_green | 7.51 | 7.61 | 6.22 | 6.31 | 5.07 | 5.15 |
-| d3_cyan | 7.41 | 7.5 | 6.14 | 6.23 | 5.0 | 5.07 |
-| d3_blue | 7.21 | 7.3 | 5.97 | 6.06 | 4.86 | 4.94 |
-| d3_purple | 7.05 | 7.14 | 5.84 | 5.93 | 4.76 | 4.83 |
+| d0_black | AAA | AAA | AAA | AAA | AAA | AAA |
+| d0_white | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_black | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_white | AAA | AAA | AAA | AAA | AAA | AAA |
+| d2_black | AAA | AAA | AAA | AAA | AA | AA |
+| d2_white | AAA | AAA | AAA | AAA | AA | AA |
+| d3_black | AAA | AAA | AAA | AAA | AA | AA |
+| d3_white | AAA | AAA | AAA | AAA | AA | AA |
+| d1_red | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_orange | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_yellow | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_chartreuse | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_green | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_cyan | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_blue | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_purple | AAA | AAA | AAA | AAA | AAA | AAA |
+| d3_red | AAA | AAA | AAA | AAA | AA | AA |
+| d3_orange | AAA | AAA | AAA | AAA | AA | AA |
+| d3_yellow | AAA | AAA | AAA | AAA | AA | AA |
+| d3_chartreuse | AAA | AAA | AAA | AAA | AA | AA |
+| d3_green | AAA | AAA | AAA | AAA | AA | AA |
+| d3_cyan | AAA | AAA | AAA | AAA | AA | AA |
+| d3_blue | AAA | AAA | AAA | AAA | AA | AA |
+| d3_purple | AAA | AAA | AAA | AAA | AA | AA |
 
 
-| | v3_black | v3_white | v3_red | v3_orange | v3_yellow | v3_chartreuse | v3_green | v3_cyan | v3_blue | v3_purple |
+| | v3_black | v3_white | v2_red | v2_orange | v2_yellow | v2_chartreuse | v2_green | v2_cyan | v2_blue | v2_purple |
 |---|---|---|---|---|---|---|---|---|---|---|
-| d0_black | 6.42 | 6.52 | 6.76 | 6.67 | 6.48 | 6.27 | 6.19 | 6.31 | 6.54 | 6.71 |
-| d0_white | 6.34 | 6.44 | 6.67 | 6.59 | 6.4 | 6.19 | 6.11 | 6.23 | 6.46 | 6.63 |
-| d1_black | 5.51 | 5.6 | 5.8 | 5.73 | 5.56 | 5.38 | 5.31 | 5.42 | 5.62 | 5.77 |
-| d1_white | 5.45 | 5.53 | 5.74 | 5.66 | 5.5 | 5.32 | 5.26 | 5.36 | 5.55 | 5.7 |
-| d2_black | 4.7 | 4.77 | 4.95 | 4.89 | 4.74 | 4.59 | 4.53 | 4.62 | 4.79 | 4.92 |
-| d2_white | 4.64 | 4.72 | 4.89 | 4.83 | 4.69 | 4.54 | 4.48 | 4.57 | 4.73 | 4.86 |
-| d3_black | 3.98 | 4.04 | 4.19 | 4.13 | 4.01 | 3.88 | 3.84 | 3.91 | 4.05 | 4.16 |
-| d3_white | 3.93 | 3.99 | 4.14 | 4.08 | 3.96 | 3.84 | 3.79 | 3.86 | 4.0 | 4.11 |
-| d3_red | 3.82 | 3.88 | 4.02 | 3.97 | 3.85 | 3.73 | 3.68 | 3.75 | 3.89 | 3.99 |
-| d3_orange | 3.86 | 3.92 | 4.06 | 4.01 | 3.9 | 3.77 | 3.72 | 3.8 | 3.94 | 4.04 |
-| d3_yellow | 3.96 | 4.02 | 4.17 | 4.11 | 3.99 | 3.86 | 3.82 | 3.89 | 4.03 | 4.14 |
-| d3_chartreuse | 4.06 | 4.12 | 4.27 | 4.22 | 4.09 | 3.96 | 3.91 | 3.99 | 4.13 | 4.24 |
-| d3_green | 4.09 | 4.16 | 4.31 | 4.25 | 4.13 | 4.0 | 3.95 | 4.02 | 4.17 | 4.28 |
-| d3_cyan | 4.04 | 4.1 | 4.25 | 4.19 | 4.07 | 3.94 | 3.89 | 3.97 | 4.11 | 4.22 |
-| d3_blue | 3.93 | 3.99 | 4.13 | 4.08 | 3.96 | 3.84 | 3.79 | 3.86 | 4.0 | 4.11 |
-| d3_purple | 3.84 | 3.9 | 4.04 | 3.99 | 3.88 | 3.75 | 3.71 | 3.78 | 3.92 | 4.02 |
+| d0_black | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d0_white | AAA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_black | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_white | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d2_black | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d2_white | AA | AA | AAA | AA | AA | AA | AA | AA | AA | AA |
+| d3_black | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_white | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d1_red | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_orange | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_yellow | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_chartreuse | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_green | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_cyan | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_blue | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d1_purple | AA | AA | AAA | AAA | AAA | AAA | AAA | AAA | AAA | AAA |
+| d3_red | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_orange | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_yellow | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_chartreuse | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_green | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_cyan | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_blue | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
+| d3_purple | AA | AA | AA | AA | AA | AA | AA | AA | AA | AA |
 
 
 
-</details>
-
-## Color Palette
-
-<details>
-
-```lua
----@class Palette
----@field tc TerminalColor
----@field di Diagnostic
----@field fg Foreground
----@field bg Background
----@field sy Syntax
----@field df Diff
----@field rb Rainbow
----@field at Attr
----@field ui UI
-
----@class TerminalColor
----@field black         Color
----@field red           Color
----@field orange        Color
----@field yellow        Color
----@field green         Color
----@field mint          Color
----@field cyan          Color
----@field blue          Color
----@field magenta       Color
----@field white         Color
----@field bright_black  Color
----@field bright_white  Color
-
----@class Diagnostic
----@field error         Color
----@field warn          Color
----@field ok            Color
----@field info          Color
----@field hint          Color
-
----@class Rainbow
----@field rb1           Color
----@field rb2           Color
----@field rb3           Color
----@field rb4           Color
----@field rb5           Color
----@field rb6           Color
----@field rb7           Color
-
----@class Diff
----@field delete        Color
----@field add           Color
----@field change        Color
----@field difftext      Color
-
----@class Attr
----@field clear         Color
----@field bold          Color
----@field strikethrough Color
----@field underline     Color
----@field undercurl     Color
----@field underdouble   Color
----@field underdotted   Color
----@field underdashed   Color
----@field italic        Color
-
----@class Foreground
----@field strong        Color
----@field text          Color
----@field comment       Color
-
----@class Background
----@field float         Color
----@field plain	        Color
----@field visual        Color
-
----@class UI
----@field important  Color
----@field warning    Color
----@field info       Color
----@field hint       Color
----@field select     Color
----@field note       Color
----@field doc        Color
----@field sign       Color
----@field cursorline Color
----@field bar        Bar
----@field board      Board
----@field border     Color
----@field inactive   Color
----@field cursor     Color
----@field dir        Color
----@field fold       Color
----@field nontext    Color
----@field candidate  Color
----@field pmenu      Color
----@field pselect    Color
-
----@class Bar
----@field active     Color
----@field inactive   Color
-
----@class Board
----@field light      Color
----@field dark       Color
-
----@class Syntax
----@field keyword    Color
----@field constant   Color
----@field type       Color
----@field macro      Color
----@field functions  Color
----@field statement  Color
----@field modifier   Color
----@field operator   Color
----@field string     Color
----@field symbol     Color
----@field struct     Color
----@field member     Color
----@field parameter  Color
----@field variable   Color
----@field construct  Color
----@field special    Color
-```
 </details>
 	
 ## Ports
