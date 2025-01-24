@@ -1043,7 +1043,7 @@ local function palette(config)
 			delimiter   = {
 				base = { default = true },
 				bracket = { default = true },
-				delimiter = { default = true }
+				delimiter = { fg = c.d1_orange }
 			}
 		},
 	}
