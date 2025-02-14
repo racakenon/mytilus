@@ -34,7 +34,7 @@ local grouptable = {
 	}
 }
 
----@param config Config
+---@param config Style
 local function palette( config)
 	config = config == nil and {} or config
 	local c = config.colors

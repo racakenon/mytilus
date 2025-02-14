@@ -40,7 +40,7 @@
 ---@field v2_blue       string
 ---@field v2_purple     string
 
----@class Config
+---@class Style
 ---@field colors	Scheme
 ---@field options   Options
 ---@field overides? HighlightGroups
