@@ -43,18 +43,20 @@
 ---@class Style
 ---@field colors	Scheme
 ---@field options   Options
----@field overides? HighlightGroups
+---@field overides? GroupHighlightMapping
 ---@field theme		string
 
 ---@class UserConfig
 ---@field options?  Options
----@field overides? HighlightGroups
+---@field overides? GroupHighlightMapping
 ---@field theme?	string
 
----@alias HighlightNames string
+---@alias HighlightName string
 ---@alias Color string | vim.api.keyset.highlight
----@alias GroupNames string
----@alias HighlightGroups table<string,vim.api.keyset.highlight> -- ["@string"] = { fg = "#222222", italic = true },
+---@alias GroupName string
+---@alias GroupHighlightMapping table<string,vim.api.keyset.highlight> -- ["@string"] = { fg = "#222222", italic = true },
+---@alias GrupNameTable table<GroupName,HighlightName|GrupNameTable>
+---@alias GrupColorTable table<GroupName,Color|GrupColorTable>
 
 ---@class Options
 ---@field sideBarDim?	   boolean -- if false then sidebar bg is same normal, default is true
@@ -70,14 +72,16 @@
 ---@field doc?			   HighlightOptions
 
 ---@class HighlightBuider
----@field highlightList List<HighlightNames>
+---@field highlightList List<HighlightName>
+---@field groupNametable GrupNameTable
+---@field groupColor function<Style,GrupColorTable>
 
 ---@class HighlightOptions
---- @field bold? boolean
---- @field strikethrough? boolean
---- @field underline? boolean
---- @field undercurl? boolean
---- @field underdouble? boolean
---- @field underdotted? boolean
---- @field underdashed? boolean
---- @field italic? boolean
+---@field bold? boolean
+---@field strikethrough? boolean
+---@field underline? boolean
+---@field undercurl? boolean
+---@field underdouble? boolean
+---@field underdotted? boolean
+---@field underdashed? boolean
+---@field italic? boolean
