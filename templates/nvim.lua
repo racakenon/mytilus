@@ -1,4 +1,4 @@
----@return Palette
+---@return table
 return {
 	d0_black      = "$(d0_black)",
 	d0_white      = "$(d0_white)",

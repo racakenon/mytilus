@@ -1,44 +1,8 @@
 local util = require "mytilus.utils"
 local M = {}
 
----@param tbl table
----@param palette Palette
----@param prefix? string
----@param result? any
----@return any
----
-local function makeHighlightFromGrouptable(tbl, palette, prefix, result)
-	result = result or {}
-	prefix = prefix or ""
-	for key, value in pairs(tbl) do
-		if type(value) == "table" then
-			local fullKey = prefix ~= "" and (prefix .. "." .. key) or key
-			if palette == nil or palette[key] == nil then
-				vim.print("[mytilus] not defined scheme " .. fullKey)
-			else
-				makeHighlightFromGrouptable(value, palette[key], fullKey, result)
-			end
-		else
-			result[value] = palette ~= nil and { palette } or {}
-		end
-	end
-	return result
-end
-
----@param colors table<Color>
----@return vim.api.keyset.highlight
-local function mix_colors(colors)
-	if type(colors) == "string" then
-		return { link = colors }
-	end
-	local result = {}
-	for _, v in pairs(colors) do
-		result = vim.tbl_extend('keep', result, v)
-	end
-	return result
-end
-
-function M.highlightgroups(configs)
+---@param configs Style 
+function M.buildGroupsHighlight(configs)
 	local groups = {}
 	local palette = {}
 	local category = {
@@ -59,21 +23,15 @@ function M.highlightgroups(configs)
 
 		util.list_equal(colorlist, util.flatten(grouptable), "colorlist", "grouptable")
 
-		local group_highlights = makeHighlightFromGrouptable(grouptable, palette)
+		local group_highlights = util.flatzip(grouptable, palette)
 
 		for k, v in pairs(group_highlights) do
-			groups[k] = mix_colors(v)
+			groups[k] = util.makeHiglight(v)
 		end
 	end
 
+	return groups
 
-	for group, setting in pairs(groups) do
-		vim.api.nvim_set_hl(0, group, setting)
-	end
-
-	for group, setting in pairs(configs.overides) do
-		vim.api.nvim_set_hl(0, group, setting)
-	end
 end
 
 return M

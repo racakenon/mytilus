@@ -45,6 +45,7 @@ end
 ---@param l1name string
 ---@param l2name string
 ---@return boolean
+---compare two list and find not exist first element ecch
 function M.list_equal(l1, l2, l1name, l2name)
 	if next(l1) == nil and next(l2) == nil then
 		return true
@@ -68,6 +69,52 @@ function M.list_equal(l1, l2, l1name, l2name)
 		M.warn(h1 .. " not in " .. l2name)
 		return false
 	end
+end
+
+---@param tbll table
+---@param tblr table
+---@param prefix? string
+---@param result? any
+---@return table
+---recursively zip table and return table
+---tbll values are keys, tblr values are values
+function M.flatzip(tbll, tblr, prefix, result)
+	result = result or {}
+	prefix = prefix or ""
+	for key, value in pairs(tbll) do
+		if type(value) == "table" then
+			local fullKey = prefix ~= "" and (prefix .. "." .. key) or key
+			if tblr == nil or tblr[key] == nil then
+				warn("not defined scheme" .. fullKey)
+			else
+				M.flatzip(value, tblr[key], fullKey, result)
+			end
+		else
+			if tblr ~= nil then
+				result[value] = tblr
+			end
+		end
+	end
+	return result
+end
+
+---@param color Color
+---@return vim.api.keyset.highlight
+function M.makeHiglight(color)
+	if type(color) == "string" then
+		return { link = color }
+	end
+	return color
+end
+
+---@param highlight vim.api.keyset.highlight
+---@param options HighlightOptions
+---@return vim.api.keyset.highlight
+function M.applyOptions(highlight, options)
+	if options ~= nil then
+		return vim.tbl_extend('force', highlight, options)
+	end
+	return highlight
 end
 
 return M

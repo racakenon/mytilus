@@ -30,7 +30,16 @@ function M.load(theme_name)
 		vim.o.background      = 'light'
 	end
 
-	require("mytilus.groups").highlightgroups(configs.styles == nil or configs.default())
+	local styles = configs.styles ~= nil and configs.styles or configs.default()
+	local groups = require("mytilus.groups").buildGroupsHighlight(styles)
+
+	if styles.overides ~= nil then
+		vim.tbl_extend('force', groups, styles.overides)
+	end
+
+	for group, setting in pairs(groups) do
+		vim.api.nvim_set_hl(0, group, setting)
+	end
 end
 
 return M

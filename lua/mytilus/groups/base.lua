@@ -1,3 +1,5 @@
+local util = require "mytilus.utils"
+
 local colorlist = {
 	"ColorColumn",               --Used for the columns set with colorcolumn.
 	"Conceal",                   --Placeholder characters substituted for concealed text (see conceallevel).
@@ -889,8 +891,8 @@ local function palette(config)
 		},
 
 		doc            = {
-			comment       = { fg = c.d3_black },
-			documentation = { default = true, fg = c.d2_black, },
+			comment       = util.applyOptions({ fg = c.d3_black }, o.comment),
+			documentation = util.applyOptions({ fg = c.d2_black }, o.doc),
 
 			spcomment     = {
 				plain  = { bold = true },
@@ -932,34 +934,10 @@ local function palette(config)
 		},
 
 		literal        = {
-			constant = (o.constant == nil or o.constant == "none")
-				and { fg = c.d1_chartreuse, }
-				or (o.constant == "bold")
-				and { fg = c.d1_chartreuse, bold = true }
-				or (o.constant == "italic")
-				and { fg = c.d1_chartreuse, italic = true }
-				or { fg = c.d1_chartreuse, },
-			symbol   = (o.constant == nil or o.constant == "none")
-				and { fg = c.d3_chartreuse, }
-				or (o.constant == "bold")
-				and { fg = c.d3_chartreuse, bold = true }
-				or (o.constant == "italic")
-				and { fg = c.d3_chartreuse, italic = true }
-				or { fg = c.d3_chartreuse, },
-			spstring = (o.str == nil or o.str == "none")
-				and { fg = c.d1_chartreuse, }
-				or (o.str == "bold")
-				and { fg = c.d1_chartreuse, bold = true }
-				or (o.str == "italic")
-				and { fg = c.d1_chartreuse, italic = true }
-				or { fg = c.d1_chartreuse, },
-			str      = (o.str == nil or o.str == "none")
-				and { fg = c.d1_yellow, }
-				or (o.str == "bold")
-				and { fg = c.d1_yellow, bold = true }
-				or (o.str == "italic")
-				and { fg = c.d1_yellow, italic = true }
-				or { fg = c.d1_yellow, },
+			constant = util.applyOptions({ fg = c.d1_chartreuse }, o.constant),
+			symbol   = util.applyOptions({ fg = c.d3_chartreuse }, o.constant),
+			spstring = util.applyOptions({ fg = c.d1_chartreuse, }, o.str),
+			str      = util.applyOptions({ fg = c.d1_yellow, }, o.str),
 			char     = { fg = c.d1_yellow, },
 			number   = { fg = c.d3_yellow },
 			float    = { fg = c.d3_yellow, },
@@ -973,72 +951,18 @@ local function palette(config)
 			spmember      = { fg = c.d3_green, },
 			parameter     = { fg = c.d1_cyan, },
 			typeparameter = { fg = c.d3_cyan },
-			func          = (o.func == nil or o.func == "none")
-				and { fg = c.d1_blue, }
-				or (o.func == "bold")
-				and { fg = c.d1_blue, bold = true }
-				or (o.func == "italic")
-				and { fg = c.d1_blue, italic = true }
-				or { fg = c.d1_blue, },
-			operator      = (o.func == nil or o.func == "none")
-				and { fg = c.d1_blue, }
-				or (o.func == "bold")
-				and { fg = c.d1_blue, bold = true }
-				or (o.func == "italic")
-				and { fg = c.d1_blue, italic = true }
-				or { fg = c.d1_blue, },
-			spfunc        = (o.func == nil or o.func == "none")
-				and { fg = c.d3_blue, }
-				or (o.func == "bold")
-				and { fg = c.d3_blue, bold = true }
-				or (o.func == "italic")
-				and { fg = c.d3_blue, italic = true }
-				or { fg = c.d3_blue, },
-			type          = (o.type == nil or o.type == "none")
-				and { fg = c.d3_purple, }
-				or (o.type == "bold")
-				and { fg = c.d3_purple, bold = true }
-				or (o.type == "italic")
-				and { fg = c.d3_purple, italic = true }
-				or { fg = c.d3_purple, },
-			typemember    = (o.type == nil or o.type == "none")
-				and { fg = c.d1_purple, }
-				or (o.type == "bold")
-				and { fg = c.d1_purple, bold = true }
-				or (o.type == "italic")
-				and { fg = c.d1_purple, italic = true }
-				or { fg = c.d1_purple, },
+			func          = util.applyOptions({ fg = c.d1_blue }, o.func),
+			operator      = util.applyOptions({ fg = c.d1_blue }, o.func),
+			spfunc        = util.applyOptions({ fg = c.d3_blue }, o.func),
+			type          = util.applyOptions({ fg = c.d3_purple }, o.type),
+			typemember    = util.applyOptions({ fg = c.d1_purple }, o.type),
 		},
 
 		reserve        = {
-			statement   = (o.statement == nil or o.statement == "none")
-				and { fg = c.d1_red, }
-				or (o.statement == "bold")
-				and { fg = c.d1_red, bold = true }
-				or (o.statement == "italic")
-				and { fg = c.d1_red, italic = true }
-				or { fg = c.d1_red, },
-			spstatement = (o.statement == nil or o.statement == "none")
-				and { fg = c.d3_red, }
-				or (o.statement == "bold")
-				and { fg = c.d3_red, bold = true }
-				or (o.statement == "italic")
-				and { fg = c.d3_red, italic = true }
-				or { fg = c.d3_red, },
-			def         = (o.keyword == nil or o.keyword == "none")
-				and { fg = c.d1_red, }
-				or (o.keyword == "bold")
-				and { fg = c.d1_red, bold = true }
-				or (o.keyword == "italic")
-				and { fg = c.d1_red, italic = true }
-				or { fg = c.d1_red, },
-			modifier    = (o.keyword == nil or o.keyword == "none")
-				and { fg = c.d3_orange, }
-				or (o.keyword == "bold")
-				and { fg = c.d3_orange, bold = true }
-				or (o.keyword == "italic")
-				and { fg = c.d3_orange, italic = true }
-				or { fg = c.d3_orange, },
+			statement   = util.applyOptions({ fg = c.d1_red }, o.statement),
+			spstatement = util.applyOptions({ fg = c.d3_red }, o.statement),
+			def         = util.applyOptions({ fg = c.d1_red }, o.keyword),
+			modifier    = util.applyOptions({ fg = c.d3_orange }, o.keyword),
 			spchar      = { fg = c.d1_orange, },
 			delimiter   = {
 				base = { default = true },

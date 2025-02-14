@@ -51,15 +51,33 @@
 ---@field overides? HighlightGroups
 ---@field theme?	string
 
+---@alias HighlightNames string
+---@alias Color string | vim.api.keyset.highlight
+---@alias GroupNames string
 ---@alias HighlightGroups table<string,vim.api.keyset.highlight> -- ["@string"] = { fg = "#222222", italic = true },
 
 ---@class Options
 ---@field sideBarDim?	   boolean -- if false then sidebar bg is same normal, default is true
 ---@field statusBarRevers? boolean -- if false then statusBarRevers bg is d2_black, default is true
 ---@field NCWindowDim?     boolean -- if false then not current window bg is same normal, default is true
----@field str?			   string -- none, bold or italic, default is none
----@field statement?       string -- none, bold or italic, default is none
----@field func?			   string -- none, bold or italic, default is none
----@field type?			   string -- none, bold or italic, default is none
----@field constant?        string -- none, bold or italic, default is none
----@field keyword?         string -- none, bold or italic, default is none
+---@field str?			   HighlightOptions
+---@field statement?       HighlightOptions
+---@field func?			   HighlightOptions
+---@field type?			   HighlightOptions
+---@field constant?        HighlightOptions
+---@field keyword?         HighlightOptions
+---@field comment?         HighlightOptions
+---@field doc?			   HighlightOptions
+
+---@class HighlightBuider
+---@field highlightList List<HighlightNames>
+
+---@class HighlightOptions
+--- @field bold? boolean
+--- @field strikethrough? boolean
+--- @field underline? boolean
+--- @field undercurl? boolean
+--- @field underdouble? boolean
+--- @field underdotted? boolean
+--- @field underdashed? boolean
+--- @field italic? boolean
