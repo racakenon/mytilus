@@ -10,12 +10,14 @@ function M.default()
 			sideBarDim = true, --if false then sidebar bg is same normal
 			statusBarRevers = true, --if false, statusBarRevers bg is d2_black,
 			NCWindowDim = true, --if false, not current window bg is same normal
-			constant = {},
 			str = {},
+			statement = {},
 			func = {},
 			type = {},
-			statement = {},
+			constant = {},
 			keyword = {},
+			comment = {},
+			doc = {},
 		},
 		overides = {} -- ["@string"] = { fg = "#222222", italic = true },
 	}

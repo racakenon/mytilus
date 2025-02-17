@@ -70,7 +70,7 @@ function process_files()
 
         for t in themes
             theme_path = joinpath(palette_folder, "$t.yml")
-            output = joinpath(output_path, "mytilus_$t.$extension")
+            output = filename == "ghostty" ? joinpath(output_path, "mytilus_$t") : joinpath(output_path, "mytilus_$t.$extension")
             replace_placeholders(theme_path, input_path, output)
         end
     end

@@ -1,4 +1,4 @@
----@return Palette
+---@return table
 return {
 	d0_black      = "#E5E3EE",
 	d0_white      = "#E4E6DB",

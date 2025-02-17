@@ -1,4 +1,4 @@
----@return Palette
+---@return table
 return {
 	d0_black      = "#39363F",
 	d0_white      = "#383930",

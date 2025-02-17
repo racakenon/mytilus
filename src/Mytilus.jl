@@ -40,27 +40,36 @@ vim.cmd[[colorscheme mytilus-dark]]
 ## Config	
 			
 ```lua
+
 config = function()
-	require("mytilus").setup(
+	require("mytilus.configs").setup(
 		{
-			theme = 'mytilus-light', -- can be light, dark or mytilus_dark
-			options = {
+			theme    = 'light',
+			options  = {
 				sideBarDim = true, --if false then sidebar bg is same normal
 				statusBarRevers = true, --if false, statusBarRevers bg is d2_black,
 				NCWindowDim = true, --if false, not current window bg is same normal
-
-				constant = "none", -- or "bold", "italic"
-				str = "none",     -- or "bold", "italic"
-				func = "none",    -- or "bold", "italic"
-				type = "none",    -- or "bold", "italic"
-				statement = "none", -- or "bold", "italic"
-				keyword = "none", -- or "bold", "italic"
+				str = { bold = true },
+				func = { bold = true, italic = true},
+				type = {},
+				statement = {},
+				keyword = {},
+				str = {},
+				statement = {},
+				func = {},
+				type = {},
+				constant = {},
+				keyword = {},
+				comment = {},
+				doc = {},
 			},
-			overides = {}         -- ["@string"] = { fg = "#222222", italic = true },
+			overides = {} -- ["@string"] = { fg = "#222222", italic = true },
 		}
 	)
-	vim.cmd [[colorscheme mytilus-dark]] -- colorscheme takes precedence over theme
+	vim.cmd [[colorscheme mytilus]]
 end
+}
+
 ```
 <details>
 
@@ -84,6 +93,7 @@ end
 - [rio](./themes/rio)
 - [vivid](./themes/vivid)
 - [wezterm](./themes/wezterm)
+- [ghostty](./themes/ghostty)
 
 ## Acknowledge
 
