@@ -334,7 +334,7 @@ local M = {
 
 			virtual = {
 				error = { "DiagnosticVirtualTextError", },
-				warn = { "DiagnosticVirtualTextWarn", },
+				warn = { "DiagnosticVirtualTextWarn", "ColorColumn", },
 				ok = { "DiagnosticVirtualTextOk" },
 				hint = { "DiagnosticVirtualTextHint" },
 				info = { "DiagnosticVirtualTextInfo" },
@@ -368,7 +368,6 @@ local M = {
 			},
 
 			warn = {
-				"ColorColumn",
 				"WarningMsg",
 				"DiagnosticWarn",
 				"DiagnosticFloatingWarn",
