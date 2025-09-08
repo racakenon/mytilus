@@ -1,0 +1,67 @@
+[colors.primary]
+background = "##(v1_white)"
+foreground = "##(d1_black)"
+dim_foreground = "##(d3_black)"
+bright_foreground = "##(d0_black)"
+
+[colors.cursor]
+text = "##(v1_white)"
+cursor = "##(d1_black)"
+
+[colors.vi_mode_cursor]
+text = "##(v1_white)"
+cursor = "##(d3_green)"
+
+[colors.search]
+matches.foreground = "##(d1_black)"
+matches.background = "##(v2_blue)"
+focused_match.foreground = "##(v0_white)"
+focused_match.background = "##(d1_purple)"
+
+[colors.hints]
+start.foreground = "##(d1_black)"
+start.background = "##(v2_yellow)"
+end.foreground = "##(v0_white)"
+end.background = "##(d1_yellow)"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "##(d1_black)"
+background = "##(v3_white)"
+
+[colors.selection]
+text = "##(d1_black)"
+background = "##(v3_white)"
+
+[colors.normal]
+black = "##(d1_black)"
+red = "##(d1_red)"
+green = "##(d1_green)"
+yellow = "##(d1_yellow)"
+blue = "##(d1_blue)"
+magenta = "##(d1_purple)"
+cyan = "##(d1_cyan)"
+white = "##(v1_white)"
+
+[colors.bright]
+black = "##(d3_black)"
+red = "##(v2_red)"
+green = "##(v2_green)"
+yellow = "##(v2_yellow)"
+blue = "##(v2_blue)"
+magenta = "##(v2_purple)"
+cyan = "##(v2_cyan)"
+white = "##(v0_white)"
+
+[colors.dim]
+black = "##(d0_black)"
+red = "##(d3_red)"
+green = "##(d3_green)"
+yellow = "##(d3_yellow)"
+blue = "##(d3_blue)"
+magenta = "##(d3_purple)"
+cyan = "##(d3_cyan)"
+white = "##(v3_white)"

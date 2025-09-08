@@ -1,144 +1,185 @@
 colors:
-  d0_black:      'E5E3EE'
-  d0_white:      'E4E6DB'
-  d1_black:      'DCD9E4'
-  d1_white:      'DBDCD1'
-  d2_black:      'D2CFDA'
-  d2_white:      'D1D2C7'
-  d3_black:      'C8C5D0'
-  d3_white:      'C7C8BD'
-  d3_red:        'EFB6BC'
-  d3_orange:     'EFBB97'
-  d3_yellow:     'D9C788'
-  d3_chartreuse: 'B4D39A'
-  d3_green:      '94D8BF'
-  d3_cyan:       '95D3E1'
-  d3_blue:       'B5C8ED'
-  d3_purple:     'D9BCDE'
-  v0_black:      '2C2A32'
-  v0_white:      '2B2C24'
-  v1_black:      '36343C'
-  v1_white:      '35362E'
-  v2_black:      '403E47'
-  v2_white:      '404138'
-  v3_black:      '4B4952'
-  v3_white:      '4A4B42'
-  v2_red:        '5A3336'
-  v2_orange:     '5A3619'
-  v2_yellow:     '4C3F03'
-  v2_chartreuse: '32471A'
-  v2_green:      '0F4B39'
-  v2_cyan:       '124850'
-  v2_blue:       '334059'
-  v2_purple:     '4B374E'
+ d0_black:      'E5E3EE'
+ d1_black:      'DCD9E4'
+ d3_black:      'C8C5D0'
+ v0_white:      '2B2C24'
+ v1_white:      '35362E'
+ v3_white:      '4A4B42'
+ 
+ d1_red:        'FECCCF'
+ d1_green:      'B0EAD2'
+ d1_yellow:     'EADBA3'
+ d1_blue:       'CBDBFA'
+ d1_purple:     'EAD1ED'
+ d1_cyan:       'B0E5F0'
+ 
+ d3_red:        'EFB6BC'
+ d3_green:      '94D8BF'
+ d3_yellow:     'D9C788'
+ d3_blue:       'B5C8ED'
+ d3_purple:     'D9BCDE'
+ d3_cyan:       '95D3E1'
+ 
+ v2_red:        '5A3336'
+ v2_green:      '0F4B39'
+ v2_yellow:     '4C3F03'
+ v2_blue:       '334059'
+ v2_purple:     '4B374E'
+ v2_cyan:       '124850'
 
 core:
-  normal_text: 
-    foreground: d1_black
-    background: v1_white
-    font-style: regular
-  regular_file: 
-    foreground: d1_black
-    background: v1_white
-    font-style: regular
-  reset_to_normal: 
-    foreground: d1_black
-    background: v1_white
-    font-style: regular
-  directory: 
-    foreground: d3_blue
-    font-style: bold
-  symlink: 
-    foreground: d3_cyan
-    font-style: bold 
-  multi_hard_link: 
-    foreground: d1_black
-    font-style: bold 
-  fifo: 
-    foreground: d3_yellow
-    background: v1_black
-  socket: 
-    foreground: d3_purple 
-    font-style: bold
-  door: 
-    foreground: d3_purple 
-    font-style: bold
-  block_device: 
-    foreground: d3_yellow
-    background: v1_black
-    font-style: bold
-  character_device: 
-    foreground: d3_yellow
-    background: v1_black
-    font-style: bold
-  broken_symlink: 
-    foreground: d3_red
-    background: v3_black
-    font-style: bold
-  missing_symlink_target: 
-    foreground: d1_black
-    font-style: italic
-  setuid: 
-    foreground: d1_white
-    background: v2_red
-  setgid: 
-    foreground: d1_black
-    background: v2_yellow
-  file_with_capability: 
-    foreground: d1_black
-    font-style: bold 
-  sticky_other_writable: 
-    foreground: d1_black
-    background: v2_chartreuse 
-  other_writable: 
-    foreground: d3_blue
-    background: v2_chartreuse
-  sticky: 
-    foreground: d1_white
-    background: v2_blue
-  executable_file: 
-    foreground: d3_chartreuse
-    font-style: bold
+ normal_text:
+   foreground: d1_black
+ regular_file: {}
+ reset_to_normal: {}
+ directory:
+   foreground: d1_blue
+   font-style: bold
+ symlink:
+   foreground: d1_cyan
+   font-style: italic
+ multi_hard_link:
+   foreground: d1_purple
+   font-style: bold
+ fifo:
+   foreground: v2_yellow
+   background: d0_black
+ socket:
+   foreground: v2_purple
+   background: d0_black
+ door:
+   foreground: v2_purple
+   background: d3_purple
+ block_device:
+   foreground: v2_yellow
+   background: d3_red
+   font-style: bold
+ character_device:
+   foreground: v2_yellow
+   background: d3_yellow
+   font-style: bold
+ broken_symlink:
+   foreground: v1_white
+   background: d1_red
+   font-style: bold
+ missing_symlink_target:
+   foreground: d1_red
+   font-style: bold
+ setuid:
+   foreground: v0_white
+   background: d1_red
+ setgid:
+   foreground: d0_black
+   background: v2_yellow
+ file_with_capability:
+   foreground: d0_black
+   background: v2_red
+ sticky_other_writable:
+   foreground: d0_black
+   background: v2_green
+   font-style: bold
+ other_writable:
+   foreground: d1_blue
+   background: v2_green
+ sticky:
+   foreground: v0_white
+   background: d1_blue
+ executable_file:
+   foreground: d1_green
+   font-style: bold
 
 text:
-  foreground: d0_black
-  font-style: 
-    - bold
-    - underline
-  other:
-    foreground: d1_black
+ foreground: d1_black
+ special:
+   foreground: d1_purple
+   font-style: bold
+ todo:
+   foreground: d1_yellow
+   font-style: bold
+ licenses:
+   foreground: d3_black
+   font-style: italic
+ configuration:
+   foreground: d1_yellow
+   font-style: italic
+ other:
+   foreground: d1_black
 
 markup:
-  foreground: d3_purple
-  font-style: underline
+ foreground: d1_purple
+ web:
+   foreground: d1_purple
+   font-style: bold
+ other:
+   foreground: d3_purple
 
 programming:
-  source:
-    foreground: d1_black
-  tooling:
-    foreground: d3_red
-    font-style: italic
-    
+ foreground: d1_black
+ source:
+   foreground: d1_black
+ tooling:
+   foreground: d1_yellow
+   font-style: italic
 
 media:
-  foreground: d3_green 
-  image:
-    foreground: d3_purple
-  audio:
-    foreground: d3_yellow
-  video:
-    foreground: d3_orange
+ image:
+   foreground: d1_purple
+ audio:
+   foreground: d1_cyan
+ video:
+   foreground: d1_blue
+   font-style: bold
+ fonts:
+   foreground: d3_purple
+   font-style: italic
+ 3d:
+   foreground: v2_purple
 
 office:
-  foreground: d3_cyan
+ foreground: d1_cyan
+ document:
+   foreground: d1_cyan
+ spreadsheet:
+   foreground: d1_green
+ presentation:
+   foreground: d1_blue
+ calendar:
+   foreground: d1_yellow
 
 archives:
-  foreground: d3_red
-  font-style: bold 
+ foreground: d1_red
+ font-style: bold
+ packages:
+   foreground: v2_red
+   font-style: bold
+ ros:
+   foreground: d3_red
+ images:
+   foreground: d1_red
+   font-style: bold
+ other:
+   foreground: d1_red
+   font-style: bold
 
 executable:
-  foreground: d3_chartreuse
-  font-style: bold 
+ foreground: d1_green
+ font-style: bold
+ windows:
+   foreground: v2_green
+   font-style: bold
+ library:
+   foreground: d3_green
+   font-style: italic
+ linux:
+   foreground: d1_green
+   font-style: bold
 
 unimportant:
-  foreground: d3_white
+ foreground: d3_black
+ build_artifacts:
+   foreground: d3_black
+   font-style: italic
+ macos:
+   foreground: d3_black
+ other:
+   foreground: d3_black

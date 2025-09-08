@@ -1,76 +1,80 @@
 [colors]
-foreground= "$(d1_black)"
-background= "$(v1_white)"
+foreground= "#(d1_black)"
+background= "#(v1_white)"
+
 ansi = [
-    "$(d1_black)",
-    "$(d1_red)",
-    "$(d1_green)",
-    "$(d1_yellow)",
-    "$(d1_blue)",
-    "$(d1_purple)",
-    "$(d1_cyan)",
-    "$(d1_white)",
-]
-brights = [
-    "$(d3_black)",
-    "$(d3_red)",
-    "$(d3_green)",
-    "$(d3_yellow)",
-    "$(d3_blue)",
-    "$(d3_purple)",
-    "$(d3_cyan)",
-    "$(d3_white)",
+    "#(d1_black)",
+    "#(d1_red)",
+    "#(d1_green)",
+    "#(d1_yellow)",
+    "#(d1_blue)",
+    "#(d1_purple)",
+    "#(d1_cyan)",
+    "#(v1_white)",
 ]
 
-compose_cursor  = "$(d2_black)"
-cursor_bg       = "$(d2_black)"
-cursor_border   = "$(d2_black)"
-cursor_fg       = "$(v0_white)"
-selection_bg    = "$(v3_white)"
-selection_fg    = "$(d1_white)"
-scrollbar_thumb = "$(d3_white)"
-split           = "$(d3_white)"
+brights = [
+    "#(d3_black)",
+    "#(v2_red)",
+    "#(v2_green)",
+    "#(v2_yellow)",
+    "#(v2_blue)",
+    "#(v2_purple)",
+    "#(v2_cyan)",
+    "#(v0_white)",
+]
+
+compose_cursor  = "#(d2_black)"
+cursor_bg       = "#(d2_black)"
+cursor_border   = "#(d2_black)"
+cursor_fg       = "#(v0_white)"
+
+selection_bg    = "#(v3_white)"
+selection_fg    = "#(d1_black)"
+
+scrollbar_thumb = "#(d3_white)"
+split           = "#(d3_white)"
 
 [colors.indexed]
 
 [colors.tab_bar]
-background = "$(v2_black)"
+background = "#(v2_black)"
 
 [colors.tab_bar.active_tab]
-bg_color      = "$(d0_black)"
-fg_color      = "$(v1_white)"
+bg_color      = "#(d0_black)"
+fg_color      = "#(v1_white)"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color      = "$(d3_black)"
-fg_color      = "$(v3_white)"
+bg_color      = "#(d3_black)"
+fg_color      = "#(v3_white)"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color      = "$(d3_black)"
-fg_color      = "$(v2_white)"
+bg_color      = "#(d3_black)"
+fg_color      = "#(v2_white)"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color      = "$(d2_black)"
-fg_color      = "$(v2_white)"
+bg_color      = "#(d2_black)"
+fg_color      = "#(v2_white)"
 intensity     = 'Normal'
 italic        = false
 strikethrough = false
 underline     = 'None'
 
 [colors.tab_bar.new_tab_hover]
-bg_color      = "$(d1_black)"
-fg_color      = "$(v1_white)"
+bg_color      = "#(d1_black)"
+fg_color      = "#(v1_white)"
 intensity     = 'Normal'
 italic        = true
 strikethrough = false
@@ -79,4 +83,4 @@ underline     = 'None'
 [metadata]
 aliases = []
 author = 'racagogi'
-name = "$(name)"
+name = "#(name)"

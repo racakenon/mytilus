@@ -1,38 +1,59 @@
-fish_color_normal #(d1_black)
-fish_color_command #(d3_blue)
-fish_color_keyword #(d3_blue)
-fish_color_quote #(d3_yellow)
-fish_color_redirection #(d3_yellow)
-fish_color_end #(d3_mint)
-fish_color_error #(d3_red)
-fish_color_param #(d3_orange)
-fish_color_valid_path #(d3_mint)
-fish_color_option #(d3_orange)
-fish_color_comment #(d3_black)
-fish_color_selection #(v2_black)
-fish_color_operator #(d3_blue)
-fish_color_escape #(d3_orange)
-fish_color_autosuggestion #(d3_black)
-fish_color_cwd #(d3_green)
-fish_color_cwd_root #(d3_red)
-fish_color_user #(d3_magenta)
-fish_color_host #(d3_magenta)
-fish_color_host_remote #(d3_magenta)
-fish_color_status #(d3_red)
-fish_color_cancel #(d3_red)
-fish_color_search_match #(d3_orange)
-fish_color_history_current #(d3_white)
+### ANSI 16 Colors Base Palette ###
+set -U fish_color_foreground '#(d1_black)'
+set -U fish_color_background '#(v1_white)'
+set -U fish_color_ansi_black '#(d1_black)'
+set -U fish_color_ansi_red '#(d1_red)'
+set -U fish_color_ansi_green '#(d1_green)'
+set -U fish_color_ansi_yellow '#(d1_yellow)'
+set -U fish_color_ansi_blue '#(d1_blue)'
+set -U fish_color_ansi_magenta '#(d1_purple)'
+set -U fish_color_ansi_cyan '#(d1_cyan)'
+set -U fish_color_ansi_white '#(v1_white)'
+set -U fish_color_ansi_brblack '#(d3_black)'
+set -U fish_color_ansi_brred '#(v2_red)'
+set -U fish_color_ansi_brgreen '#(v2_green)'
+set -U fish_color_ansi_bryellow '#(v2_yellow)'
+set -U fish_color_ansi_brblue '#(v2_blue)'
+set -U fish_color_ansi_brmagneta '#(v2_purple)'
+set -U fish_color_ansi_brcyan '#(v2_cyan)'
+set -U fish_color_ansi_brwhite '#(v0_white)'
 
-fish_pager_color_progress #(d3_white)
-fish_pager_color_background #(v1_white)
-fish_pager_color_prefix #(d3_yellow)
-fish_pager_color_completion #(d3_white)
-fish_pager_color_description #(d3_black)
-fish_pager_color_selected_background #(v2_black)
-fish_pager_color_selected_prefix #(d3_orange)
-fish_pager_color_selected_completion #(d2_white)
-fish_pager_color_selected_description #(d2_black)
-fish_pager_color_secondary_background #(v1_white)
-fish_pager_color_secondary_prefix #(d3_yellow)
-fish_pager_color_secondary_completion #(d3_white)
-fish_pager_color_secondary_description #(d3_black)
+### Fish UI Colors ###
+set -U fish_color_normal '#(d1_black)'
+set -U fish_color_command '#(d1_blue)'
+set -U fish_color_keyword '#(d1_purple)'
+set -U fish_color_quote '#(d1_green)'
+set -U fish_color_redirection '#(d1_yellow)'
+set -U fish_color_end '#(d1_cyan)'
+set -U fish_color_error '#(d1_red)'
+set -U fish_color_param '#(d1_black)'
+set -U fish_color_option '#(d3_yellow)'
+set -U fish_color_comment '#(d3_black)'
+set -U fish_color_selection --background='#(d3_black)'
+set -U fish_color_operator '#(d1_cyan)'
+set -U fish_color_escape '#(v2_yellow)'
+set -U fish_color_autosuggestion '#(d3_black)'
+set -U fish_color_cwd '#(d1_green)'
+set -U fish_color_cwd_root '#(d1_red)'
+set -U fish_color_user '#(d1_purple)'
+set -U fish_color_host '#(d1_purple)'
+set -U fish_color_host_remote '#(v2_purple)'
+set -U fish_color_status '#(d1_red)'
+set -U fish_color_cancel '#(d1_red)'
+set -U fish_color_search_match --background='#(d3_yellow)'
+set -U fish_color_history_current '#(d1_black)'
+
+### Pager Colors ###
+set -U fish_pager_color_progress '#(d1_black)'
+set -U fish_pager_color_background '#(v1_white)'
+set -U fish_pager_color_prefix '#(d1_blue)'
+set -U fish_pager_color_completion '#(d1_black)'
+set -U fish_pager_color_description '#(d3_black)'
+set -U fish_pager_color_selected_background --background='#(d3_black)'
+set -U fish_pager_color_selected_prefix '#(v2_blue)'
+set -U fish_pager_color_selected_completion '#(v1_white)'
+set -U fish_pager_color_selected_description '#(v3_white)'
+set -U fish_pager_color_secondary_background '#(v3_white)'
+set -U fish_pager_color_secondary_prefix '#(d3_blue)'
+set -U fish_pager_color_secondary_completion '#(d3_black)'
+set -U fish_pager_color_secondary_description '#(d3_black)'
