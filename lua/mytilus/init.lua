@@ -1,6 +1,9 @@
 local configs = require("mytilus.configs")
 local M = {}
 
+-- Global styles variable to store current configuration
+M.styles = configs.default()
+
 ---@param theme_name? string
 function M.load(theme_name)
 	if vim.g.colors_name then
@@ -12,30 +15,39 @@ function M.load(theme_name)
 	end
 
 	vim.o.termguicolors = true
+	
+	-- Update theme in styles
 	if theme_name == 'dark' then
-		configs.styles.theme = 'mytilus-dark'
+		M.styles.theme = 'mytilus-dark'
 	elseif theme_name == 'light' then
-		configs.styles.theme = 'mytilus-light'
+		M.styles.theme = 'mytilus-light'
 	end
 
-	if configs.styles.theme == 'dark' or configs.styles.theme == 'mytilus-dark' then
-		configs.styles.colors = require('mytilus.colors.mytilus_dark')
-		configs.styles.theme  = 'mytilus-dark'
-		vim.g.colors_name     = 'mytilus-dark'
-		vim.o.background      = 'dark'
+	-- Load appropriate color scheme
+	if M.styles.theme == 'dark' or M.styles.theme == 'mytilus-dark' then
+		M.styles.colors = require('mytilus.colors.mytilus_dark')
+		M.styles.theme = 'mytilus-dark'
+		vim.g.colors_name = 'mytilus-dark'
+		vim.o.background = 'dark'
 	else
-		configs.styles.colors = require('mytilus.colors.mytilus_light')
-		configs.styles.theme  = 'mytilus-light'
-		vim.g.colors_name     = 'mytilus-light'
-		vim.o.background      = 'light'
+		M.styles.colors = require('mytilus.colors.mytilus_light')
+		M.styles.theme = 'mytilus-light'
+		vim.g.colors_name = 'mytilus-light'
+		vim.o.background = 'light'
 	end
 
-	local styles = configs.styles ~= nil and configs.styles or configs.default()
-	require("mytilus.groups").buildHighlight(styles)
+	-- Build highlights
+	require("mytilus.groups").buildHighlight(M.styles)
 
-	for group, setting in pairs(styles.overides) do
+	-- Apply user overrides
+	for group, setting in pairs(M.styles.overides or {}) do
 		vim.api.nvim_set_hl(0, group, setting)
 	end
+end
+
+---@param user_config? UserConfig
+function M.setup(user_config)
+	M.styles = configs.setup(user_config)
 end
 
 return M

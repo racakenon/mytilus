@@ -57,6 +57,7 @@
 ---@alias GroupHighlightMapping table<string,vim.api.keyset.highlight> -- ["@string"] = { fg = "#222222", italic = true },
 ---@alias GrupNameTable table<GroupName,HighlightName|GrupNameTable>
 ---@alias GrupColorTable table<GroupName,Color|GrupColorTable>
+---@alias List table
 
 ---@class Options
 ---@field sideBarDim?	   boolean -- if false then sidebar bg is same normal, default is true
@@ -72,9 +73,9 @@
 ---@field doc?			   HighlightOptions
 
 ---@class HighlightBuider
----@field highlightList List<HighlightName>
+---@field highlightList HighlightName[]
 ---@field groupNametable GrupNameTable
----@field groupColor function<Style,GrupColorTable>
+---@field groupColor function
 
 ---@class HighlightOptions
 ---@field bold? boolean
