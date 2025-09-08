@@ -1,43 +1,43 @@
 local M = {}
 
----@param l List
----@param i number
----@return List
----return new list extracted ith element from l
-function M.extract(l, i)
-	local result = {}
-
-	for k, v in ipairs(l) do
-		if i ~= k then
-			table.insert(result, v)
-		end
-	end
-	return result
-end
+local flatten_cache = {}
 
 ---@param l table
 ---@return List
----make nested table flat recursively
+---make nested table flat recursively with caching
 function M.flatten(l)
+	local cache_key = tostring(l)
+	if flatten_cache[cache_key] then
+		return flatten_cache[cache_key]
+	end
+
 	local result = {}
 	if next(l) == nil then
 		return {}
 	end
+
 	for _, v in pairs(l) do
 		if v ~= nil and type(v) == "table" then
-			for _, e in pairs(M.flatten(v)) do
-				table.insert(result, e)
+			local flattened = M.flatten(v)
+			for i = 1, #flattened do
+				result[#result + 1] = flattened[i]
 			end
 		else
-			table.insert(result, v)
+			result[#result + 1] = v
 		end
 	end
+
+	flatten_cache[cache_key] = result
 	return result
+end
+
+function M.clear_cache()
+	flatten_cache = {}
 end
 
 ---@param msg string
 function M.warn(msg)
-	vim.notify("[mytilus]" .. msg, vim.log.levels.WARN)
+	vim.notify("[mytilus] " .. msg, vim.log.levels.WARN)
 end
 
 ---@param l1 List
@@ -45,47 +45,64 @@ end
 ---@param l1name string
 ---@param l2name string
 ---@return boolean
----compare two list and find not exist first element ecch
+---compare two lists more efficiently using hash sets
 function M.list_equal(l1, l2, l1name, l2name)
 	if next(l1) == nil and next(l2) == nil then
 		return true
-	elseif next(l1) == nil then
-		for _, v in ipairs(l2) do
-			M.warn(v .. " not in " .. l1name)
-		end
-		return false
-	elseif next(l2) == nil then
-		for _, v in ipairs(l1) do
-			M.warn(v .. " not in " .. l2name)
-		end
-		return false
-	else
-		local h1 = l1[1]
-		for i, v in ipairs(l2) do
-			if h1 == v then
-				return M.list_equal(M.extract(l1, 1), M.extract(l2, i), l1name, l2name)
-			end
-		end
-		M.warn(h1 .. " not in " .. l2name)
+	end
+
+	local set1, set2 = {}, {}
+	local count1, count2 = 0, 0
+
+	for _, v in ipairs(l1) do
+		set1[v] = (set1[v] or 0) + 1
+		count1 = count1 + 1
+	end
+
+	for _, v in ipairs(l2) do
+		set2[v] = (set2[v] or 0) + 1
+		count2 = count2 + 1
+	end
+
+	if count1 ~= count2 then
+		M.warn(string.format("List size mismatch: %s(%d) vs %s(%d)",
+			l1name, count1, l2name, count2))
 		return false
 	end
+
+	local has_error = false
+	for k, v in pairs(set1) do
+		if not set2[k] or set2[k] ~= v then
+			M.warn(k .. " not in " .. l2name .. " or count mismatch")
+			has_error = true
+		end
+	end
+
+	for k, v in pairs(set2) do
+		if not set1[k] or set1[k] ~= v then
+			M.warn(k .. " not in " .. l1name .. " or count mismatch")
+			has_error = true
+		end
+	end
+
+	return not has_error
 end
+
 
 ---@param tbll table
 ---@param tblr table
 ---@param prefix? string
 ---@param result? any
 ---@return table
----recursively zip table and return table
----tbll values are keys, tblr values are values
 function M.flatzip(tbll, tblr, prefix, result)
 	result = result or {}
 	prefix = prefix or ""
+
 	for key, value in pairs(tbll) do
 		if type(value) == "table" then
 			local fullKey = prefix ~= "" and (prefix .. "." .. key) or key
 			if tblr == nil or tblr[key] == nil then
-				warn("not defined scheme" .. fullKey)
+				M.warn("not defined scheme: " .. fullKey)
 			else
 				M.flatzip(value, tblr[key], fullKey, result)
 			end
